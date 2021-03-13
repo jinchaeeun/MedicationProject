@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "507861036901",
+    "project_id": "test-41497",
+    "storage_bucket": "test-41497.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507861036901:android:99e41d2d9b5cd3bec5fb8c",
+        "android_client_info": {
+          "package_name": "com.example.medicationproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "507861036901-dbesi7uvlrj2f3fi16lokepq6umfambj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medicationproject",
+            "certificate_hash": "1c12f0a671b5577c259e058dbb13cc6fdd050109"
+          }
+        },
+        {
+          "client_id": "507861036901-jpl8i3i7v8g1tp2kclu5i8phn16nj1lu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDK35Jypsk1UQkNtxsBdd1eCaR0imjj6t0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "507861036901-jpl8i3i7v8g1tp2kclu5i8phn16nj1lu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

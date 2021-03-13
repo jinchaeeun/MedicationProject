@@ -1,5 +1,6 @@
 package com.example.medicationproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -12,15 +13,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.medicationproject.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FamilyList extends AppCompatActivity {
+
     //Member Variable ----------------------------------------
     // 디버깅을 위한 변수
     private final boolean       D           = true;
     private final String        TAG         = "FamilyList";
+
+    //firebase
+    private DatabaseReference mDatabase;
 
     // data
     private EditText            nameETXT, phoneETXT, emailETXT;
@@ -38,6 +47,9 @@ public class FamilyList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.familylistlayout);
         init();
+
+        //firebase 정의
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         if(D) Log.i(TAG, "onCreate()");
     }
@@ -64,6 +76,28 @@ public class FamilyList extends AppCompatActivity {
         //ListView에 List 설정
         listView.setAdapter(adapter);
     }
+
+    // firebase에 데이터 추가
+    private void writeNewUser(String userId, String name, String phone, String email){
+        FamilyAddress familyAdd = new FamilyAddress(name, phone, email);
+
+        mDatabase.child("users").child(userId).setValue(familyAdd).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                //write was successful!
+                Toast.makeText(FamilyList.this, "저장 완료", Toast.LENGTH_LONG).show();
+                Log.i(TAG, "onSuccess");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                //write Failed
+                Toast.makeText(FamilyList.this, "저장 실패", Toast.LENGTH_LONG).show();
+                Log.i(TAG, "onFailure");
+            }
+        });
+    }
+
     //Member Method - XML onClick Method----------------------------------
 
     public void click(View v){
@@ -87,6 +121,7 @@ public class FamilyList extends AppCompatActivity {
 
                     //TextView에 데이터 출력
                     //displayAddress();
+                    writeNewUser("1",nameETXT.getText().toString(), phoneETXT.getText().toString(), emailETXT.getText().toString());
                     adapter.notifyDataSetChanged();
 
                 }else{

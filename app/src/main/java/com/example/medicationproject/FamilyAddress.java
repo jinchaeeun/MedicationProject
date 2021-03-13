@@ -17,12 +17,21 @@ public class FamilyAddress {
     }
 
     //Getter/Setter Method --------------------- 필요 없으면 안해도 되는 것임.
-    public String getEmail() {
+    /*public String getEmail() {
         return email;
-    }
+    }*/
 
     //Custom Method -------------------------
     public String getInfo(){        //String 문자열 name, phone, email 다 넘어가도록 getInfo()라는 함수를 만듦
         return this.name+ " - " + this.phone + " - "+this.email;
+    }
+
+    @Override
+    public String toString() {
+        return "FamilyAddress{" +
+                "name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
