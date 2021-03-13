@@ -69,19 +69,19 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/bsMor1TXT"
+                android:id="@+id/familyPhoneTXT"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginEnd="20dp"
                 android:layout_weight="1"
                 android:gravity="center|end"
-                android:labelFor="@+id/bsMor1ETXT"
+                android:labelFor="@+id/familyPhoneETXT"
                 android:text="@string/bSMor1" />
 
 
             <EditText
-                android:id="@+id/bsMor1ETXT"
+                android:id="@+id/familyPhoneETXT"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|fill"
