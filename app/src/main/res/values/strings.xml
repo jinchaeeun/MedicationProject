@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MedicationProject</string>
+    <string name="bloodpressure">혈압 측정 기록</string>
+    <string name="bMeasure">측정 시간</string>
+    <string name="bPressure">측정 혈압</string>
+    <string name="save">저장</string>
+    <string name="mmHg">mmHg</string>
+    <string name="morning">아침</string>
+    <string name="evening">저녁</string>
+</resources>
