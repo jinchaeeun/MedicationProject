@@ -11,10 +11,29 @@
         android:id="@+id/bPTXT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
+        android:layout_gravity="start"
         android:text="@string/bloodpressure"
-        android:textSize="23dp"
+        android:textSize="23sp"
         android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/todayDate" />
+
+        <TextView
+            android:id="@+id/todayDateTXT"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
 
     <GridLayout
         android:layout_width="match_parent"
@@ -37,15 +56,15 @@
                 android:id="@+id/bMeasureTXT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="23dp"
-                android:text="@string/bMeasure" />
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="23dp"
+                android:text="@string/bPMeasure" />
 
             <TextView
                 android:id="@+id/bPressureTXT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:text="@string/bPressure" />
         </LinearLayout>
 
@@ -58,34 +77,39 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/morTXT"
+                android:id="@+id/bsMor1TXT"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/morning" />
+                android:text="@string/morning"
+                android:labelFor="@+id/morTimeETXT" />
 
             <EditText
                 android:id="@+id/morTimeETXT"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:inputType="time" />
+                android:inputType="time"
+                android:labelFor="@+id/bsMor1ETXT"
+                android:importantForAutofill="no" />
 
 
             <EditText
-                android:id="@+id/morBPresETXT"
+                android:id="@+id/bsMor1ETXT"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right|fill"
-                android:layout_marginLeft="15dp"
+                android:layout_gravity="end|fill"
+                android:layout_marginStart="15dp"
                 android:layout_weight="1"
-                android:gravity="right"
-                android:maxLength="3" />
+                android:gravity="end"
+                android:inputType="number"
+                android:maxLength="3"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:id="@+id/mmHgTXT1"
@@ -118,20 +142,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:inputType="time" />
+                android:inputType="time"
+                android:labelFor="@+id/eveBPresETXT"
+                android:importantForAutofill="no" />
 
             <EditText
                 android:id="@+id/eveBPresETXT"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right|fill"
-                android:layout_marginLeft="15dp"
+                android:layout_gravity="fill|end"
+                android:layout_marginStart="15dp"
                 android:layout_weight="1"
                 android:autofillHints=""
-                android:gravity="right"
+                android:gravity="end"
+                android:inputType="number"
                 android:maxLength="3" />
 
             <TextView
@@ -146,10 +173,10 @@
     </GridLayout>
 
     <Button
-        android:id="@+id/BPSaveBTN"
+        android:id="@+id/BSSaveBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
+        android:layout_gravity="end"
         android:text="@string/save" />
 
 

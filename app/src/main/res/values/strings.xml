@@ -1,10 +1,20 @@
 <resources>
     <string name="app_name">MedicationProject</string>
     <string name="bloodpressure">혈압 측정 기록</string>
-    <string name="bMeasure">측정 시간</string>
+    <string name="bPMeasure">측정 시간</string>
     <string name="bPressure">측정 혈압</string>
     <string name="save">저장</string>
     <string name="mmHg">mmHg</string>
     <string name="morning">아침</string>
     <string name="evening">저녁</string>
+    <string name="bloodSugar">혈당 측정 기록</string>
+    <string name="bSMeasure">측정 혈당</string>
+    <string name="bSMor1">아침 전</string>
+    <string name="bSMor2">아침 후</string>
+    <string name="bSLun1">점심 전</string>
+    <string name="bSLun2">점심 후</string>
+    <string name="bSEve1">저녁 전</string>
+    <string name="bSEve2">저녁 후</string>
+    <string name="mgdL">mg/dL</string>
+    <string name="todayDate">오늘 날짜: </string>
 </resources>
