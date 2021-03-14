@@ -25,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class FamilyList extends AppCompatActivity {
 
@@ -38,10 +39,6 @@ public class FamilyList extends AppCompatActivity {
 
     //데이터베이스의 정보
     private DatabaseReference mReference;
-
-    private ChildEventListener mChild;
-    
-
 
     //데이터 값 저장
     private String SharedPrefFile = "com.example.medicationproject"; //파일 이름
@@ -58,17 +55,19 @@ public class FamilyList extends AppCompatActivity {
     private SimpleAdapter adapter;                        // 데이터 넣어줄 어댑터
     private HashMap<String, String> map;
 
+    //하위 키 값 찾기
+    List memberInfoList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.familylistlayout);
-
-        init();
         initDatabase();
-
+        init();
         cnt = getSharedPreferences(SharedPrefFile, MODE_PRIVATE);
         //get 메소드의 첫번째 인자는 key값 , 두번째 인자는 key값에 맞는 데이터가 없을 경우 기본값
         familyListCount = cnt.getInt("famCnt",0);
+        //값 뿌려주기
+        readUser(familyListCount);
         Log.i("firebase", "on Create() 패밀리리스트 값: "+familyListCount);
         if (D) Log.i(TAG, "onCreate()");
     }
@@ -103,105 +102,83 @@ public class FamilyList extends AppCompatActivity {
         adapter = new SimpleAdapter(FamilyList.this, arrayList, R.layout.item_layout, new String[]{"name", "phone", "email"}, new int[]{R.id.item_nameTxt, R.id.item_phoneTxt, R.id.item_emailTxt});
         //ListView에 List 설정
         listView.setAdapter(adapter);
+
     }
 
-    public void initDatabase(){
+    public void initDatabase() {
         //firebase 연결
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference();
-        //firebase에서 레퍼런스 가져오기
+
         /*
-        mChild = new ChildEventListener() {
-            //항목 목록 검색, 항목 목록에 대한 추가를 수신 대기
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+        현재 필요는 없음 하위 key 값 찾을 때 사용
 
+        mReference.child("family_member").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot keySnapshot : snapshot.getChildren()){
+                    //하위 키 값 가져오기
+                    String str = keySnapshot.child("info").getValue(String.class);
+                    Log.i("firebase", "OnDataChange  하위 키 값: "+str);
+
+                    memberInfoList.add(str);
+                    
+                }
+                adapter.notifyDataSetChanged();
             }
-            //목록의 항목에 대한 변경 수신 대기
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.i("TAG: ", "Failed to read value");
             }
-            // 목록의 항목 삭제 수신대기
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+        });
+        */
 
-            }
-            // 순서 있는 목록의 항목 순서 변경을 수신대기기
+        /*
+        mReference = mDatabase.getReference("family_member");   //변경 값 확인할 child
+        mReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //adapter.clear();
+                for (DataSnapshot messageData : dataSnapshot.getChildren()) {
+                    //child 내에 있는 데이터만큼 반복
+                    String name = messageData.getValue().toString();
+                    String phone = messageData.getValue().toString();
+                    String email = messageData.getValue().toString();
 
+                    map = new HashMap<String, String>();
+                    map.put("name", nameETXT.getText().toString());
+                    map.put("phone", phoneETXT.getText().toString());
+                    map.put("email", emailETXT.getText().toString());
+                    arrayList.add(map);
+
+                }
+                //리스트뷰 갱신하고 마지막 위치를 카운트해서 보내줌
+                adapter.notifyDataSetChanged();
+                listView.setSelection(adapter.getCount() - 1);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        };
-        mReference.addChildEventListener(mChild);*/
+        });*/
     }
-
-
-
-
-
-    /*
-    mReference = mDatabase.getReference("family_member");   //변경 값 확인할 child
-    mReference.addValueEventListener(new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            //adapter.clear();
-            for (DataSnapshot messageData : dataSnapshot.getChildren()) {
-                //child 내에 있는 데이터만큼 반복
-                String name = messageData.getValue().toString();
-                String phone = messageData.getValue().toString();
-                String email = messageData.getValue().toString();
-
-                map = new HashMap<String, String>();
-                map.put("name", nameETXT.getText().toString());
-                map.put("phone", phoneETXT.getText().toString());
-                map.put("email", emailETXT.getText().toString());
-                arrayList.add(map);
-
-            }
-            //리스트뷰 갱신하고 마지막 위치를 카운트해서 보내줌
-            adapter.notifyDataSetChanged();
-            listView.setSelection(adapter.getCount() - 1);
-        }
-
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
-
-        }
-    });*/
-
     //Member Method - XML onClick Method----------------------------------
 
     public void click(View v) {
 
         switch (v.getId()) {
             case R.id.addBTN:
-                // 3개의 EditText 값 읽어서 Address 객체 생성 및 추가
                 // (1) EditText 3개 값 입력 여부 체크
-
                 if (nameETXT.getText().length() > 0 && phoneETXT.getText().length() > 0 && emailETXT.getText().length() > 0) {
-                    // (2-1) Address 객체 생성 및 ArrayList 추가
-                    map = new HashMap<String, String>();
-                    map.put("name", nameETXT.getText().toString());
-                    map.put("phone", phoneETXT.getText().toString());
-                    map.put("email", emailETXT.getText().toString());
-                    //arrayList.add(map);
-
-                    Log.i(TAG, "add => " + arrayList.size()); //현재 입력된 갯수
-
                     //firebase 저장 method 호출
                     writeNewUser(familyListCount++, nameETXT.getText().toString(), phoneETXT.getText().toString(), emailETXT.getText().toString());
                     Log.i("firebase", "add 패밀리리스트 값: "+familyListCount);
-                    // 3개 입력 필드 초기화(지우기)
-                    //initEXIT();
+                    Log.i(TAG, "add => " + arrayList.size()); //현재 입력된 갯수
 
                     //adapter에 noti 날림
-                    //adapter.notifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
 
                 } else {
                     // (2-2) 사용자에게 알림 띄우기
@@ -209,23 +186,21 @@ public class FamilyList extends AppCompatActivity {
                 }
                 break;
             case R.id.delBTN:
-                //firebase 가장 최근 삭제
-                removeUser(familyListCount, nameETXT.getText().toString(), phoneETXT.getText().toString(), emailETXT.getText().toString());
-                /*
                 if (arrayList.size() > 0) {
-                    int lastIdx = arrayList.size() - 1;
-                    arrayList.remove(lastIdx);
-
-                    //adapter에 noti 날림
+                    //firebase 가장 최근 삭제
+                    removeUser(familyListCount-1, nameETXT.getText().toString(), phoneETXT.getText().toString(), emailETXT.getText().toString());
+                    adapter.notifyDataSetChanged();
+                    Log.i("firebase", "delete 패밀리리스트 값: "+familyListCount);
+//                    int lastIdx = arrayList.size() - 1;
+//                    arrayList.remove(lastIdx);
+//
+//                    //adapter에 noti 날림
                     adapter.notifyDataSetChanged();
 
-                    //마지막 포지션 값 지우기
-                    removeUser(familyListCount, nameETXT.getText().toString(), phoneETXT.getText().toString(), emailETXT.getText().toString());
 
                 } else {
                     Toast.makeText(this, R.string.del_msg, Toast.LENGTH_LONG).show();
-                }*/
-                Log.i("firebase", "delete 패밀리리스트 값: "+familyListCount);
+                }
                 break;
         }
         famCntSave();
@@ -233,25 +208,42 @@ public class FamilyList extends AppCompatActivity {
 
     //ListView에 firebase 데이터 조회
 
-
     // firebase에 데이터 읽기
-    private void readUser(final int position, String name, String phone, String email) {
-        FamilyAddress famAddr = new FamilyAddress(name, phone, email);
+    private void readUser(final int position) {
+        //새로 전체 다 뿌려주기 위해서 초기화하기
+        arrayList.clear();
+        if(position!= 0) {
+            for (int i = 0; i < familyListCount; i++) {
+                //데이터 한번 읽기 하나씩 가져왔음.
+                mReference.child("family_member").child(String.valueOf(i)).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if (!task.isSuccessful()) {
+                            Log.i("firebase_onComplete", "Error getting data", task.getException());
+                        } else {
+                            Log.i("firebase_onComplete", String.valueOf(task.getResult().getValue()));
+                            //listView에 값 뿌리기
 
-        //지정 위치에서 모든 데이터를 다시 덮어씀
-        //mReference.child("family_member").child(String.valueOf(position)).setValue(famAddr);
+                            //문자열 필요 없는 값 자르기
+                            String readStr = String.valueOf(task.getResult().getValue());
+                            int idx = readStr.indexOf("=");
+                            String needStr = readStr.substring(idx + 1);                    //= 뒷부분만 추출
+                            String reStr = needStr.substring(0, needStr.length() - 1);      //맨 마지막 } 값 삭제
 
-        //데이터 한번 읽기 하나씩 가져왔음.
-        mReference.child("family_member").child(String.valueOf(position)).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.i("if_firebase_onComplete", "Error getting data", task.getException());
-                } else {
-                    Log.i("else_firebase_onComplete", String.valueOf(task.getResult().getValue()));
-                }
+                            String data[] = reStr.split(" - ");
+                            map = new HashMap<String, String>();
+                            map.put("name", data[0]);
+                            map.put("phone", data[1]);
+                            map.put("email", data[2]);
+                            arrayList.add(map);
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                });
             }
-        });
+        }else{
+            Toast.makeText(FamilyList.this, "값이 없습니다.",Toast.LENGTH_SHORT).show();
+        }
     }
     // firebase에 데이터 추가
     private void writeNewUser(final int position, String name, String phone, String email){
@@ -261,10 +253,10 @@ public class FamilyList extends AppCompatActivity {
             @Override
             public void onSuccess(Void aVoid) {
                 //write was successful!
-                arrayList.add(map);
+                //arrayList.add(map);
 
-                adapter.notifyDataSetChanged();
-
+                //adapter.notifyDataSetChanged();
+                readUser(familyListCount); //화면에 뿌리기
                 Toast.makeText(FamilyList.this, "입력하신 정보를 저장했습니다.", Toast.LENGTH_LONG).show();
 
                 Log.i(TAG, "onSuccess");
@@ -284,15 +276,12 @@ public class FamilyList extends AppCompatActivity {
 
     // firebase 데이터 삭제하기
     private void removeUser(final int position, String name, String phone, String email){
-        if(position != familyListCount){
-            Toast.makeText(FamilyList.this, "삭제하시려면 한번 더 누르세요.", Toast.LENGTH_SHORT).show();
-        }
         Log.i("firebase", "delete "+ position);
         familyListCount--;
         mReference.child("family_member").child(String.valueOf(position)).removeValue();
         Log.i("firebase removeUser", "removeUser" + position);
+        readUser(familyListCount);
     }
-
     
     //Member Method - Custom----------------------------------
     //3개 입력 필드 초기화
