@@ -1,12 +1,17 @@
 package com.example.medicationproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,5 +26,6 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference myRef1 = database.getReference("Text");
         myRef.setValue("Hello, World!");
         myRef1.setValue(Text1.getText());
+
     }
 }

@@ -10,6 +10,9 @@ public class FamilyAddress {
     //Code (alt+c) - generate - Constructor 클릭 초기화시킬 변수 선택하면 자동 생성
     //           alt + insert - Constructor 도 가능
     // 생성자
+    public FamilyAddress(){
+
+    }
 
     public FamilyAddress(String name, String phone, String email) {
         this.name = name;
