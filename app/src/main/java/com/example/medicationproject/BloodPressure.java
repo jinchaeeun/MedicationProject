@@ -69,7 +69,7 @@ public class BloodPressure extends AppCompatActivity {
     //ui
     private TextView mTxtDate;      //오늘 날짜
     private Spinner mor_eve_spinner; //셀렉트 박스
-    private TextView bPrTimeETXT;  //측정 시간
+    private TextView bPrTimeTXT;  //측정 시간
     private EditText bPrETXT;  //측정 혈압
     private CalendarView BPresscalendarView;
 
@@ -78,7 +78,9 @@ public class BloodPressure extends AppCompatActivity {
     private TextView morBPresTXT_show;  //아침 측정 혈압
     private TextView eveTimeTXT_show;   //저녁 측정 시간
     private TextView eveBPresTXT_show;  //저녁 측정 혈압
-
+    private TextView select_data_TXT;   //선택한 날짜
+    private String spinner_text;        //spinner선택한
+    
     //하위 키 값 찾기
     List memberInfoList = new ArrayList<>();
 
@@ -94,9 +96,9 @@ public class BloodPressure extends AppCompatActivity {
        BPresscalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                select_data_TXT.setText(String.format(" %04d"+"년 "+ "%02d"+"월 "+"%02d"+"일 ", year, month +1, dayOfMonth));
                 if (D) Log.i(TAG, "혈압 측정 기록에서 캘린더뷰 선택 날짜- " + String.valueOf(year) + "년 " + String.valueOf(month+1) + "월 "  + String.valueOf(dayOfMonth) + "일 " );
                 //저장하기
-
             }
         });
     }
@@ -110,18 +112,20 @@ public class BloodPressure extends AppCompatActivity {
                 new DatePickerDialog(BloodPressure.this, mDateSetListener, mYear, mMonth, mDay).show();
             }
         });
-        mTxtDate.setText(String.format(" %d"+"년 "+ "%d"+"월 "+"%d"+"일", mYear, mMonth +1, mDay));
+        mTxtDate.setText(String.format(" %04d"+"년 "+ "%02d"+"월 "+"%02d"+"일 ", mYear, mMonth +1, mDay));
+        // onCreate() 시 select_data_TXT에 출력해줄 값
+        select_data_TXT.setText(String.format(" %d"+"년 "+ "%d"+"월 "+"%d"+"일 ", mYear, mMonth +1, mDay));
     }
 
     public void UpdateMorTimeNow(){
         //텍스트뷰 클릭 시 날짜 변경 가능하게 호출
-        bPrTimeETXT.setOnClickListener(new View.OnClickListener() {
+        bPrTimeTXT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new TimePickerDialog(BloodPressure.this, mTimeSetListener, mHour, mMinute, false).show();
             }
         });
-        bPrTimeETXT.setText(String.format("%d:%d", mHour, mMinute));
+        bPrTimeTXT.setText(String.format("%02d:%02d", mHour, mMinute));
     }
 
     //날짜 대화상자 리스너 부분
@@ -152,7 +156,6 @@ public class BloodPressure extends AppCompatActivity {
     };
 
 
-
     //현재 Focus를 받고 있는 View 영역이 아닌 다른 곳 터치 시 소프트키보드 내리기
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -178,11 +181,12 @@ public class BloodPressure extends AppCompatActivity {
     private void init() {
         //xml 요소 연결
         mTxtDate = findViewById(R.id.todayDateTXT);
-        bPrTimeETXT = findViewById(R.id.bPrTimeETXT);
+        bPrTimeTXT = findViewById(R.id.bPrTimeTXT);
         bPrETXT = findViewById(R.id.bPrETXT);
         mor_eve_spinner = findViewById(R.id.mor_eve_spinner);       //spinner (셀렉트박스) strings.xml과  연결
         BPresscalendarView = findViewById(R.id.BPresscalendarView);
         //화면 아래쪽 xml 요소 연결
+        select_data_TXT = findViewById(R.id.select_data_TXT);
         morTimeTXT_show = findViewById(R.id.morTimeTXT_show);
         morBPresTXT_show = findViewById(R.id.morBPresTXT_show);
         eveTimeTXT_show = findViewById(R.id.eveTimeTXT_show);
@@ -276,20 +280,20 @@ public class BloodPressure extends AppCompatActivity {
     public void click(View v) {
         if (!bPrETXT.getText().toString().equals("")) { //측정 혈압 입력 값이 비어있는지 확인.
             // 선택한 Spinner 값( 아침/저녁 )
-            String text = mor_eve_spinner.getSelectedItem().toString();
-            if (D) Log.i(TAG, "아침/저녁: " + text);
-            if (text.equals("아침")) {
-                // 측정시간 bPrTimeETXT 값 아래 textView에 넣기.
-                morTimeTXT_show.setText(bPrTimeETXT.getText());
+            spinner_text = mor_eve_spinner.getSelectedItem().toString();
+            if (D) Log.i(TAG, "아침/저녁: " + spinner_text);
+            if (spinner_text.equals("아침")) {
+                // 측정시간 bPrTimeTXT 값 아래 textView에 넣기.
+                morTimeTXT_show.setText(bPrTimeTXT.getText());
                 // 측정 혈압 bPrETXT 값 아래 TextView에 넣기
                 morBPresTXT_show.setText(bPrETXT.getText());
-                if (D) Log.i(TAG, "측정시간: " + bPrTimeETXT.getText() + "\n 측정 혈압: " + bPrETXT.getText());
-            } else if (text.equals("저녁")) {
-                // 측정시간 bPrTimeETXT 값 아래 textView에 넣기.
-                eveTimeTXT_show.setText(bPrTimeETXT.getText());
+                if (D) Log.i(TAG, "측정시간: " + bPrTimeTXT.getText() + "\n 측정 혈압: " + bPrETXT.getText());
+            } else if (spinner_text.equals("저녁")) {
+                // 측정시간 bPrTimeTXT 값 아래 textView에 넣기.
+                eveTimeTXT_show.setText(bPrTimeTXT.getText());
                 // 측정 혈압 bPrETXT 값 아래 TextView에 넣기
                 eveBPresTXT_show.setText(bPrETXT.getText());
-                if (D) Log.i(TAG, "측정시간: " + bPrTimeETXT.getText() + "\n 측정 혈압: " + bPrETXT.getText());
+                if (D) Log.i(TAG, "측정시간: " + bPrTimeTXT.getText() + "\n 측정 혈압: " + bPrETXT.getText());
             }
         }
         else{

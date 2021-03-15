@@ -38,5 +38,6 @@
     <!--bloodpreslayout-->
     <string name="auto_value_fill">자동 입력</string>
     <string name="mor_or_eve">아침/저녁</string>
+    <string name="PressureResultTEXT">측정하신 값</string>
 
 </resources>
