@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
+import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -70,6 +71,13 @@ public class BloodPressure extends AppCompatActivity {
     private Spinner mor_eve_spinner; //셀렉트 박스
     private TextView bPrTimeETXT;  //측정 시간
     private EditText bPrETXT;  //측정 혈압
+    private CalendarView BPresscalendarView;
+
+    //아래 ui 값
+    private TextView morTimeTXT_show;   //아침 측정 시간
+    private TextView morBPresTXT_show;  //아침 측정 혈압
+    private TextView eveTimeTXT_show;   //저녁 측정 시간
+    private TextView eveBPresTXT_show;  //저녁 측정 혈압
 
     //하위 키 값 찾기
     List memberInfoList = new ArrayList<>();
@@ -81,6 +89,16 @@ public class BloodPressure extends AppCompatActivity {
         initDatabase();
         init();
         if (D) Log.i(TAG, "onCreate()");
+
+        //CalenderView 선택한 날짜
+       BPresscalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                if (D) Log.i(TAG, "혈압 측정 기록에서 캘린더뷰 선택 날짜- " + String.valueOf(year) + "년 " + String.valueOf(month+1) + "월 "  + String.valueOf(dayOfMonth) + "일 " );
+                //저장하기
+
+            }
+        });
     }
 
 
@@ -133,6 +151,8 @@ public class BloodPressure extends AppCompatActivity {
         }
     };
 
+
+
     //현재 Focus를 받고 있는 View 영역이 아닌 다른 곳 터치 시 소프트키보드 내리기
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -153,14 +173,21 @@ public class BloodPressure extends AppCompatActivity {
     }
 
 
+
     //onCreate 시 초기화 코드 ---------------------------------------------------
     private void init() {
         //xml 요소 연결
         mTxtDate = findViewById(R.id.todayDateTXT);
         bPrTimeETXT = findViewById(R.id.bPrTimeETXT);
         bPrETXT = findViewById(R.id.bPrETXT);
-        //spinner (셀렉트박스) strings.xml과  연결
-        mor_eve_spinner = findViewById(R.id.mor_eve_spinner);
+        mor_eve_spinner = findViewById(R.id.mor_eve_spinner);       //spinner (셀렉트박스) strings.xml과  연결
+        BPresscalendarView = findViewById(R.id.BPresscalendarView);
+        //화면 아래쪽 xml 요소 연결
+        morTimeTXT_show = findViewById(R.id.morTimeTXT_show);
+        morBPresTXT_show = findViewById(R.id.morBPresTXT_show);
+        eveTimeTXT_show = findViewById(R.id.eveTimeTXT_show);
+        eveBPresTXT_show = findViewById(R.id.eveBPresTXT_show);
+
 
         //현재 날짜와 시간을 가져오기 위한 Calender 인스턴스 선언
         Calendar cal = new GregorianCalendar();
@@ -169,6 +196,7 @@ public class BloodPressure extends AppCompatActivity {
         mDay = cal.get(Calendar.DAY_OF_MONTH);
         mHour = cal.get(Calendar.HOUR_OF_DAY);
         mMinute = cal.get(Calendar.MINUTE);
+
         // 화면 텍스트뷰에 업데이트
         UpdateDateNow();
         UpdateMorTimeNow();
@@ -242,6 +270,31 @@ public class BloodPressure extends AppCompatActivity {
 
             }
         });*/
+    }
+
+    //저장 버튼 클릭
+    public void click(View v) {
+        if (!bPrETXT.getText().toString().equals("")) { //측정 혈압 입력 값이 비어있는지 확인.
+            // 선택한 Spinner 값( 아침/저녁 )
+            String text = mor_eve_spinner.getSelectedItem().toString();
+            if (D) Log.i(TAG, "아침/저녁: " + text);
+            if (text.equals("아침")) {
+                // 측정시간 bPrTimeETXT 값 아래 textView에 넣기.
+                morTimeTXT_show.setText(bPrTimeETXT.getText());
+                // 측정 혈압 bPrETXT 값 아래 TextView에 넣기
+                morBPresTXT_show.setText(bPrETXT.getText());
+                if (D) Log.i(TAG, "측정시간: " + bPrTimeETXT.getText() + "\n 측정 혈압: " + bPrETXT.getText());
+            } else if (text.equals("저녁")) {
+                // 측정시간 bPrTimeETXT 값 아래 textView에 넣기.
+                eveTimeTXT_show.setText(bPrTimeETXT.getText());
+                // 측정 혈압 bPrETXT 값 아래 TextView에 넣기
+                eveBPresTXT_show.setText(bPrETXT.getText());
+                if (D) Log.i(TAG, "측정시간: " + bPrTimeETXT.getText() + "\n 측정 혈압: " + bPrETXT.getText());
+            }
+        }
+        else{
+            Toast.makeText(BloodPressure.this, "측정하신 혈압을 입력해주세요.", Toast.LENGTH_SHORT).show();
+        }
     }
     //Member Method - XML onClick Method----------------------------------
 /*

@@ -188,6 +188,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
+        android:onClick="click"
         android:text="@string/save" />
 
     <ScrollView
@@ -200,7 +201,7 @@
             android:orientation="vertical" >
 
             <CalendarView
-                android:id="@+id/calendarView"
+                android:id="@+id/BPresscalendarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -252,11 +253,11 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:labelFor="@+id/morTimeETXT"
+                        android:labelFor="@+id/morTimeTXT_show"
                         android:text="@string/morning" />
 
-                    <EditText
-                        android:id="@+id/morTimeETXT_show"
+                    <TextView
+                        android:id="@+id/morTimeTXT_show"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="fill"
@@ -265,11 +266,11 @@
                         android:gravity="center"
                         android:importantForAutofill="no"
                         android:inputType="time"
-                        android:labelFor="@+id/morBPresETXT_show" />
+                        android:labelFor="@+id/morBPresTXT_show" />
 
 
-                    <EditText
-                        android:id="@+id/morBPresETXT_show"
+                    <TextView
+                        android:id="@+id/morBPresTXT_show"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|fill"
@@ -303,11 +304,11 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:labelFor="@+id/eveTimeETXT"
+                        android:labelFor="@+id/eveTimeTXT_show"
                         android:text="@string/evening" />
 
-                    <EditText
-                        android:id="@+id/eveTimeETXT_show"
+                    <TextView
+                        android:id="@+id/eveTimeTXT_show"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="fill"
@@ -316,10 +317,10 @@
                         android:gravity="center"
                         android:importantForAutofill="no"
                         android:inputType="time"
-                        android:labelFor="@+id/eveBPresETXT" />
+                        android:labelFor="@+id/eveBPresTXT_show" />
 
-                    <EditText
-                        android:id="@+id/eveBPresETXT_show"
+                    <TextView
+                        android:id="@+id/eveBPresTXT_show"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="fill|end"
