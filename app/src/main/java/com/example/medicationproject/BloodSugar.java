@@ -34,9 +34,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.BreakIterator;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
@@ -129,6 +131,11 @@ public class BloodSugar extends AppCompatActivity {
         });
     }
 
+    private void setTime(int position) {
+        UpdateTimeNow();
+    }
+
+
     public void UpdateDateNow(){
         //텍스트뷰 클릭 시 날짜 변경 가능하게 호출
         mTxtDate.setOnClickListener(new View.OnClickListener() {
@@ -142,16 +149,19 @@ public class BloodSugar extends AppCompatActivity {
         select_date_TXT.setText(String.format(" %d"+"년 "+ "%d"+"월 "+"%d"+"일 ", mYear, mMonth +1, mDay));
     }
 
-    public void UpdateTimeNow(){
+    public void UpdateTimeNow() {
         //텍스트뷰 클릭 시 시간 변경 가능하게 호출
         bSuTimeTXT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 new TimePickerDialog(BloodSugar.this, mTimeSetListener, mHour, mMinute, false).show();
             }
         });
         bSuTimeTXT.setText(String.format("%02d:%02d", mHour, mMinute));
+        if (D) Log.i(TAG, "Time 값 변경됨 " + mHour + mMinute);
     }
+
 
     //날짜 대화상자 리스너 부분
     DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -321,38 +331,33 @@ public class BloodSugar extends AppCompatActivity {
         if (!bSugarETXT.getText().toString().equals("")) { //측정 혈당 입력 값이 비어있는지 확인.
             // 선택한 Spinner 값( 아침/저녁 )
             spinner_text = meal_spinner.getSelectedItem().toString();
-            if (D) Log.i(TAG, "아침/저녁: " + spinner_text);
             if (spinner_text.equals("아침 전")) {
                 // 측정시간 bPrTimeTXT 값 아래 textView에 넣기.
                 before_bfTimeTXT_show.setText(bSuTimeTXT.getText());
                 // 측정 혈압 bPrETXT 값 아래 TextView에 넣기
                 before_bfBSTXT_show.setText(bSugarETXT.getText());
-                if (D) Log.i(TAG, "측정시간: " + bSuTimeTXT.getText() + "\n 측정 혈압: " + bSugarETXT.getText());
+
             }else if (spinner_text.equals("아침 후")) {
                 after_bfTimeTXT_show.setText(bSuTimeTXT.getText());
                 after_bfBSTXT_show.setText(bSugarETXT.getText());
-                if (D) Log.i(TAG, "측정시간: " + bSuTimeTXT.getText() + "\n 측정 혈압: " + bSugarETXT.getText());
             }
-
             else if (spinner_text.equals("점심 전")) {
                 before_lunchTimeTXT_show.setText(bSuTimeTXT.getText());
                 before_lunchBSTXT_show.setText(bSugarETXT.getText());
-                if (D) Log.i(TAG, "측정시간: " + bSuTimeTXT.getText() + "\n 측정 혈압: " + bSugarETXT.getText());
             }else if (spinner_text.equals("점심 후")) {
                 after_lunchTimeTXT_show.setText(bSuTimeTXT.getText());
                 after_lunchBSTXT_show.setText(bSugarETXT.getText());
-                if (D) Log.i(TAG, "측정시간: " + bSuTimeTXT.getText() + "\n 측정 혈압: " + bSugarETXT.getText());
             }
 
             else if (spinner_text.equals("저녁 전")) {
                 before_dnTimeTXT_show.setText(bSuTimeTXT.getText());
                 before_dnBSTXT_show.setText(bSugarETXT.getText());
-                if (D) Log.i(TAG, "측정시간: " + bSuTimeTXT.getText() + "\n 측정 혈압: " + bSugarETXT.getText());
             }else if (spinner_text.equals("저녁 후")) {
                 after_dnTimeTXT_show.setText(bSuTimeTXT.getText());
                 after_dnBSTXT_show.setText(bSugarETXT.getText());
-                if (D) Log.i(TAG, "측정시간: " + bSuTimeTXT.getText() + "\n 측정 혈압: " + bSugarETXT.getText());
             }
+            if (D) Log.i(TAG, "아침/저녁: " + spinner_text + "측정시간: " + bSuTimeTXT.getText() + "\n 측정 혈압: " + bSugarETXT.getText());
+            initEXIT(); //bSuTime 값 초기화
         }
         else{
             Toast.makeText(BloodSugar.this, "측정하신 혈압을 입력해주세요.", Toast.LENGTH_SHORT).show();
@@ -476,14 +481,12 @@ public class BloodSugar extends AppCompatActivity {
         Log.i("firebase removeUser", "removeUser" + position);
         readUser(familyListCount);
     }
-
+*/
     //Member Method - Custom----------------------------------
     //3개 입력 필드 초기화
     private void initEXIT(){
-        nameETXT.setText("");
-        phoneETXT.setText("");
-        emailETXT.setText("");
+        bSugarETXT.setText("");
     }
 
- */
+
 }

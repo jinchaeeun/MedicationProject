@@ -1,3 +1,4 @@
+/*
 package com.example.medicationproject;
 
 import android.content.Intent;
@@ -50,7 +51,9 @@ public class LayoutDrug1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                /*화면 전환용 intent*/
+                */
+/*화면 전환용 intent*//*
+
                 Intent intent_1;
                 intent_1 = new Intent(com.example.firstproject.LayoutDrug1.this, com.example.firstproject.LayoutDrug2.class);
 
@@ -73,4 +76,4 @@ public class LayoutDrug1 extends AppCompatActivity {
 
 
 
-}
+}*/

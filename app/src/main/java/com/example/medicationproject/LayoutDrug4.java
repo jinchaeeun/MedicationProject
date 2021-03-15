@@ -1,3 +1,4 @@
+/*
 package com.example.medicationproject;
 
 import android.content.Intent;
@@ -177,4 +178,4 @@ public class LayoutDrug4 extends AppCompatActivity {
 
     }
 
-}
+}*/
