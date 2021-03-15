@@ -40,4 +40,14 @@
     <string name="mor_or_eve">아침/저녁</string>
     <string name="PressureResultTEXT">측정하신 값</string>
 
+    <!--bloodsugar layout-->
+    <string name="meal_befor_after">식전/식후</string>
+    <string name="bSugar">측정 혈당</string>
+    <string name="bf_before">아침 전</string>
+    <string name="bf_after">아침 후</string>
+    <string name="lunch_before">점심 전</string>
+    <string name="lunch_after">점심 후</string>
+    <string name="dn_before">저녁 전</string>
+    <string name="dn_after">저녁 후</string>
+
 </resources>
