@@ -3,6 +3,7 @@ package com.example.medicationproject;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.graphics.Rect;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -22,6 +23,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -35,7 +38,7 @@ public class BloodPressure extends AppCompatActivity {
     //Member Variable ----------------------------------------
     // 디버깅을 위한 변수
     private final boolean D = true;
-    private final String TAG = "BloodSugar";
+    private final String TAG = "BloodPressure";
 
     //firebase
     private FirebaseDatabase mDatabase;
@@ -55,6 +58,8 @@ public class BloodPressure extends AppCompatActivity {
 
     //날짜, 시간
     private int mYear, mMonth, mDay, mHour, mMinute;
+    private String calenderDate;
+    Long longmTxtDate;
 
     //ui
     private TextView mTxtDate;      //오늘 날짜
@@ -73,6 +78,9 @@ public class BloodPressure extends AppCompatActivity {
 
     //하위 키 값 찾기
     List memberInfoList = new ArrayList<>();
+    Calendar cal = Calendar.getInstance();
+    SimpleDateFormat format = new SimpleDateFormat("yyyy년 MM월 dd일");
+    String date = format.format(Calendar.getInstance().getTime());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,30 +90,44 @@ public class BloodPressure extends AppCompatActivity {
         init();
         if (D) Log.i(TAG, "onCreate()");
 
+
+
+    }
+    public void CalendarSelect(){
         //CalenderView 선택한 날짜
         BPresscalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                select_date_TXT.setText(String.format(" %04d"+"년 "+ "%02d"+"월 "+"%02d"+"일 ", year, month +1, dayOfMonth));
-                if (D) Log.i(TAG, "혈당 측정 기록에서 캘린더뷰 선택 날짜- " + String.valueOf(year) + "년 " + String.valueOf(month+1) + "월 "  + String.valueOf(dayOfMonth) + "일 " );
+                select_date_TXT.setText(String.format(" %04d" + "년 " + "%02d" + "월 " + "%02d" + "일 ", year, month + 1, dayOfMonth));
+                calenderDate = year + "" + month + 1 + "" + dayOfMonth;
+                if (D)
+                    Log.i(TAG, "혈당 측정 기록에서 캘린더뷰 선택 날짜- " + String.valueOf(year) + "년 " + String.valueOf(month + 1) + "월 " + String.valueOf(dayOfMonth) + "일 ");
                 //저장하기
             }
         });
+
     }
 
-
     public void UpdateDateNow(){
-        //텍스트뷰 클릭 시 날짜 변경 가능하게 호출
+        //오늘 날짜 옆 텍스트뷰 클릭 시 날짜 변경 가능하게 호출
         mTxtDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new DatePickerDialog(BloodPressure.this, mDateSetListener, mYear, mMonth, mDay).show();
+                //int를 long 타입으로 변환함 캘린더뷰 값 set 해주기 위해서
+                if(D)  Log.i(TAG, "UpdateDateNow - onClick - longmTxtDate" + longmTxtDate);
             }
         });
+        Long y = Integer.toUnsignedLong (mYear);
+        Long m = Integer.toUnsignedLong(mMonth);
+        Long d = Integer.toUnsignedLong(mDay);
+        longmTxtDate = y * 10000 + (m+1) * 100 + d;
+        if(D)  Log.i(TAG, "혈당 측정 기록에서 캘린더뷰 선택 날짜- " + longmTxtDate);
         mTxtDate.setText(String.format(" %04d"+"년 "+ "%02d"+"월 "+"%02d"+"일 ", mYear, mMonth +1, mDay));
         // onCreate() 시 select_date_TXT에 출력해줄 값
         select_date_TXT.setText(String.format(" %d"+"년 "+ "%d"+"월 "+"%d"+"일 ", mYear, mMonth +1, mDay));
     }
+
 
     public void UpdateMorTimeNow(){
         //텍스트뷰 클릭 시 날짜 변경 가능하게 호출
@@ -116,6 +138,7 @@ public class BloodPressure extends AppCompatActivity {
             }
         });
         bPrTimeTXT.setText(String.format("%02d:%02d", mHour, mMinute));
+
     }
 
     //날짜 대화상자 리스너 부분
@@ -194,6 +217,7 @@ public class BloodPressure extends AppCompatActivity {
         // 화면 텍스트뷰에 업데이트
         UpdateDateNow();
         UpdateMorTimeNow();
+        CalendarSelect();
 
         //xml에 만들어둔 array.xml값을 불러와 String[], 또는 List로 만들기
         //String 배열
@@ -268,27 +292,61 @@ public class BloodPressure extends AppCompatActivity {
 
     //저장 버튼 클릭
     public void click(View v) {
-        if (!bPrETXT.getText().toString().equals("")) { //측정 혈압 입력 값이 비어있는지 확인.
+        if (D) Log.i(TAG, "기존 캘린더뷰 시간: Long값:  " + BPresscalendarView.getDate());
+        //long 타입으로 변경
+
+        //BPresscalendarView.setDate(longmTxtDate, true, true);
+        if (D) Log.i(TAG, "캘린더뷰 변경 시간 클릭 이벤트: " + BPresscalendarView.getDate());
+        //writeBloodPress(mTxtDate.getText().toString(), mor_eve_spinner.getSelectedItem().toString(), bPrTimeTXT.getText().toString(), bPrETXT.getText().toString());
+        /*if (!bPrETXT.getText().toString().equals("")) { //측정 혈압 입력 값이 비어있는지 확인.
             // 선택한 Spinner 값( 아침/저녁 )
+            // 저장 버튼 누른 후 오늘 날짜 mTxtDate를 캘린더뷰 년도, 월, 일 선택되게하고 그 값 select date에 넣기
             spinner_text = mor_eve_spinner.getSelectedItem().toString();
             if (D) Log.i(TAG, "아침/저녁: " + spinner_text);
             if (spinner_text.equals("아침")) {
                 // 측정시간 bPrTimeTXT 값 아래 textView에 넣기.
-                morTimeTXT_show.setText(bPrTimeTXT.getText());
+                morTimeTXT_show.setText(bPrTimeTXT.getText().toString());
                 // 측정 혈압 bPrETXT 값 아래 TextView에 넣기
-                morBPresTXT_show.setText(bPrETXT.getText());
+                morBPresTXT_show.setText(bPrETXT.getText().toString());
                 if (D) Log.i(TAG, "측정시간: " + bPrTimeTXT.getText() + "\n 측정 혈압: " + bPrETXT.getText());
             } else if (spinner_text.equals("저녁")) {
                 // 측정시간 bPrTimeTXT 값 아래 textView에 넣기.
-                eveTimeTXT_show.setText(bPrTimeTXT.getText());
+                eveTimeTXT_show.setText(bPrTimeTXT.getText().toString());
                 // 측정 혈압 bPrETXT 값 아래 TextView에 넣기
-                eveBPresTXT_show.setText(bPrETXT.getText());
+                eveBPresTXT_show.setText(bPrETXT.getText().toString());
                 if (D) Log.i(TAG, "측정시간: " + bPrTimeTXT.getText() + "\n 측정 혈압: " + bPrETXT.getText());
             }
         }
         else{
             Toast.makeText(BloodPressure.this, "측정하신 혈압을 입력해주세요.", Toast.LENGTH_SHORT).show();
-        }
+        }*/
+        /*switch (v.getId()){
+            case R.id.BSSaveBTN:
+                writeBloodPress(calenderDate, mor_eve_spinner.getSelectedItem().toString(), bPrTimeTXT.getText().toString(), bPrETXT.getText().toString());
+                break;
+        }*/
+    }
+    //데이터 추가하기
+    public void writeBloodPress(String date, String spin, String bPTime, String bPETxt){
+        BloodPressureResult bloodPressureResult = new BloodPressureResult(date, spin, bPTime, bPETxt);
+        mReference.child("blood_pressure").child(date).setValue(bloodPressureResult).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                //write was Success
+                Toast.makeText(BloodPressure.this, "입력하신 정보를 저장했습니다.", Toast.LENGTH_LONG).show();
+                Log.i(TAG, "onSuccess");
+                //화면에 뿌리기
+                //readUser(String.valueOf(date));
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                //write Failed
+                Toast.makeText(BloodPressure.this, "저장에 실패하였습니다. 다시 시도해주세요.", Toast.LENGTH_LONG).show();
+                Log.i(TAG, "onFailure");
+            }
+        });
     }
     //Member Method - XML onClick Method----------------------------------
 /*

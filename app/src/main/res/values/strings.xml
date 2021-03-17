@@ -50,4 +50,21 @@
     <string name="dn_before">저녁 전</string>
     <string name="dn_after">저녁 후</string>
 
+    <!--login_layout-->
+    <string name="id">아이디</string>
+    <string name="password">비밀번호</string>
+
+    <string name="signin">로그인</string>
+    <string name="success_login">로그인 성공</string>
+    <string name="failed_login">로그인 실패</string>
+
+    <string name="signup">회원가입</string>
+    <string name="success_signup">회원가입 성공</string>
+    <string name="failed_signup">회원가입 실패</string>
+
+    <string name="ask">드실 약을 찍어주세요.</string>
+    <string name="alam">10분 뒤 다시 알림</string>
+    <string name="Login">Login</string>
+    <string name="OK">로그인</string>
+    <string name="Cancle">취소</string>
 </resources>
