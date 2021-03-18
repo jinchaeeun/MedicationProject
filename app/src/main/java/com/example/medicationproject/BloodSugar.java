@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,6 +37,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.BreakIterator;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -88,6 +90,7 @@ public class BloodSugar extends AppCompatActivity {
     private TextView select_date_TXT;   //선택한 날짜
     private String spinner_text;        //spinner선택한
 
+    private Calendar pointDate;     //캘린더 뷰 선택된 날짜 값 변경을 위해서.
     //하위 키 값 찾기
     List memberInfoList = new ArrayList<>();
 
@@ -104,9 +107,22 @@ public class BloodSugar extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 select_date_TXT.setText(String.format(" %04d"+"년 "+ "%02d"+"월 "+"%02d"+"일 ", year, month +1, dayOfMonth));
 
-                if (D) Log.i(TAG, "혈압 측정 기록에서 캘린더뷰 선택 날짜- " + String.valueOf(year) + "년 " + String.valueOf(month+1) + "월 "  + String.valueOf(dayOfMonth) + "일 " );
+                //------------
+              /*  Instant instant = Instant.ofEpochMilli(Long.parseLong(dateString));
+                System.out.println("유닉스로 변환 " + instant);*/
+
+
+                //--------------
+                
+
+
+
+                Log.i (TAG, "캘린더뷰 bSuCalendarView 날짜- " + bSuCalendarView.getDate());
+                Log.i (TAG, "캘린더뷰 bSuCalendarView 날짜- " + year + "" + (month +1) +"" + dayOfMonth);
+                if (D) Log.i(TAG, "혈당 측정 기록에서 캘린더뷰 선택 날짜- " + String.valueOf(year) + "년 " + String.valueOf(month+1) + "월 "  + String.valueOf(dayOfMonth) + "일 " );
                 //저장하기
             }
+
         });
     
 
@@ -130,17 +146,30 @@ public class BloodSugar extends AppCompatActivity {
     }
 
 
+    //오늘 날짜
     public void UpdateDateNow(){
         //텍스트뷰 클릭 시 날짜 변경 가능하게 호출
         mTxtDate.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+                if (D) Log.i(TAG, "오늘 날짜: " + mTxtDate.getText());
                 new DatePickerDialog(BloodSugar.this, mDateSetListener, mYear, mMonth, mDay).show();
+
             }
         });
+
         mTxtDate.setText(String.format(" %04d"+"년 "+ "%02d"+"월 "+"%02d"+"일 ", mYear, mMonth +1, mDay));
         // onCreate() 시 select_date_TXT에 출력해줄 값
         select_date_TXT.setText(String.format(" %d"+"년 "+ "%d"+"월 "+"%d"+"일 ", mYear, mMonth +1, mDay));
+
+        // 캘린더뷰 선택 값 변경
+        pointDate = Calendar.getInstance();
+        pointDate.set(mYear, mMonth, mDay);
+        bSuCalendarView.setDate(pointDate.getTimeInMillis()); //초 변환
+        //bSuCalendarView.setFocusedMonthDateColor(Color.BLUE); //색상 변경
+        Log.i(TAG, "캘린더 뷰 포인트 지정" + pointDate.getTimeInMillis());
+
     }
 
     public void UpdateTimeNow() {
@@ -267,6 +296,12 @@ public class BloodSugar extends AppCompatActivity {
 
     //저장 버튼 클릭
     public void click(View v) {
+        //오늘 날짜 값 타임밀리즈.
+        final long time = pointDate.getTimeInMillis();
+        //캘린더뷰 날짜 선택 시 DB 아래 보여주는거 바꾸기 ----------
+        //selectedItem에서 바꾸기
+        //---------------------------------------------
+
         if (!bSugarETXT.getText().toString().equals("")) { //측정 혈당 입력 값이 비어있는지 확인.
             // 선택한 Spinner 값( 아침/저녁 )
             spinner_text = meal_spinner.getSelectedItem().toString();
@@ -276,7 +311,7 @@ public class BloodSugar extends AppCompatActivity {
             newData.put(DBInfo.MEAL_SPINNER, spinner_text);      //  식전, 식후 구분
             newData.put(DBInfo.SUGAR_TIME, bSuTimeTXT.getText().toString());        //  측정시간
             newData.put(DBInfo.SUGAR_MEASURE, bSugarETXT.getText().toString());     //  측정혈당
-            newData.put(DBInfo.SMEASURE_DATE, mTxtDate.getText().toString());     //  측정일자
+            newData.put(DBInfo.SMEASURE_DATE, time);     //  측정일자
 
             //DB에 값 삽입하기
             DBInfo.DB_ADAPTER.insertRow(DBInfo.TABLE_BLOOD_SUGAR, newData);
@@ -306,10 +341,11 @@ public class BloodSugar extends AppCompatActivity {
                 after_dnBSTXT_show.setText(bSugarETXT.getText());
             }
             if (D) Log.i(TAG, "아침/저녁: " + spinner_text + "측정시간: " + bSuTimeTXT.getText() + "\n 측정 혈압: " + bSugarETXT.getText());
+            Toast.makeText(BloodSugar.this, "혈당 정보를 저장했습니다.", Toast.LENGTH_SHORT).show();
             initEXIT(); //bSuTime 값 초기화
         }
         else{
-            Toast.makeText(BloodSugar.this, "측정하신 혈압을 입력해주세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(BloodSugar.this, "측정하신 혈당을 입력해주세요.", Toast.LENGTH_SHORT).show();
         }
     }
 
