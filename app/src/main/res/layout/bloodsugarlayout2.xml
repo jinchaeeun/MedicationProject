@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
+        android:fontFamily="@font/app_main_font"
         android:text="@string/bloodSugar"
         android:textSize="23sp"
         android:textStyle="bold" />
@@ -26,13 +27,15 @@
             android:id="@+id/textView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/app_main_font"
             android:text="@string/todayDate" />
 
         <TextView
             android:id="@+id/todayDateTXT"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:fontFamily="@font/app_main_font" />
     </LinearLayout>
 
     <GridLayout
@@ -57,6 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:fontFamily="@font/app_main_font"
                 android:text="@string/meal_befor_after" />
 
             <TextView
@@ -65,6 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="48dp"
                 android:layout_marginEnd="23dp"
+                android:fontFamily="@font/app_main_font"
                 android:text="@string/bPMeasure" />
 
             <TextView
@@ -72,6 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:fontFamily="@font/app_main_font"
                 android:text="@string/bSugar" />
 
         </LinearLayout>
@@ -100,6 +106,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="15dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/app_main_font"
                 android:gravity="center"
                 android:labelFor="@+id/bPrETXT" />
 
@@ -112,6 +119,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_weight="1"
                 android:background="@drawable/edit_border"
+                android:fontFamily="@font/app_main_font"
                 android:gravity="center"
                 android:importantForAutofill="no"
                 android:inputType="number"
@@ -125,6 +133,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/app_main_font"
                 android:text="@string/mgdL" />
         </LinearLayout>
 
@@ -135,6 +144,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
+        android:fontFamily="@font/app_main_font"
         android:onClick="click"
         android:text="@string/save" />
 
@@ -161,12 +171,14 @@
                     android:id="@+id/select_date_TXT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp" />
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/app_main_font" />
 
                 <TextView
                     android:id="@+id/textView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/app_main_font"
                     android:text="@string/PressureResultTEXT" />
             </LinearLayout>
 
@@ -192,6 +204,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/app_main_font"
                         android:text="@string/meal_befor_after" />
 
                     <TextView
@@ -200,6 +213,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="48dp"
                         android:layout_marginEnd="23dp"
+                        android:fontFamily="@font/app_main_font"
                         android:text="@string/bPMeasure" />
 
                     <TextView
@@ -207,6 +221,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
+                        android:fontFamily="@font/app_main_font"
                         android:text="@string/bSugar" />
                 </LinearLayout>
 
@@ -224,6 +239,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
+                        android:fontFamily="@font/app_main_font"
                         android:gravity="center"
                         android:text="@string/bf_before" />
 
@@ -234,6 +250,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="15dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/app_main_font"
                         android:gravity="center"
                         android:importantForAutofill="no" />
 
@@ -246,6 +263,7 @@
                         android:layout_marginStart="15dp"
                         android:layout_weight="1"
                         android:background="@drawable/edit_border"
+                        android:fontFamily="@font/app_main_font"
                         android:gravity="center"
                         android:maxLength="3" />
 
@@ -256,6 +274,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/app_main_font"
                         android:text="@string/mgdL" />
                 </LinearLayout>
 
@@ -272,6 +291,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
+                        android:fontFamily="@font/app_main_font"
                         android:gravity="center"
                         android:text="@string/bf_after" />
 
@@ -282,6 +302,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="15dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/app_main_font"
                         android:gravity="center"
                         android:importantForAutofill="no" />
 
@@ -294,6 +315,7 @@
                         android:layout_marginStart="15dp"
                         android:layout_weight="1"
                         android:background="@drawable/edit_border"
+                        android:fontFamily="@font/app_main_font"
                         android:gravity="center"
                         android:maxLength="3" />
 
@@ -304,6 +326,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/app_main_font"
                         android:text="@string/mgdL" />
                 </LinearLayout>
 
@@ -320,6 +343,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
+                        android:fontFamily="@font/app_main_font"
                         android:gravity="center"
                         android:text="@string/lunch_before" />
 
@@ -330,6 +354,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="15dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/app_main_font"
                         android:gravity="center"
                         android:importantForAutofill="no" />
 
@@ -340,8 +365,9 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="15dp"
                         android:layout_weight="1"
-                        android:gravity="center"
                         android:background="@drawable/edit_border"
+                        android:fontFamily="@font/app_main_font"
+                        android:gravity="center"
                         android:maxLength="3" />
 
                     <TextView
@@ -351,6 +377,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/app_main_font"
                         android:text="@string/mgdL" />
                 </LinearLayout>
 
@@ -367,6 +394,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
+                        android:fontFamily="@font/app_main_font"
                         android:gravity="center"
                         android:text="@string/lunch_after" />
 
@@ -377,6 +405,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="15dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/app_main_font"
                         android:gravity="center"
                         android:importantForAutofill="no" />
 
@@ -387,8 +416,9 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="15dp"
                         android:layout_weight="1"
-                        android:gravity="center"
                         android:background="@drawable/edit_border"
+                        android:fontFamily="@font/app_main_font"
+                        android:gravity="center"
                         android:maxLength="3" />
 
                     <TextView
@@ -398,6 +428,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/app_main_font"
                         android:text="@string/mgdL" />
                 </LinearLayout>
 
@@ -414,6 +445,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
+                        android:fontFamily="@font/app_main_font"
                         android:gravity="center"
                         android:text="@string/dn_before" />
 
@@ -424,6 +456,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="15dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/app_main_font"
                         android:gravity="center"
                         android:importantForAutofill="no" />
 
@@ -434,8 +467,9 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="15dp"
                         android:layout_weight="1"
-                        android:gravity="center"
                         android:background="@drawable/edit_border"
+                        android:fontFamily="@font/app_main_font"
+                        android:gravity="center"
                         android:maxLength="3" />
 
                     <TextView
@@ -445,6 +479,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/app_main_font"
                         android:text="@string/mgdL" />
                 </LinearLayout>
 
@@ -461,6 +496,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
+                        android:fontFamily="@font/app_main_font"
                         android:gravity="center"
                         android:text="@string/dn_after" />
 
@@ -471,6 +507,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="15dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/app_main_font"
                         android:gravity="center"
                         android:importantForAutofill="no" />
 
@@ -481,8 +518,9 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="15dp"
                         android:layout_weight="1"
-                        android:gravity="center"
                         android:background="@drawable/edit_border"
+                        android:fontFamily="@font/app_main_font"
+                        android:gravity="center"
                         android:maxLength="3" />
 
                     <TextView
@@ -492,6 +530,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/app_main_font"
                         android:text="@string/mgdL" />
                 </LinearLayout>
 

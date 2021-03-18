@@ -14,7 +14,8 @@
         android:layout_gravity="start"
         android:text="@string/bloodpressure"
         android:textSize="23sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:fontFamily="@font/app_main_font" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -26,13 +27,15 @@
             android:id="@+id/textView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/todayDate" />
+            android:text="@string/todayDate"
+            android:fontFamily="@font/app_main_font" />
 
         <TextView
             android:id="@+id/todayDateTXT"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:fontFamily="@font/app_main_font" />
     </LinearLayout>
 
     <GridLayout
@@ -57,7 +60,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/mor_or_eve" />
+                android:text="@string/mor_or_eve"
+                android:fontFamily="@font/app_main_font" />
 
             <TextView
                 android:id="@+id/bMeasureTXT"
@@ -65,14 +69,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="48dp"
                 android:layout_marginEnd="23dp"
-                android:text="@string/bPMeasure" />
+                android:text="@string/bPMeasure"
+                android:fontFamily="@font/app_main_font" />
 
             <TextView
                 android:id="@+id/bPressureTXT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="@string/bPressure" />
+                android:text="@string/bPressure"
+                android:fontFamily="@font/app_main_font"  />
 
         </LinearLayout>
 
@@ -91,7 +97,8 @@
                 android:layout_gravity="center|end"
                 android:layout_weight="1"
                 android:gravity="center|end"
-                android:labelFor="@+id/bPrTimeTXT"/>
+                android:labelFor="@+id/bPrTimeTXT"
+                android:fontFamily="@font/app_main_font" />
 
             <TextView
                 android:id="@+id/bPrTimeTXT"
@@ -101,7 +108,8 @@
                 android:layout_marginStart="15dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:labelFor="@+id/bPrETXT" />
+                android:labelFor="@+id/bPrETXT"
+                android:fontFamily="@font/app_main_font" />
 
 
             <EditText
@@ -116,7 +124,8 @@
                 android:importantForAutofill="no"
                 android:inputType="number"
                 android:maxLength="3"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:fontFamily="@font/app_main_font" />
 
             <TextView
                 android:id="@+id/mmHgTXT1"
@@ -125,58 +134,9 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
-                android:text="@string/mmHg" />
+                android:text="@string/mmHg"
+                android:fontFamily="@font/app_main_font" />
         </LinearLayout>
-        <!--
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_row="3"
-            android:layout_column="0"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/eveTXT"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/evening" />
-
-            <TextView
-                android:id="@+id/eveTimeETXT"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="15dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:hint="@string/auto_value_fill"
-                android:importantForAutofill="no"
-                android:labelFor="@+id/eveBPresETXT" />
-
-            <EditText
-                android:id="@+id/eveBPresETXT"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="fill|end"
-                android:layout_marginStart="15dp"
-                android:layout_weight="1"
-                android:autofillHints=""
-                android:gravity="end"
-                android:inputType="number"
-                android:maxLength="3" />
-
-            <TextView
-                android:id="@+id/mmHgTXT2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:text="@string/mmHg" />
-        </LinearLayout>
-        -->
 
     </GridLayout>
 
@@ -186,7 +146,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:onClick="click"
-        android:text="@string/save" />
+        android:text="@string/save"
+        android:fontFamily="@font/app_main_font" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -200,7 +161,8 @@
             <CalendarView
                 android:id="@+id/BPresscalendarView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/app_main_font" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -211,13 +173,15 @@
                     android:id="@+id/select_date_TXT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp" />
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/app_main_font" />
 
                 <TextView
                     android:id="@+id/textView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/PressureResultTEXT" />
+                    android:text="@string/PressureResultTEXT"
+                    android:fontFamily="@font/app_main_font" />
             </LinearLayout>
 
             <GridLayout
@@ -243,14 +207,16 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:layout_marginEnd="23dp"
-                        android:text="@string/bPMeasure" />
+                        android:text="@string/bPMeasure"
+                        android:fontFamily="@font/app_main_font" />
 
                     <TextView
                         android:id="@+id/bPressureTXT_show"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
-                        android:text="@string/bPressure" />
+                        android:text="@string/bPressure"
+                        android:fontFamily="@font/app_main_font" />
                 </LinearLayout>
 
 
@@ -268,7 +234,8 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@string/morning" />
+                        android:text="@string/morning"
+                        android:fontFamily="@font/app_main_font" />
 
                     <TextView
                         android:id="@+id/morTimeTXT_show"
@@ -278,8 +245,8 @@
                         android:layout_marginStart="15dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:importantForAutofill="no" />
-
+                        android:importantForAutofill="no"
+                        android:fontFamily="@font/app_main_font" />
 
                     <TextView
                         android:id="@+id/morBPresTXT_show"
@@ -292,7 +259,8 @@
                         android:gravity="center"
                         android:importantForAutofill="no"
                         android:inputType="none"
-                        android:maxLength="3" />
+                        android:maxLength="3"
+                        android:fontFamily="@font/app_main_font" />
 
                     <TextView
                         android:id="@+id/mmHgTXT1_show"
@@ -301,7 +269,8 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
-                        android:text="@string/mmHg" />
+                        android:text="@string/mmHg"
+                        android:fontFamily="@font/app_main_font" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -318,7 +287,8 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@string/evening" />
+                        android:text="@string/evening"
+                        android:fontFamily="@font/app_main_font" />
 
                     <TextView
                         android:id="@+id/eveTimeTXT_show"
@@ -328,7 +298,8 @@
                         android:layout_marginStart="15dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:importantForAutofill="no" />
+                        android:importantForAutofill="no"
+                        android:fontFamily="@font/app_main_font" />
 
                     <TextView
                         android:id="@+id/eveBPresTXT_show"
@@ -340,7 +311,8 @@
                         android:autofillHints=""
                         android:gravity="center"
                         android:background="@drawable/edit_border"
-                        android:maxLength="3" />
+                        android:maxLength="3"
+                        android:fontFamily="@font/app_main_font" />
 
                     <TextView
                         android:id="@+id/mmHgTXT2_show"
@@ -349,7 +321,8 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
-                        android:text="@string/mmHg" />
+                        android:text="@string/mmHg"
+                        android:fontFamily="@font/app_main_font" />
                 </LinearLayout>
 
             </GridLayout>
