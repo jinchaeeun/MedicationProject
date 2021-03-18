@@ -1,7 +1,9 @@
 package com.example.medicationproject;
 
 
+import android.app.Activity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 public class EnterGrup extends AppCompatActivity {
-    //View List
+    //----------------------View List------------------------//
     private                 EditText    nick;
     private                 EditText    passwardcheck;
     private                 EditText    phone;
@@ -33,6 +35,9 @@ public class EnterGrup extends AppCompatActivity {
     private                 Button      cancle;
     private                 EditText    Email;
 
+    SQLiteDatabase          newDB;
+    DBOpenHelper            helper;
+    //////////////////////////////////////////////////////////
 
 
     @Override
@@ -41,7 +46,9 @@ public class EnterGrup extends AppCompatActivity {
         setContentView(R.layout.entergrop);
         init();
     }
+    //-----------------------초기화-------------------------//
     public void init(){
+        helper              =   new DBOpenHelper(this, "new", null, 1);
         ok                  =   findViewById(R.id.OK);
         cancle              =   findViewById(R.id.cancle);
         name                =   findViewById(R.id.Name);
@@ -50,10 +57,40 @@ public class EnterGrup extends AppCompatActivity {
         Passward            =   findViewById(R.id.PWenter);
         passwardcheck       =   findViewById(R.id.PWcheck);
     }
+    ////////////////////////////////////////////////////////
+
+    //----회원가입 버튼을 눌렀을때 메소드----//
     public void OK(View v){
+        init();
+        String id = nick.getText().toString().trim();
+        String password = Passward.getText().toString().trim();
+
+        if (id.length() < 5 || password.length() < 5) {
+            Toast.makeText(this, "아이디 다섯 글자 이상 \n" +
+                    "비밀번호 다섯 글자 이상" +
+                    "\n 입력해주세요.", Toast.LENGTH_LONG).show();
+        } else {
+            insertData(id, password);
+            setResult(Activity.RESULT_OK);
+            finish();
+        }
+    }
+    ////////////////////////////////////////
+
+    //-------취소버튼을 눌렀을때 메소드-------//
+    public void finish(View v){
+        setResult(Activity.RESULT_CANCELED);
         finish();
     }
-    public void finish(View v){
-        finish();
+    /////////////////////////////////////////
+
+
+    public void insertData(String id, String password) {
+        newDB = helper.getWritableDatabase();
+
+        String sql = ("insert into test(userId, password) values " +
+                "(" + "'" + id + "'" + "," + "'" + password + "'" + ")");
+
+        newDB.execSQL(sql);
     }
 }

@@ -49,7 +49,31 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         //Table 생성
         db.execSQL(CREATE_TABLE_MESSAGE);
         Log.i(TAG, " => DBOpenHelper : OnCreate()");
+
+
+        //----------------------------------------------------//
+        //--------------------로그인 파트----------------------//
+        //----------------------------------------------------//
+
+
+        String userTable = "test";
+        db.execSQL("create table if not exists " + userTable + " ("
+                + " _id integer PRIMARY KEY autoincrement, "
+                + " userId text, "
+                + " password text);");
+
+        String userSubjectTable = "test2";
+        db.execSQL("create table if not exists " + userSubjectTable + " ("
+                + " _id integer PRIMARY KEY autoincrement, "
+                + " userId text, "
+                + " sub text, "
+                + " day text, "
+                + " start_time text, "
+                + " finish_time text, "
+                + " FOREIGN KEY (userId) REFERENCES test (userId));");
+        //////////////////////////////////////////////////////////
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -61,4 +85,15 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         Log.i(TAG, "DBOpenHelper : onUpgrade()");
 
     }
+
+    //----------------------------------------------------//
+    //--------------------로그인 파트----------------------//
+    //----------------------------------------------------//
+    public DBOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, factory, version);
+    }
+    ///////////////////////////////////////////////////////
+
+
+
 }
