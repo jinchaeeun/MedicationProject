@@ -14,7 +14,11 @@ public class DBAdapter {
     private DBOpenHelper dbHelper;
     private SQLiteDatabase db;
     private Context context;
-
+    String meal ="";
+    String sugarMeasure="";
+    String sugarTime="";
+    String sugarArr[];
+    String sugarAllArr[][];
 
     // Member Method - Override -----------------------------------
     public DBAdapter(Context context) { //context만 빋겠다.
@@ -61,6 +65,23 @@ public class DBAdapter {
 
         return (delNums >0)? true:false;
     }
+    //db 선택 조회
+    public Cursor getSelectRow(int sugDate) {
+        Log.i(TAG, "getSelectRow() sugDate => " + sugDate );
+        openDB(true);
+
+        //Cursor cursor = db.rawQuery("select * from " + DBInfo.TABLE_BLOOD_SUGAR, null);
+        Cursor cursor = db.rawQuery("select * from " + DBInfo.TABLE_BLOOD_SUGAR + " where mTxtDate = " + sugDate, null);
+
+        //closeDB(); //뭐 안되면 getAllow했는데서 DB 닫아주면 됨
+        Log.i(TAG, " => DBAdapter : insertRow(), Count - " + cursor.getCount()); //db 갯수 보기
+
+        showCursor(cursor);         //Data 확인용 잘 가져왔는지.
+        cursor.moveToFirst();       //Data 전달용
+        return cursor;
+    }
+
+    //db 전체 조회
     public Cursor getAllRow() {
         openDB(true);
 
@@ -76,21 +97,50 @@ public class DBAdapter {
     }
 
     // Debug ----내가 제대로 가져왔는지 보고싶을 때--------------------------------------------------------------
-    private void showCursor(Cursor cursor) {
+    public String[] showCursor(Cursor cursor) {
         //cursor 안 다 확인
         if (cursor != null) {
             String tmp = "";
             while (cursor.moveToNext()) {
-                tmp = "[ " + cursor.getInt(cursor.getColumnIndex(DBInfo.SUGAR_ID)) + " ] ";  //이거의 indexID를 주세요
+
+                meal = cursor.getString(cursor.getColumnIndex(DBInfo.MEAL_SPINNER));
+                sugarMeasure = cursor.getString(cursor.getColumnIndex(DBInfo.SUGAR_MEASURE));
+                sugarTime = cursor.getString(cursor.getColumnIndex(DBInfo.SUGAR_TIME));
+                sugarArr = new String[]{meal, sugarMeasure, sugarTime};
+                /*tmp = "[ " + cursor.getInt(cursor.getColumnIndex(DBInfo.SUGAR_ID)) + " ] ";  //이거의 indexID를 주세요
                 tmp += cursor.getString(cursor.getColumnIndex(DBInfo.MEAL_SPINNER)) + " , ";
                 tmp += cursor.getString(cursor.getColumnIndex(DBInfo.SUGAR_MEASURE)) + " , ";
                 tmp += cursor.getString(cursor.getColumnIndex(DBInfo.SUGAR_TIME)) + " , ";
-                tmp += cursor.getString(cursor.getColumnIndex(DBInfo.SMEASURE_DATE)) + "";
+                tmp += cursor.getString(cursor.getColumnIndex(DBInfo.SMEASURE_DATE)) + "";*/
             }
-            Log.i(TAG, " => DBAdapter : showCursor() ===> " + tmp);
+            Log.i(TAG, " => DBAdapter : showCursor() ===> " + meal + ", " + sugarMeasure + ", "  + sugarArr);
+
         }
+        return sugarArr;
     }
 
+//    public String[][] AllCursor(Cursor cursor) {
+//        //cursor 안 다 확인
+//        if (cursor != null) {
+//            String tmp = "";
+//            while (cursor.moveToNext()) {
+//                //2차원 배열로 담기
+//                for(int i=0; i<cursor.isAfterLast(); i++){ //커서 행의 끝까지 돌 것
+//                    for(int j=0; j<cursor[i].isAfterLast(); j++) {
+//
+//                    }
+//                }
+//                meal = cursor.getString(cursor.getColumnIndex(DBInfo.MEAL_SPINNER));
+//                sugarMeasure = cursor.getString(cursor.getColumnIndex(DBInfo.SUGAR_MEASURE));
+//                sugarTime = cursor.getString(cursor.getColumnIndex(DBInfo.SUGAR_TIME));
+//                sugarAllArr = new String[][]{meal, sugarMeasure, sugarTime};
+//
+//            }
+//            Log.i(TAG, " => DBAdapter : showCursor() ===> " + meal + ", " + sugarMeasure + ", "  + sugarArr);
+//
+//        }
+//        return sugarAllArr;
+//    }
     private int getRowCount(Cursor cursor) {
         if (cursor != null) {
             Log.i(TAG, " => DBAdapter : getRowCount() ===> ");
