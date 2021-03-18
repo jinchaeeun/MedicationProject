@@ -7,38 +7,38 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-public class DBOpenHelper extends SQLiteOpenHelper {
+public class PressDBOpenHelper extends SQLiteOpenHelper {
 
     // Member variable --------------------------------------------
-    private final String    TAG ="BloodSugar";
+    private final String    TAG ="BloodPress";
     //테이블 생성. 공백 잘 지키기
     private static final String CREATE_TABLE_MESSAGE = "create table if not exists " +
-            DBInfo.TABLE_BLOOD_SUGAR +
-            "(" + DBInfo.SUGAR_ID + " integer primary key autoincrement, " +
-            DBInfo.MEAL_SPINNER + " text not null, " +
-            DBInfo.SUGAR_MEASURE + " integer not null, " +
-            DBInfo.SUGAR_TIME + " text not null, " +
-            DBInfo.SMEASURE_DATE + " integer not null );";
+            DBInfo.TABLE_BLOOD_PRESSURE +
+            "(" + DBInfo.PRESSURE_ID + " integer primary key autoincrement, " +
+            DBInfo.MOR_EVE_SPINNER + " text not null, " +
+            DBInfo.PRESS_MEASURE + " integer not null, " +
+            DBInfo.PRESS_TIME + " text not null, " +
+            DBInfo.PMEASURE_DATE + " integer not null );";
 
     //테이블 삭제
     private static final String DROP_TABLE_MESSAGE =    "drop table if exists "
-            + DBInfo.TABLE_BLOOD_SUGAR +";";
+            + DBInfo.TABLE_BLOOD_PRESSURE +";";
 
     private Context context;
 
     // Member Method - Constructor -----------------------------------
     // Constructor에서 DB 생성됨
     // 지정된 이름의 Database 생성
-    public DBOpenHelper(@Nullable Context context) {
+    public PressDBOpenHelper(@Nullable Context context) {
         super(context, DBInfo.DB_NAME, null, DBInfo.DB_VERSION);
         //context 값 넣어주기
         this.context = context;
-        Log.i(TAG, " => DBOpenHelper : DBOpenHelper()");
+        Log.i(TAG, " => PressDBOpenHelper : DBOpenHelper()");
     }
-    public DBOpenHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version, Context context1) {
+    public PressDBOpenHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version, Context context1) {
         super(context, name, factory, version);
         this.context = context;
-        Log.i(TAG, " => DBOpenHelper : DBOpenHelper()");
+        Log.i(TAG, " => PressDBOpenHelper : DBOpenHelper()");
     }
 
 
@@ -48,7 +48,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         //db가 생성되었을 때 호출.
         //Table 생성
         db.execSQL(CREATE_TABLE_MESSAGE);
-        Log.i(TAG, " => DBOpenHelper : OnCreate()");
+        Log.i(TAG, " => PressDBOpenHelper : OnCreate()");
     }
 
     @Override
@@ -58,7 +58,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
         db.execSQL(DROP_TABLE_MESSAGE); //기존 Table 삭제
         onCreate(db); //db.execSQL(CREATE_TABLE_MESSAGE); // Table 새로 생성
-        Log.i(TAG, "DBOpenHelper : onUpgrade()");
+        Log.i(TAG, "PressDBOpenHelper : onUpgrade()");
 
     }
 }

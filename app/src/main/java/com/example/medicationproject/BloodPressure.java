@@ -2,6 +2,8 @@ package com.example.medicationproject;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.ContentValues;
+import android.database.Cursor;
 import android.graphics.Rect;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
@@ -40,17 +43,6 @@ public class BloodPressure extends AppCompatActivity {
     private final boolean D = true;
     private final String TAG = "BloodPressure";
 
-    //firebase
-    private FirebaseDatabase mDatabase;
-
-    //데이터베이스의 정보
-    private DatabaseReference mReference;
-
-    // data
-
-    //View object 관련, 화면에 뿌려줄 뷰
-    private ListView listView;
-
     // List 관련
     private ArrayList<HashMap<String, String>> arrayList; //정보 담을 객체
     private SimpleAdapter adapter;                        // 데이터 넣어줄 어댑터
@@ -73,27 +65,22 @@ public class BloodPressure extends AppCompatActivity {
     private TextView morBPresTXT_show;  //아침 측정 혈압
     private TextView eveTimeTXT_show;   //저녁 측정 시간
     private TextView eveBPresTXT_show;  //저녁 측정 혈압
+
     private TextView select_date_TXT;   //선택한 날짜
     private String spinner_text;        //spinner선택한
 
-    //하위 키 값 찾기
-    List memberInfoList = new ArrayList<>();
-    Calendar cal = Calendar.getInstance();
-    SimpleDateFormat format = new SimpleDateFormat("yyyy년 MM월 dd일");
-    String date = format.format(Calendar.getInstance().getTime());
+    private Calendar pointDate;     //캘린더 뷰 선택된 날짜 값 변경을 위해서.
+
+    private int sugDate;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bloodpreslayout);
-        initDatabase();
         init();
         if (D) Log.i(TAG, "onCreate()");
 
-
-
-    }
-    public void CalendarSelect(){
         //CalenderView 선택한 날짜
         BPresscalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -101,35 +88,69 @@ public class BloodPressure extends AppCompatActivity {
                 select_date_TXT.setText(String.format(" %04d" + "년 " + "%02d" + "월 " + "%02d" + "일 ", year, month + 1, dayOfMonth));
                 calenderDate = year + "" + month + 1 + "" + dayOfMonth;
                 if (D)
-                    Log.i(TAG, "혈당 측정 기록에서 캘린더뷰 선택 날짜- " + String.valueOf(year) + "년 " + String.valueOf(month + 1) + "월 " + String.valueOf(dayOfMonth) + "일 ");
-                //저장하기
+                    Log.i(TAG, "혈압 측정 기록에서 캘린더뷰 선택 날짜- " + String.valueOf(year) + "년 " + String.valueOf(month + 1) + "월 " + String.valueOf(dayOfMonth) + "일 ");
+                Log.i(TAG, "캘린더뷰 BPresscalendarView 날짜- " + BPresscalendarView.getDate());
+                Log.i(TAG, "캘린더뷰 bSuCalendarView 날짜- " + year + "" + (month + 1) + "" + dayOfMonth);
+
             }
         });
 
+        //Spinner 값 변경
+        mor_eve_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String meal = (String) mor_eve_spinner.getSelectedItem();
+                if (D) Log.i(TAG, "Spinner 값 변경됨 " + meal);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
     }
 
-    public void UpdateDateNow(){
+
+    //오늘 날짜
+    public void UpdateDateNow() {
         //오늘 날짜 옆 텍스트뷰 클릭 시 날짜 변경 가능하게 호출
         mTxtDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (D) Log.i(TAG, "오늘 날짜: " + mTxtDate.getText());
                 new DatePickerDialog(BloodPressure.this, mDateSetListener, mYear, mMonth, mDay).show();
                 //int를 long 타입으로 변환함 캘린더뷰 값 set 해주기 위해서
-                if(D)  Log.i(TAG, "UpdateDateNow - onClick - longmTxtDate" + longmTxtDate);
+                if (D) Log.i(TAG, "UpdateDateNow - onClick - longmTxtDate" + longmTxtDate);
             }
         });
-        Long y = Integer.toUnsignedLong (mYear);
-        Long m = Integer.toUnsignedLong(mMonth);
-        Long d = Integer.toUnsignedLong(mDay);
-        longmTxtDate = y * 10000 + (m+1) * 100 + d;
-        if(D)  Log.i(TAG, "혈당 측정 기록에서 캘린더뷰 선택 날짜- " + longmTxtDate);
-        mTxtDate.setText(String.format(" %04d"+"년 "+ "%02d"+"월 "+"%02d"+"일 ", mYear, mMonth +1, mDay));
+
+
+        mTxtDate.setText(String.format(" %04d" + "년 " + "%02d" + "월 " + "%02d" + "일 ", mYear, mMonth + 1, mDay));
         // onCreate() 시 select_date_TXT에 출력해줄 값
-        select_date_TXT.setText(String.format(" %d"+"년 "+ "%d"+"월 "+"%d"+"일 ", mYear, mMonth +1, mDay));
+        select_date_TXT.setText(String.format(" %d" + "년 " + "%d" + "월 " + "%d" + "일 ", mYear, mMonth + 1, mDay));
+        // 캘린더뷰 선택 값 변경
+        pointDate = Calendar.getInstance();
+        pointDate.set(mYear, mMonth, mDay);
+        String sugarDate = (String.format("%02d%02d%02d", mYear, mMonth + 1, mDay));
+        sugDate = Integer.valueOf(sugarDate);
+        Log.i(TAG, "sugarDate => " + sugDate);
+        //테이블 값 다시 출력
+        if (DBInfo.PRESS_DB_ADAPTER != null)
+            DBInfo.PRESS_DB_ADAPTER.getSelectRow(sugDate);
+        else
+            Log.i(TAG, "DBInfo.PRESS_DB_ADAPTER  => NULL ");
+        TableUpdate();
+
+        BPresscalendarView.setDate(pointDate.getTimeInMillis()); //초 변환
+        //bSuCalendarView.setFocusedMonthDateColor(Color.BLUE); //색상 변경
+        Log.i(TAG, "캘린더 뷰 포인트 지정" + pointDate.getTimeInMillis());
+
     }
 
 
-    public void UpdateMorTimeNow(){
+    public void UpdateMorTimeNow() {
         //텍스트뷰 클릭 시 날짜 변경 가능하게 호출
         bPrTimeTXT.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,6 +159,7 @@ public class BloodPressure extends AppCompatActivity {
             }
         });
         bPrTimeTXT.setText(String.format("%02d:%02d", mHour, mMinute));
+        if (D) Log.i(TAG, "Time 값 변경됨 " + mHour + mMinute);
 
     }
 
@@ -173,13 +195,13 @@ public class BloodPressure extends AppCompatActivity {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         View focusView = getCurrentFocus();
-        if(focusView != null){
+        if (focusView != null) {
             Rect rect = new Rect();
             focusView.getGlobalVisibleRect(rect);
             int x = (int) ev.getX(), y = (int) ev.getY();
-            if(!rect.contains(x, y)){
+            if (!rect.contains(x, y)) {
                 InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                if(imm != null){
+                if (imm != null) {
                     imm.hideSoftInputFromWindow(focusView.getWindowToken(), 0);
                 }
                 focusView.clearFocus();
@@ -189,9 +211,11 @@ public class BloodPressure extends AppCompatActivity {
     }
 
 
-
     //onCreate 시 초기화 코드 ---------------------------------------------------
     private void init() {
+        //DB 생성
+        DBInfo.PRESS_DB_ADAPTER = new PressDBAdapter(this);
+
         //xml 요소 연결
         mTxtDate = findViewById(R.id.todayDateTXT);
         bPrTimeTXT = findViewById(R.id.bPrTimeTXT);
@@ -217,264 +241,68 @@ public class BloodPressure extends AppCompatActivity {
         // 화면 텍스트뷰에 업데이트
         UpdateDateNow();
         UpdateMorTimeNow();
-        CalendarSelect();
 
         //xml에 만들어둔 array.xml값을 불러와 String[], 또는 List로 만들기
         //String 배열
         String[] kinds1 = getResources().getStringArray(R.array.select_mor_or_eve);
 
         //Spinner 넣을 ArryaAdapter 객체 생성
-        ArrayAdapter adapter = new ArrayAdapter(getBaseContext(),R.layout.spinner_item, kinds1);
+        ArrayAdapter adapter = new ArrayAdapter(getBaseContext(), R.layout.spinner_item, kinds1);
         adapter.setDropDownViewResource(R.layout.spinner_item);
         mor_eve_spinner.setAdapter(adapter);
     }
 
-
-    public void initDatabase() {
-        //firebase 연결
-        mDatabase = FirebaseDatabase.getInstance();
-        mReference = mDatabase.getReference();
-
-        /*
-        현재 필요는 없음 하위 key 값 찾을 때 사용
-
-        mReference.child("family_member").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot keySnapshot : snapshot.getChildren()){
-                    //하위 키 값 가져오기
-                    String str = keySnapshot.child("info").getValue(String.class);
-                    Log.i("firebase", "OnDataChange  하위 키 값: "+str);
-
-                    memberInfoList.add(str);
-
-                }
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.i("TAG: ", "Failed to read value");
-            }
-        });
-        */
-
-        /*
-        mReference = mDatabase.getReference("family_member");   //변경 값 확인할 child
-        mReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //adapter.clear();
-                for (DataSnapshot messageData : dataSnapshot.getChildren()) {
-                    //child 내에 있는 데이터만큼 반복
-                    String name = messageData.getValue().toString();
-                    String phone = messageData.getValue().toString();
-                    String email = messageData.getValue().toString();
-
-                    map = new HashMap<String, String>();
-                    map.put("name", nameETXT.getText().toString());
-                    map.put("phone", phoneETXT.getText().toString());
-                    map.put("email", emailETXT.getText().toString());
-                    arrayList.add(map);
-
-                }
-                //리스트뷰 갱신하고 마지막 위치를 카운트해서 보내줌
-                adapter.notifyDataSetChanged();
-                listView.setSelection(adapter.getCount() - 1);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });*/
-    }
 
     //저장 버튼 클릭
     public void click(View v) {
         if (D) Log.i(TAG, "기존 캘린더뷰 시간: Long값:  " + BPresscalendarView.getDate());
         //long 타입으로 변경
 
-        //BPresscalendarView.setDate(longmTxtDate, true, true);
-        if (D) Log.i(TAG, "캘린더뷰 변경 시간 클릭 이벤트: " + BPresscalendarView.getDate());
-        //writeBloodPress(mTxtDate.getText().toString(), mor_eve_spinner.getSelectedItem().toString(), bPrTimeTXT.getText().toString(), bPrETXT.getText().toString());
-        /*if (!bPrETXT.getText().toString().equals("")) { //측정 혈압 입력 값이 비어있는지 확인.
+        if (!bPrETXT.getText().toString().equals("")) { //측정 혈압 입력 값이 비어있는지 확인.
             // 선택한 Spinner 값( 아침/저녁 )
-            // 저장 버튼 누른 후 오늘 날짜 mTxtDate를 캘린더뷰 년도, 월, 일 선택되게하고 그 값 select date에 넣기
             spinner_text = mor_eve_spinner.getSelectedItem().toString();
-            if (D) Log.i(TAG, "아침/저녁: " + spinner_text);
+
+            // 삽일할 데이터 객체 생성
+            ContentValues newData = new ContentValues();
+            newData.put(DBInfo.MOR_EVE_SPINNER, spinner_text);      //  아침, 저녁 구분
+            newData.put(DBInfo.PRESS_TIME, bPrTimeTXT.getText().toString());        //  측정시간
+            newData.put(DBInfo.PRESS_MEASURE, bPrETXT.getText().toString());        //  측정혈압
+            newData.put(DBInfo.PMEASURE_DATE, sugDate);                             //  측정일자
+            //DB에 값 삽입하기
+            DBInfo.PRESS_DB_ADAPTER.insertRow(DBInfo.TABLE_BLOOD_PRESSURE, newData);
+
+            TableUpdate();
+            if (D)
+                Log.i(TAG, "아침/저녁: " + spinner_text + "측정시간: " + bPrTimeTXT.getText() + "\n 측정 혈압: " + bPrETXT.getText());
+        } else {
+            Toast.makeText(BloodPressure.this, "측정하신 혈압을 입력해주세요.", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    private void TableUpdate() {
+        //DB 조회하기
+        //long time=  pointDate.getTimeInMillis();
+        Cursor cursor = DBInfo.PRESS_DB_ADAPTER.getSelectRow(sugDate);
+        Log.i(TAG, "커서 값은 " + cursor.getCount());
+
+        //해당 날짜에서만!
+        while (cursor.moveToNext()) {
+            String meal = cursor.getString(cursor.getColumnIndex(DBInfo.MOR_EVE_SPINNER));
+            String sugarMeasure = cursor.getString(cursor.getColumnIndex(DBInfo.PRESS_MEASURE));
+            String sugarTime = cursor.getString(cursor.getColumnIndex(DBInfo.PRESS_TIME));
+
             if (spinner_text.equals("아침")) {
                 // 측정시간 bPrTimeTXT 값 아래 textView에 넣기.
                 morTimeTXT_show.setText(bPrTimeTXT.getText().toString());
                 // 측정 혈압 bPrETXT 값 아래 TextView에 넣기
                 morBPresTXT_show.setText(bPrETXT.getText().toString());
-                if (D) Log.i(TAG, "측정시간: " + bPrTimeTXT.getText() + "\n 측정 혈압: " + bPrETXT.getText());
             } else if (spinner_text.equals("저녁")) {
-                // 측정시간 bPrTimeTXT 값 아래 textView에 넣기.
                 eveTimeTXT_show.setText(bPrTimeTXT.getText().toString());
-                // 측정 혈압 bPrETXT 값 아래 TextView에 넣기
                 eveBPresTXT_show.setText(bPrETXT.getText().toString());
-                if (D) Log.i(TAG, "측정시간: " + bPrTimeTXT.getText() + "\n 측정 혈압: " + bPrETXT.getText());
             }
-        }
-        else{
-            Toast.makeText(BloodPressure.this, "측정하신 혈압을 입력해주세요.", Toast.LENGTH_SHORT).show();
-        }*/
-        /*switch (v.getId()){
-            case R.id.BSSaveBTN:
-                writeBloodPress(calenderDate, mor_eve_spinner.getSelectedItem().toString(), bPrTimeTXT.getText().toString(), bPrETXT.getText().toString());
-                break;
-        }*/
-    }
-    //데이터 추가하기
-    public void writeBloodPress(String date, String spin, String bPTime, String bPETxt){
-        BloodPressureResult bloodPressureResult = new BloodPressureResult(date, spin, bPTime, bPETxt);
-        mReference.child("blood_pressure").child(date).setValue(bloodPressureResult).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                //write was Success
-                Toast.makeText(BloodPressure.this, "입력하신 정보를 저장했습니다.", Toast.LENGTH_LONG).show();
-                Log.i(TAG, "onSuccess");
-                //화면에 뿌리기
-                //readUser(String.valueOf(date));
+            if (D) Log.i(TAG, "측정시간: " + bPrTimeTXT.getText() + "\n 측정 혈압: " + bPrETXT.getText());
 
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                //write Failed
-                Toast.makeText(BloodPressure.this, "저장에 실패하였습니다. 다시 시도해주세요.", Toast.LENGTH_LONG).show();
-                Log.i(TAG, "onFailure");
-            }
-        });
-    }
-    //Member Method - XML onClick Method----------------------------------
-/*
-    public void click(View v) {
-
-        switch (v.getId()) {
-            case R.id.addBTN:
-                // (1) EditText 3개 값 입력 여부 체크
-                if (nameETXT.getText().length() > 0 && phoneETXT.getText().length() > 0 && emailETXT.getText().length() > 0) {
-                    //firebase 저장 method 호출
-                    writeNewUser(0, nameETXT.getText().toString(), phoneETXT.getText().toString(), emailETXT.getText().toString());
-                    Log.i("firebase", "add 패밀리리스트 값: "+familyListCount);
-                    Log.i(TAG, "add => " + arrayList.size()); //현재 입력된 갯수
-
-                    //adapter에 noti 날림
-                    adapter.notifyDataSetChanged();
-
-                } else {
-                    // (2-2) 사용자에게 알림 띄우기
-                    Toast.makeText(this, R.string.add_msg, Toast.LENGTH_LONG).show();
-                }
-                break;
-            case R.id.delBTN:
-                if (arrayList.size() > 0) {
-                    //firebase 가장 최근 삭제
-                    removeUser(familyListCount-1, nameETXT.getText().toString(), phoneETXT.getText().toString(), emailETXT.getText().toString());
-                    adapter.notifyDataSetChanged();
-                    Log.i("firebase", "delete 패밀리리스트 값: "+familyListCount);
-//                    int lastIdx = arrayList.size() - 1;
-//                    arrayList.remove(lastIdx);
-//
-//                    //adapter에 noti 날림
-                    adapter.notifyDataSetChanged();
-
-
-                } else {
-                    Toast.makeText(this, R.string.del_msg, Toast.LENGTH_LONG).show();
-                }
-                break;
-        }
-        famCntSave();
-    }
-
-    //ListView에 firebase 데이터 조회
-
-    // firebase에 데이터 읽기
-    private void readUser(final int position) {
-        //새로 전체 다 뿌려주기 위해서 초기화하기
-        arrayList.clear();
-        if(position!= 0) {
-            for (int i = 0; i < familyListCount; i++) {
-                //데이터 한번 읽기 하나씩 가져왔음.
-                mReference.child("family_member").child(String.valueOf(i)).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DataSnapshot> task) {
-                        if (!task.isSuccessful()) {
-                            Log.i("firebase_onComplete", "Error getting data", task.getException());
-                        } else {
-                            Log.i("firebase_onComplete", String.valueOf(task.getResult().getValue()));
-                            //listView에 값 뿌리기
-
-                            //문자열 필요 없는 값 자르기
-                            String readStr = String.valueOf(task.getResult().getValue());
-                            int idx = readStr.indexOf("=");
-                            String needStr = readStr.substring(idx + 1);                    //= 뒷부분만 추출
-                            String reStr = needStr.substring(0, needStr.length() - 1);      //맨 마지막 } 값 삭제
-
-                            String data[] = reStr.split(" - ");
-                            map = new HashMap<String, String>();
-                            map.put("name", data[0]);
-                            map.put("phone", data[1]);
-                            map.put("email", data[2]);
-                            arrayList.add(map);
-                            adapter.notifyDataSetChanged();
-                        }
-                    }
-                });
-            }
-        }else{
-            Toast.makeText(BloodPressure.this, "값이 없습니다.",Toast.LENGTH_SHORT).show();
         }
     }
-    // firebase에 데이터 추가
-    private void writeNewUser(final int position, String name, String phone, String email){
-        FamilyAddress familyAdd = new FamilyAddress(name, phone, email);
-
-        mReference.child("family_member").child(String.valueOf(position)).setValue(familyAdd).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                //write was successful!
-                //arrayList.add(map);
-
-                //adapter.notifyDataSetChanged();
-                readUser(familyListCount); //화면에 뿌리기
-                Toast.makeText(BloodPressure.this, "입력하신 정보를 저장했습니다.", Toast.LENGTH_LONG).show();
-
-                Log.i(TAG, "onSuccess");
-
-                // 3개 입력 필드 초기화(지우기)
-                initEXIT();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                //write Failed
-                Toast.makeText(BloodPressure.this, "저장에 실패하였습니다. 다시 시도해주세요.", Toast.LENGTH_LONG).show();
-                Log.i(TAG, "onFailure");
-            }
-        });
-    }
-
-    // firebase 데이터 삭제하기
-    private void removeUser(final int position, String name, String phone, String email){
-        Log.i("firebase", "delete "+ position);
-        familyListCount--;
-        mReference.child("family_member").child(String.valueOf(position)).removeValue();
-        Log.i("firebase removeUser", "removeUser" + position);
-        readUser(familyListCount);
-    }
-
-    //Member Method - Custom----------------------------------
-    //3개 입력 필드 초기화
-    private void initEXIT(){
-        nameETXT.setText("");
-        phoneETXT.setText("");
-        emailETXT.setText("");
-    }
-
- */
 }
-

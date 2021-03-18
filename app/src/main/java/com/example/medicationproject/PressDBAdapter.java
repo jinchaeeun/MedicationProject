@@ -8,22 +8,19 @@ import android.util.Log;
 
 // SQLite Database에 관련된 모든 메서드 ----------------------------
 //따로따로 만들지말고 여기 한번에 넣자
-public class DBAdapter {
+public class PressDBAdapter {
     // Member variable --------------------------------------------
-    private final String TAG = "BloodSugar";
-    private DBOpenHelper dbHelper;
+    private final String TAG = "BloodPress";
+    private PressDBOpenHelper dbHelper;
     private SQLiteDatabase db;
     private Context context;
-    String meal ="";
-    String sugarMeasure="";
-    String sugarTime="";
-    String sugarArr[];
+
 
     // Member Method - Override -----------------------------------
-    public DBAdapter(Context context) { //context만 빋겠다.
+    public PressDBAdapter(Context context) { //context만 빋겠다.
         this.context = context;
-        this.dbHelper = new DBOpenHelper(context);
-        Log.i(TAG, " => DBAdapter : DBAdapter()");
+        this.dbHelper = new PressDBOpenHelper(context);
+        Log.i(TAG, " => PressDBAdapter : PressDBAdapter()");
     }
 
     // Member Method - Custom -----------------------------------
@@ -34,12 +31,12 @@ public class DBAdapter {
         } else {
             this.db = dbHelper.getReadableDatabase();
         }
-        Log.i(TAG, " => DBAdapter : openDB()");
+        Log.i(TAG, " => PressDBAdapter : openDB()");
     }
 
     public void closeDB() {
         if (db.isOpen()) dbHelper.close();
-        Log.i(TAG, " => DBAdapter : closeDB()");
+        Log.i(TAG, " => PressDBAdapter : closeDB()");
     }
 
     //DB Insert/Update/Delete -------------------------------------------------
@@ -49,7 +46,7 @@ public class DBAdapter {
         long rowId = db.insert(tablename, null, newValue);
 
         closeDB();
-        Log.i(TAG, " => DBAdapter : insertRow(), rowId = " + rowId);    //행 몇 번째 들어갔는지 확인. rowID는 삭제해도 이후 값만..
+        Log.i(TAG, " => PressDBAdapter : insertRow(), rowId = " + rowId);    //행 몇 번째 들어갔는지 확인. rowID는 삭제해도 이후 값만..
         return rowId;
     }
 
@@ -57,8 +54,8 @@ public class DBAdapter {
         openDB(true);
 
         // delete from message_tbl where_id=
-        int delNums = db.delete(tablename, DBInfo.SUGAR_ID + "=" + rowID, null);
-        Log.i(TAG, " => DBAdapter : deleteRow() || rowID : " + rowID + "|| delNums : " + delNums);
+        int delNums = db.delete(tablename, DBInfo.PRESSURE_ID + "=" + rowID, null);
+        Log.i(TAG, " => PressDBAdapter : deleteRow() || rowID : " + rowID + "|| delNums : " + delNums);
 
         closeDB();
 
@@ -66,14 +63,14 @@ public class DBAdapter {
     }
     //db 선택 조회
     public Cursor getSelectRow(int sugDate) {
-        Log.i(TAG, "getSelectRow() sugDate => " + sugDate );
+        Log.i(TAG, "PressDBAdapter : getSelectRow() sugDate => " + sugDate );
         openDB(true);
 
         //Cursor cursor = db.rawQuery("select * from " + DBInfo.TABLE_BLOOD_SUGAR, null);
-        Cursor cursor = db.rawQuery("select * from " + DBInfo.TABLE_BLOOD_SUGAR + " where mTxtDate = " + sugDate, null);
+        Cursor cursor = db.rawQuery("select * from " + DBInfo.TABLE_BLOOD_PRESSURE + " where mTxtDate = " + sugDate, null);
 
         //closeDB(); //뭐 안되면 getAllow했는데서 DB 닫아주면 됨
-        Log.i(TAG, " => DBAdapter : insertRow(), Count - " + cursor.getCount()); //db 갯수 보기
+        Log.i(TAG, " => PressDBAdapter : insertRow(), Count - " + cursor.getCount()); //db 갯수 보기
 
         showCursor(cursor);         //Data 확인용 잘 가져왔는지.
         cursor.moveToFirst();       //Data 전달용
@@ -87,20 +84,20 @@ public class DBAdapter {
         if (cursor != null) {
             String tmp = "";
             while (cursor.moveToNext()) {
-                tmp = "[ " + cursor.getInt(cursor.getColumnIndex(DBInfo.SUGAR_ID)) + " ] ";  //이거의 indexID를 주세요
-                tmp += cursor.getString(cursor.getColumnIndex(DBInfo.MEAL_SPINNER)) + " , ";
-                tmp += cursor.getString(cursor.getColumnIndex(DBInfo.SUGAR_MEASURE)) + " , ";
-                tmp += cursor.getString(cursor.getColumnIndex(DBInfo.SUGAR_TIME)) + " , ";
-                tmp += cursor.getString(cursor.getColumnIndex(DBInfo.SMEASURE_DATE)) + "";
+                tmp = "[ " + cursor.getInt(cursor.getColumnIndex(DBInfo.PRESSURE_ID)) + " ] ";  //이거의 indexID를 주세요
+                tmp += cursor.getString(cursor.getColumnIndex(DBInfo.MOR_EVE_SPINNER)) + " , ";
+                tmp += cursor.getString(cursor.getColumnIndex(DBInfo.PRESS_MEASURE)) + " , ";
+                tmp += cursor.getString(cursor.getColumnIndex(DBInfo.PRESS_TIME)) + " , ";
+                tmp += cursor.getString(cursor.getColumnIndex(DBInfo.PMEASURE_DATE)) + "";
             }
-            Log.i(TAG, " => DBAdapter : showCursor() ===> " + meal + ", " + sugarMeasure + ", "  + sugarArr);
+            Log.i(TAG, " => PressDBAdapter : showCursor() ===> " + DBInfo.MOR_EVE_SPINNER + ", " + DBInfo.PRESS_MEASURE + ", "  + DBInfo.PRESS_TIME + ", "  + DBInfo.PMEASURE_DATE);
 
         }
     }
 
     private int getRowCount(Cursor cursor) {
         if (cursor != null) {
-            Log.i(TAG, " => DBAdapter : getRowCount() ===> ");
+            Log.i(TAG, " => PressDBAdapter : getRowCount() ===> ");
             return cursor.getCount();
         } else {
             return -1;

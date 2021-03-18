@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -54,14 +55,6 @@ public class BloodSugar extends AppCompatActivity {
     private final String TAG = "BloodSugar";
 
 
-    //View object 관련, 화면에 뿌려줄 뷰
-    private ListView listView;
-
-    // List 관련
-    private ArrayList<HashMap<String, String>> arrayList; //정보 담을 객체
-    private SimpleAdapter adapter;                        // 데이터 넣어줄 어댑터
-    private HashMap<String, String> map;
-
     //날짜, 시간
     private int mYear, mMonth, mDay, mHour, mMinute;
 
@@ -93,10 +86,7 @@ public class BloodSugar extends AppCompatActivity {
 
     private Calendar pointDate;     //캘린더 뷰 선택된 날짜 값 변경을 위해서.
 
-    String sugarArr[] = new String[3];
-    int sugDate;
-    //하위 키 값 찾기
-    List memberInfoList = new ArrayList<>();
+    private int sugDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,16 +124,15 @@ public class BloodSugar extends AppCompatActivity {
         });
     }
 
-    private void setTime(int position) {
-        UpdateTimeNow();
-    }
+//    private void setTime(int position) {
+//        UpdateTimeNow();
+//    }
 
 
     //오늘 날짜
     public void UpdateDateNow(){
         //텍스트뷰 클릭 시 날짜 변경 가능하게 호출
         mTxtDate.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 if (D) Log.i(TAG, "오늘 날짜: " + mTxtDate.getText());
@@ -282,6 +271,7 @@ public class BloodSugar extends AppCompatActivity {
         UpdateDateNow();
         UpdateTimeNow();
 
+
         //xml에 만들어둔 array.xml값을 불러와 String[], 또는 List로 만들기
         //String 배열
         String[] kinds1 = getResources().getStringArray(R.array.select_meal);
@@ -290,12 +280,7 @@ public class BloodSugar extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(getBaseContext(),R.layout.spinner_item, kinds1);
         adapter.setDropDownViewResource(R.layout.spinner_item);
         meal_spinner.setAdapter(adapter);
-        
-
     }
-
-
-
 
     //저장 버튼 클릭
     public void click(View v) {
@@ -307,7 +292,7 @@ public class BloodSugar extends AppCompatActivity {
         //---------------------------------------------
 
         if (!bSugarETXT.getText().toString().equals("")) { //측정 혈당 입력 값이 비어있는지 확인.
-            // 선택한 Spinner 값( 아침/저녁 )
+            // 선택한 Spinner 값( 아침, 점심, 저녁 식전/식후 )
             spinner_text = meal_spinner.getSelectedItem().toString();
 
             // 삽일할 데이터 객체 생성
@@ -321,8 +306,7 @@ public class BloodSugar extends AppCompatActivity {
 
             TableUpdate();
 
-            if (D)
-                Log.i(TAG, "아침/저녁: " + spinner_text + "측정시간: " + bSuTimeTXT.getText() + "\n 측정 혈압: " + bSugarETXT.getText());
+            if (D) Log.i(TAG, "구분: " + spinner_text + "측정시간: " + bSuTimeTXT.getText() + "\n 측정 혈당: " + bSugarETXT.getText());
 
             Toast.makeText(BloodSugar.this, "혈당 정보를 저장했습니다.", Toast.LENGTH_SHORT).show();
             initEXIT(); //bSuTime 값 초기화
