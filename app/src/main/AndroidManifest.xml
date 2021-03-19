@@ -17,7 +17,7 @@
         android:theme="@style/Theme.MedicationProject">
         <activity android:name=".Login"/>
         <activity android:name=".EnterGrup"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".BloodSugar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
