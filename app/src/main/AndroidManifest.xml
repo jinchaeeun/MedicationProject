@@ -22,7 +22,7 @@
         <activity android:name=".TimerAlam"/>
         <activity android:name=".Login"/>
         <activity android:name=".EnterGrup"/>
-        <activity android:name=".BloodSugar">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
