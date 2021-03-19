@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linear"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -108,9 +109,9 @@
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
         android:layout_marginBottom="100dp"
-        android:onClick="Enter"
         android:background="#00ff0000"
-        android:textColor="@color/text_selector"
-        android:text="회원가입" />
+        android:onClick="Enter"
+        android:text="회원가입"
+        android:textColor="@color/text_selector" />
 
 </LinearLayout>

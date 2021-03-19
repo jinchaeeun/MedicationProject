@@ -37,37 +37,33 @@ public class MainActivity extends AppCompatActivity {
     public void GotoT(View v){
         Intent intent = new Intent (MainActivity.this,TimerAlam.class);
         Toast.makeText(getApplicationContext(),"onCreate():",Toast.LENGTH_LONG).show();
-        Log.i(TAG,"onCreat():");
         startActivity(intent);
     }
     public void GotoA(View v){
         Intent intent = new Intent (MainActivity.this,TimerAlam.class);
         Toast.makeText(getApplicationContext(),"alam",Toast.LENGTH_LONG).show();
-        Log.i(TAG,"onCreat():");
         startActivity(intent);
     }
     public void GotoL(View v){
-        Intent intent = new Intent (MainActivity.this,TimerAlam.class);
-        Toast.makeText(getApplicationContext(),"onCreate():",Toast.LENGTH_LONG).show();
-        Log.i(TAG,"onCreat():");
+        Intent intent = new Intent (MainActivity.this,FamilyList.class);
+        Toast.makeText(getApplicationContext(),"family:",Toast.LENGTH_LONG).show();
         startActivity(intent);
-    }public void GotoE(View v){
+    }
+    public void GotoE(View v){
         Intent intent = new Intent (MainActivity.this,TimerAlam.class);
-        Toast.makeText(getApplicationContext(),"onCreate():",Toast.LENGTH_LONG).show();
-        Log.i(TAG,"onCreat():");
+        Toast.makeText(getApplicationContext(),"onCreat()",Toast.LENGTH_LONG).show();
         startActivity(intent);
     }
     public void GotoD(View v){
-        Intent intent = new Intent (MainActivity.this,TimerAlam.class);
-        Toast.makeText(getApplicationContext(),"onCreate():",Toast.LENGTH_LONG).show();
-        Log.i(TAG,"onCreat():");
+        Intent intent = new Intent (MainActivity.this,BloodSugar.class);
+        Toast.makeText(getApplicationContext(),"bloodsugar",Toast.LENGTH_LONG).show();
         startActivity(intent);
     }
     public void GotoB(View v){
-        Intent intent = new Intent (MainActivity.this,TimerAlam.class);
-        Toast.makeText(getApplicationContext(),"onCreate():",Toast.LENGTH_LONG).show();
-        Log.i(TAG,"onCreat():");
+        Intent intent = new Intent (MainActivity.this,BloodPressure.class);
+        Toast.makeText(getApplicationContext(),"bloodpres",Toast.LENGTH_LONG).show();
         startActivity(intent);
+
     }
 
     public void init(){

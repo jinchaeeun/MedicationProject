@@ -49,7 +49,7 @@
             android:layout_marginRight="25dp"
             android:layout_weight="1"
             android:onClick="GotoA"
-            android:text="사진" />
+            android:text="alam" />
 
         <Button
             android:id="@+id/TakeList"
@@ -58,7 +58,8 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
-            android:onClick="GotoL" />
+            android:onClick="GotoL"
+            android:text="@string/familyList" />
     </LinearLayout>
 
     <LinearLayout
@@ -74,7 +75,9 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
-            android:onClick="GotoB" />
+            android:onClick="GotoB"
+
+            android:text="@string/bloodpressure" />
 
         <Button
             android:id="@+id/Diabet"
@@ -83,7 +86,8 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
-            android:onClick="GotoD" />
+            android:onClick="GotoD"
+            android:text="@string/bloodSugar" />
 
         <Button
             android:id="@+id/Enrollment"
@@ -92,7 +96,8 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
-            android:onClick="GotoE" />
+            android:onClick="GotoE"
+            android:text="alam the end" />
     </LinearLayout>
 
 </LinearLayout>
