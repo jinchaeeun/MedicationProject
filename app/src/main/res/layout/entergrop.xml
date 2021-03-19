@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
 
         android:layout_marginTop="25dp"
+        android:fontFamily="@font/app_bold_font"
         android:gravity="center"
         android:text="TextView" />
 
@@ -28,6 +29,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/app_main_font"
             android:text="Name" />
 
         <EditText
@@ -36,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:ems="10"
+            android:fontFamily="@font/app_main_font"
             android:hint="name"
             android:inputType="textPersonName" />
 
@@ -51,17 +54,19 @@
 
         <TextView
             android:id="@+id/phone"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-
-            android:text="TextView" />
+            android:layout_weight="1"
+            android:fontFamily="@font/app_main_font"
+            android:text="phoneE" />
 
         <EditText
             android:id="@+id/PhonNO"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-
+            android:layout_weight="4"
             android:ems="10"
+            android:fontFamily="@font/app_main_font"
             android:hint="phoneNo."
             android:inputType="textPersonName" />
 
@@ -80,6 +85,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/app_main_font"
             android:text="ID" />
 
         <EditText
@@ -87,8 +93,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
+            android:fontFamily="@font/app_main_font"
             android:hint="ID"
-            android:inputType="textPersonName"/>
+            android:inputType="textPersonName" />
 
     </LinearLayout>
 
@@ -105,6 +112,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/app_main_font"
             android:text="PW." />
 
         <EditText
@@ -113,6 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:ems="10"
+            android:fontFamily="@font/app_main_font"
             android:hint="passward"
             android:inputType="textPassword" />
 
@@ -131,6 +140,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/app_main_font"
             android:text="PW." />
 
         <EditText
@@ -139,6 +149,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:ems="10"
+            android:fontFamily="@font/app_main_font"
             android:hint="Repassward"
             android:inputType="textPassword" />
 
@@ -152,16 +163,20 @@
         android:layout_marginBottom="25dp">
 
         <TextView
+            android:id="@+id/e_mail"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/app_main_font"
             android:text="E-mail" />
 
         <EditText
             android:id="@+id/email"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="4"
+            android:ems="10"
+            android:fontFamily="@font/app_main_font"
             android:hint="E-mail" />
 
     </LinearLayout>
@@ -175,6 +190,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="70dp"
+            android:fontFamily="@font/app_main_font"
             android:onClick="OK"
             android:text="저장" />
 
@@ -184,6 +200,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
             android:layout_marginRight="50dp"
+            android:fontFamily="@font/app_main_font"
             android:onClick="finish"
             android:text="취소" />
 

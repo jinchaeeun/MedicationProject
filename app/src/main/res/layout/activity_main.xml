@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="250dp"
         android:layout_marginRight="100dp"
+        android:fontFamily="@font/app_main_font"
         android:onClick="login"
         android:text="l" />
 
@@ -22,6 +23,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/app_bold_font"
         android:gravity="center"
         android:text="TextView"
         android:textSize="25dp" />
@@ -39,6 +41,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
+            android:fontFamily="@font/app_main_font"
             android:onClick="GotoT" />
 
         <Button
@@ -48,6 +51,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
+            android:fontFamily="@font/app_main_font"
             android:onClick="GotoA"
             android:text="alam" />
 
@@ -58,6 +62,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
+            android:fontFamily="@font/app_main_font"
             android:onClick="GotoL"
             android:text="@string/familyList" />
     </LinearLayout>
@@ -75,8 +80,9 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
-            android:onClick="GotoB"
+            android:fontFamily="@font/app_main_font"
 
+            android:onClick="GotoB"
             android:text="@string/bloodpressure" />
 
         <Button
@@ -86,6 +92,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
+            android:fontFamily="@font/app_main_font"
             android:onClick="GotoD"
             android:text="@string/bloodSugar" />
 
@@ -96,6 +103,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
+            android:fontFamily="@font/app_main_font"
             android:onClick="GotoE"
             android:text="alam the end" />
     </LinearLayout>

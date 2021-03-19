@@ -12,6 +12,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
         android:gravity="center"
+        android:fontFamily="@font/app_bold_font"
         android:text="@string/familyadd"
         android:textSize="30sp"
         android:textStyle="bold" />
@@ -21,7 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
-        android:text="@string/familyText" />
+        android:text="@string/familyText"
+        android:fontFamily="@font/app_main_font" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,6 +37,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/app_main_font"
             android:labelFor="@+id/nameETXT"
             android:text="@string/name" /> <!--이 텍스트뷰는 nameETXT의 라벨 버전 17이상부터는 text나 hint 속성을 작성하라고하기때문에-->
         <!--0dp를 넣어야 같은 높이에서 균등하게할 수 있음-->
@@ -44,6 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:ems="10"
+            android:fontFamily="@font/app_main_font"
             android:importantForAutofill="no"
             android:inputType="textPersonName" />
 
@@ -61,6 +65,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/app_main_font"
             android:labelFor="@+id/nameETXT"
             android:text="@string/phone" /> <!--이 텍스트뷰는 nameETXT의 라벨 버전 17이상부터는 text나 hint 속성을 작성하라고하기때문에-->
         <!--0dp를 넣어야 같은 높이에서 균등하게할 수 있음-->
@@ -70,6 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:ems="10"
+            android:fontFamily="@font/app_main_font"
             android:importantForAutofill="no"
             android:inputType="phone"
             android:maxLength="13" />
@@ -88,6 +94,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/app_main_font"
             android:labelFor="@+id/emailETXT"
             android:text="@string/email" /> <!--이 텍스트뷰는 nameETXT의 라벨 버전 17이상부터는 text나 hint 속성을 작성하라고하기때문에-->
         <!--0dp를 넣어야 같은 높이에서 균등하게할 수 있음-->
@@ -97,6 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:ems="10"
+            android:fontFamily="@font/app_main_font"
             android:importantForAutofill="no"
             android:inputType="textWebEmailAddress|textPersonName" />
 
@@ -116,6 +124,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/app_main_font"
             android:onClick="click"
             android:text="@string/add" />
 
@@ -124,6 +133,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/app_main_font"
             android:onClick="click"
             android:text="@string/del" />
 

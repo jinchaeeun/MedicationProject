@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="100dp"
+        android:fontFamily="@font/app_bold_font"
         android:gravity="center"
         android:text="@string/Login"
         android:textSize="50dp" />
@@ -33,6 +34,7 @@
                 android:layout_marginLeft="25dp"
                 android:layout_weight="1"
 
+                android:fontFamily="@font/app_main_font"
                 android:text="ID"
                 android:textSize="20dp" />
 
@@ -42,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="50dp"
                 android:layout_weight="4"
+                android:fontFamily="@font/app_main_font"
                 android:hint="ID"
                 android:textSize="20dp" />
 
@@ -58,6 +61,7 @@
                 android:layout_marginLeft="25dp"
                 android:layout_weight="1"
 
+                android:fontFamily="@font/app_main_font"
                 android:text="PW."
                 android:textSize="20dp" />
 
@@ -67,6 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="50dp"
                 android:layout_weight="4"
+                android:fontFamily="@font/app_main_font"
                 android:hint="passward"
                 android:inputType="textPassword"
                 android:textSize="20dp" />
@@ -87,6 +92,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
+            android:fontFamily="@font/app_main_font"
             android:onClick="OK"
             android:text="@string/OK"
             android:textSize="20dp" />
@@ -98,6 +104,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
+            android:fontFamily="@font/app_main_font"
             android:onClick="finish"
             android:text="@string/Cancle"
             android:textSize="20dp" />
@@ -111,6 +118,7 @@
         android:layout_marginRight="100dp"
         android:layout_marginBottom="100dp"
         android:background="#00ff0000"
+        android:fontFamily="@font/app_main_font"
         android:onClick="Enter"
         android:text="회원가입"
         android:textColor="@color/text_selector" />
