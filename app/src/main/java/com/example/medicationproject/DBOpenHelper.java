@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 
 public class DBOpenHelper extends SQLiteOpenHelper {
 
-    // Member variable --------------------------------------------
+    // Member variable ---------------------------------------------
     private final String    TAG ="DBOpenHelper";
     //테이블 생성. 공백 잘 지키기
     public static final String CREATE_TABLE_MESSAGE = "create table if not exists " +

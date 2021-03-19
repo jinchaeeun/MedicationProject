@@ -69,7 +69,7 @@ public class EnterGrup extends AppCompatActivity {
     }
     ////////////////////////////////////////////////////////
 
-    //--------------------회원가입 버튼을 눌렀을때 메소드-------------------//
+    //--------------------회원가입 버튼을 눌렀을때 메소드--------------------//
     public void OK(View v) {
         init();
         String id = nick.getText().toString().trim();

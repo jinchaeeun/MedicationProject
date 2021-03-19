@@ -151,7 +151,7 @@ public class Login extends AppCompatActivity {
     }
     ////////////////////////////////////////////////////////////////////////////////////////
 
-    //----------------------------------회원가입 버튼이 눌리면------------------------------//
+    //-----------------------------------회원가입 버튼이 눌리면------------------------------//
     public void Enter(View view) {
         Intent intent = new Intent(this, EnterGrup.class);
         Toast.makeText(getApplicationContext(), "go():", Toast.LENGTH_LONG).show();

@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         init();
     }
     //각 Button 클릭시 화면 전환
-    //--------------------------------------------------------------------------------------//
+    //---------------------------------------------------------------------------------------//
     public void GotoT(View v){
         Intent intent = new Intent (MainActivity.this,TimerAlam.class);
         Toast.makeText(getApplicationContext(),"onCreate():",Toast.LENGTH_LONG).show();

@@ -23,7 +23,7 @@ public class DBInfo {
     public static final String      KEY_PHONE      = "phone";
     */
 
-    // BloodSugar.java ------------------------------------------------
+    // BloodSugar.java -------------------------------------------------
     public static final String      TABLE_BLOOD_SUGAR  = "blood_sugar";
     public static final String      SUGAR_ID  = "bsId";             // 나중에 user id 외래키로 가져올 것임
     public static final String      MEAL_SPINNER = "meal_spinner";  // 식후 식전 구분

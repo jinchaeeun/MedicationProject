@@ -16,7 +16,7 @@ public class PressDBAdapter {
     private Context context;
 
 
-    // Member Method - Override -----------------------------------
+    // Member Method - Override ------------------------------------
     public PressDBAdapter(Context context) { //context만 빋겠다.
         this.context = context;
         this.dbHelper = new PressDBOpenHelper(context);

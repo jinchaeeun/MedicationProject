@@ -16,7 +16,7 @@ public class DBAdapter {
     private Context context;
 
 
-    // Member Method - Override -----------------------------------
+    // Member Method - Override ------------------------------------
     public DBAdapter(Context context) { //context만 빋겠다.
         this.context = context;
         this.dbHelper = new DBOpenHelper(context);

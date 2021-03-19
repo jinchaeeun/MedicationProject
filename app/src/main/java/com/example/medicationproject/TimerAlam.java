@@ -73,7 +73,7 @@ public class TimerAlam extends AppCompatActivity {
     private final int       GALLERY_CODE     =    1112;
 
 
-    //이미지 이름
+    //이미지 이름-
     String mImageCaptureName;
 
     //imagefile 저장을 위한 setup

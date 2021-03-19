@@ -286,7 +286,7 @@ public class BloodSugar extends AppCompatActivity {
 
 
 
-    //onCreate 시 초기화 코드 ---------------------------------------------------
+    //onCreate 시 초기화 코드 ----------------------------------------------------
     private void init() {
         //DB & Table 생성
         DBInfo.DB_ADAPTER = new DBAdapter(this);

@@ -39,7 +39,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class BloodPressure extends AppCompatActivity {
-    //Member Variable ----------------------------------------
+    //Member Variable -----------------------------------------
     // 디버깅을 위한 변수
     private final boolean D = true;
     private final String TAG = "BloodPressure";
