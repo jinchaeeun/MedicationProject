@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.medicationproject">
+
     <!-- 인터넷 사용 권한 -->
     <uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-feature android:name="android.hardware.camera"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
 
     <application
         android:allowBackup="true"
@@ -14,15 +16,19 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:windowSoftInputMode="stateAlwaysHidden"
-        android:theme="@style/Theme.MedicationProject">
-        <activity android:name=".FamilyList"/>
-        <activity android:name=".BloodSugar"/>
-        <activity android:name=".BloodPressure"/>
-        <activity android:name=".TimerAlam"/>
-        <activity android:name=".Login"/>
-        <activity android:name=".EnterGrup"/>
-        <activity android:name=".MainActivity">
+        android:theme="@style/Theme.MedicationProject"
+        android:windowSoftInputMode="stateAlwaysHidden">
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/progressbar_progressbar1" />
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".FamilyList" />
+        <activity android:name=".BloodSugar" />
+        <activity android:name=".BloodPressure" />
+        <activity android:name=".TimerAlam" />
+        <activity android:name=".Login" />
+        <activity android:name=".EnterGrup" />
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
