@@ -73,7 +73,7 @@ public class PressDBAdapter {
         Log.i(TAG, " => PressDBAdapter : insertRow(), Count - " + cursor.getCount()); //db 갯수 보기
 
         showCursor(cursor);         //Data 확인용 잘 가져왔는지.
-        cursor.moveToFirst();       //Data 전달용
+        cursor.moveToFirst();       //Data 전달용.  while문이 안들어간게 moveToFirst()가 적용이 안되서. showCursor에서 문제가 있었을 수 있음.
         return cursor;
     }
 

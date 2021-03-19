@@ -14,16 +14,17 @@ public class DBAdapter {
     private DBOpenHelper dbHelper;
     private SQLiteDatabase db;
     private Context context;
-    String meal ="";
-    String sugarMeasure="";
-    String sugarTime="";
-    String sugarArr[];
+
 
     // Member Method - Override -----------------------------------
     public DBAdapter(Context context) { //context만 빋겠다.
         this.context = context;
         this.dbHelper = new DBOpenHelper(context);
         Log.i(TAG, " => DBAdapter : DBAdapter()");
+        //DBOpenHelper에서 테이블 생성이 안되서 여기에서 다시 생성해줌
+        db=dbHelper.getWritableDatabase();
+        db.execSQL(DBOpenHelper.CREATE_TABLE_MESSAGE);
+        db.close();
     }
 
     // Member Method - Custom -----------------------------------
@@ -35,6 +36,7 @@ public class DBAdapter {
             this.db = dbHelper.getReadableDatabase();
         }
         Log.i(TAG, " => DBAdapter : openDB()");
+
     }
 
     public void closeDB() {
@@ -67,6 +69,8 @@ public class DBAdapter {
     //db 선택 조회
     public Cursor getSelectRow(int sugDate) {
         Log.i(TAG, "getSelectRow() sugDate => " + sugDate );
+        if(db.isOpen())  db.close();
+
         openDB(true);
 
         //Cursor cursor = db.rawQuery("select * from " + DBInfo.TABLE_BLOOD_SUGAR, null);
@@ -93,8 +97,7 @@ public class DBAdapter {
                 tmp += cursor.getString(cursor.getColumnIndex(DBInfo.SUGAR_TIME)) + " , ";
                 tmp += cursor.getString(cursor.getColumnIndex(DBInfo.SMEASURE_DATE)) + "";
             }
-            Log.i(TAG, " => DBAdapter : showCursor() ===> " + meal + ", " + sugarMeasure + ", "  + sugarArr);
-
+            Log.i(TAG, " => DBAdapter : showCursor() ===> " + tmp);
         }
     }
 

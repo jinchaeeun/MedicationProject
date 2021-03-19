@@ -10,9 +10,9 @@ import androidx.annotation.Nullable;
 public class DBOpenHelper extends SQLiteOpenHelper {
 
     // Member variable --------------------------------------------
-    private final String    TAG ="BloodSugar";
+    private final String    TAG ="DBOpenHelper";
     //테이블 생성. 공백 잘 지키기
-    private static final String CREATE_TABLE_MESSAGE = "create table if not exists " +
+    public static final String CREATE_TABLE_MESSAGE = "create table if not exists " +
             DBInfo.TABLE_BLOOD_SUGAR +
             "(" + DBInfo.SUGAR_ID + " integer primary key autoincrement, " +
             DBInfo.MEAL_SPINNER + " text not null, " +
@@ -47,7 +47,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) { //Constructor에서 db인자
         //db가 생성되었을 때 호출.
         //Table 생성
-        db.execSQL(CREATE_TABLE_MESSAGE);
+        db.execSQL(CREATE_TABLE_MESSAGE); //생성이 안되서 DBAdapter 클래스
         Log.i(TAG, " => DBOpenHelper : OnCreate()");
     }
 

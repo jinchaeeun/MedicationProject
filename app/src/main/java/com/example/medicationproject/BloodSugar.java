@@ -82,7 +82,7 @@ public class BloodSugar extends AppCompatActivity {
     private TextView after_dnBSTXT_show;      //저녁 후 측정 혈당
 
     private TextView select_date_TXT;   //선택한 날짜
-    private String spinner_text;        //spinner선택한
+    private String spinner_text= "아침 전";        //spinner선택한
 
     private Calendar pointDate;     //캘린더 뷰 선택된 날짜 값 변경을 위해서.
 
@@ -94,17 +94,30 @@ public class BloodSugar extends AppCompatActivity {
         setContentView(R.layout.bloodsugarlayout2);
         init();
         if (D) Log.i(TAG, "onCreate()");
-
+        TableUpdate();      //넣어줘야 실행 할 때 값을 가져옴..
         //CalenderView 선택한 날짜
         bSuCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                mTxtDate.setText(String.format(" %04d"+"년 "+ "%02d"+"월 "+"%02d"+"일 ", year, month +1, dayOfMonth));
                 select_date_TXT.setText(String.format(" %04d"+"년 "+ "%02d"+"월 "+"%02d"+"일 ", year, month +1, dayOfMonth));
 
                 Log.i (TAG, "캘린더뷰 bSuCalendarView 날짜- " + bSuCalendarView.getDate());
                 Log.i (TAG, "캘린더뷰 bSuCalendarView 날짜- " + year + "" + (month +1) +"" + dayOfMonth);
                 if (D) Log.i(TAG, "혈당 측정 기록에서 캘린더뷰 선택 날짜- " + String.valueOf(year) + "년 " + String.valueOf(month+1) + "월 "  + String.valueOf(dayOfMonth) + "일 " );
-                //저장하기
+
+                // 캘린더뷰 선택 값 변경
+                pointDate = Calendar.getInstance();
+                pointDate.set(year, month, dayOfMonth);
+                String sugarDate = (String.format("%02d%02d%02d", year, month + 1, dayOfMonth));
+                sugDate = Integer.valueOf(sugarDate);
+                Log.i(TAG, "setOnDateChangeListener() sugarDate => " + sugDate);
+                //테이블 값 다시 출력
+                if (DBInfo.PRESS_DB_ADAPTER != null)
+                    DBInfo.PRESS_DB_ADAPTER.getSelectRow(sugDate);   //->PressDBAdapter
+                else
+                    Log.i(TAG, "DBInfo.PRESS_DB_ADAPTER  => NULL ");
+                TableUpdate();
             }
         });
     
@@ -124,10 +137,6 @@ public class BloodSugar extends AppCompatActivity {
         });
     }
 
-//    private void setTime(int position) {
-//        UpdateTimeNow();
-//    }
-
 
     //오늘 날짜
     public void UpdateDateNow(){
@@ -144,7 +153,7 @@ public class BloodSugar extends AppCompatActivity {
         // onCreate() 시 select_date_TXT에 출력해줄 값
         select_date_TXT.setText(String.format(" %d"+"년 "+ "%d"+"월 "+"%d"+"일 ", mYear, mMonth +1, mDay));
 
-        // 캘린더뷰 선택 값 변경
+        // 캘린더뷰 선택 값 변경----------------------------------------------
         pointDate = Calendar.getInstance();
         pointDate.set(mYear, mMonth, mDay);
         String sugarDate = (String.format("%02d%02d%02d", mYear, mMonth+1, mDay));
@@ -167,11 +176,60 @@ public class BloodSugar extends AppCompatActivity {
         bSuTimeTXT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 new TimePickerDialog(BloodSugar.this, mTimeSetListener, mHour, mMinute, false).show();
             }
         });
         bSuTimeTXT.setText(String.format("%02d:%02d", mHour, mMinute));
+        switch (mHour){
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+                spinner_text = "아침 전";
+                meal_spinner.setSelection(0);
+                break;
+            case 8:
+            case 9:
+            case 10:
+                spinner_text = "아침 후";
+                meal_spinner.setSelection(1);
+                break;
+            case 11:
+            case 12:
+                spinner_text = "점심 전";
+                meal_spinner.setSelection(2);
+                break;
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+                spinner_text = "점심 후";
+                meal_spinner.setSelection(3);
+                break;
+            case 17:
+            case 18:
+                spinner_text = "저녁 전";
+                meal_spinner.setSelection(4);
+                break;
+            case 19:
+            case 20:
+            case 21:
+            case 22:
+            case 23:
+            case 24:
+                spinner_text = "저녁 후";
+                meal_spinner.setSelection(5);
+                break;
+            default:
+                spinner_text = "아침 전";
+                meal_spinner.setSelection(0);
+                Log.i(TAG, "UpdateMorTimeNow() default 걸렸음 =>" + spinner_text + ", " + meal_spinner.getSelectedItem() );
+                break;
+        }
+        Log.i(TAG, "UpdateMorTimeNow() 구분 =>" + spinner_text + ", " + meal_spinner.getSelectedItem() );
         if (D) Log.i(TAG, "Time 값 변경됨 " + mHour + mMinute);
     }
 
@@ -187,6 +245,8 @@ public class BloodSugar extends AppCompatActivity {
 
             //텍스트뷰 값 업데이트
             UpdateDateNow();
+            //날짜에 따른 값 가져오기
+            TableUpdate();
         }
     };
 
@@ -228,7 +288,7 @@ public class BloodSugar extends AppCompatActivity {
 
     //onCreate 시 초기화 코드 ---------------------------------------------------
     private void init() {
-        //DB 생성
+        //DB & Table 생성
         DBInfo.DB_ADAPTER = new DBAdapter(this);
 
         //xml 요소 연결
@@ -304,8 +364,6 @@ public class BloodSugar extends AppCompatActivity {
             //DB에 값 삽입하기
             DBInfo.DB_ADAPTER.insertRow(DBInfo.TABLE_BLOOD_SUGAR, newData);
 
-            TableUpdate();
-
             if (D) Log.i(TAG, "구분: " + spinner_text + "측정시간: " + bSuTimeTXT.getText() + "\n 측정 혈당: " + bSugarETXT.getText());
 
             Toast.makeText(BloodSugar.this, "혈당 정보를 저장했습니다.", Toast.LENGTH_SHORT).show();
@@ -314,45 +372,77 @@ public class BloodSugar extends AppCompatActivity {
         else{
             Toast.makeText(BloodSugar.this, "측정하신 혈당을 입력해주세요.", Toast.LENGTH_SHORT).show();
         }
+        TableUpdate();
     }
-    public void TableUpdate(){
+    public void initTextView(){
+        //아래 텍스트 뷰 초기화
+        before_bfTimeTXT_show.setText("");
+        before_bfBSTXT_show.setText("");
+        after_bfTimeTXT_show.setText("");
+        after_bfBSTXT_show.setText("");
+        before_lunchTimeTXT_show.setText("");
+        before_lunchBSTXT_show.setText("");
+        after_lunchTimeTXT_show.setText("");
+        after_lunchBSTXT_show.setText("");
+        before_dnTimeTXT_show.setText("");
+        before_dnBSTXT_show.setText("");
+        after_dnTimeTXT_show.setText("");
+        after_dnBSTXT_show.setText("");
+        Log.i(TAG, "initTextView()");
+    }
+
+    private void TableUpdate() {
+
+        initTextView();
+
         //DB 조회하기
-        //long time=  pointDate.getTimeInMillis();
-        Cursor cursor = DBInfo.DB_ADAPTER.getSelectRow(sugDate);
-        Log.i(TAG, "커서 값은 " + cursor.getCount());
+        Cursor cursor = DBInfo.DB_ADAPTER.getSelectRow(sugDate); //해당 날짜의 행 조회, 한 행이 아니라 뭉텅이.
+        int  dataCount = cursor.getCount();
+        if (D) Log.i(TAG, "TableUpdate() 커서 갯수: " + dataCount);
+
+
+        // while문이 안찍힐 땐 cursor가 첫번째로 안돌아가는 경우
+//        if(cursor.isLast()){
+//            cursor.moveToFirst();
+//            if (D) Log.i(TAG, "cursor is LAST: " + cursor.isLast());
+//        }
+        //cursor.moveToFirst();
+        if (D) Log.i(TAG, "cursor is LAST: " + cursor.isLast());
 
         //해당 날짜에서만!
-        while (cursor.moveToNext())
-        {
-            String meal = cursor.getString(cursor.getColumnIndex(DBInfo.MEAL_SPINNER));
-            String sugarMeasure = cursor.getString(cursor.getColumnIndex(DBInfo.SUGAR_MEASURE));
-            String sugarTime = cursor.getString(cursor.getColumnIndex(DBInfo.SUGAR_TIME));
-            if(meal.equals("아침 전"))
-            {
-                before_bfBSTXT_show.setText(sugarMeasure);
-                before_bfTimeTXT_show.setText(sugarTime);
-            }else if(meal.equals("아침 후")) {
-                after_bfBSTXT_show.setText(sugarMeasure);
-                after_bfTimeTXT_show.setText(sugarTime);
-            }else if(meal.equals("점심 전")) {
-                before_lunchBSTXT_show.setText(sugarMeasure);
-                before_lunchTimeTXT_show.setText(sugarTime);
-            }else if(meal.equals("점심 후")) {
-                after_lunchBSTXT_show.setText(sugarMeasure);
-                after_lunchTimeTXT_show.setText(sugarTime);
-            }else if(meal.equals("저녁 전")) {
-                before_dnBSTXT_show.setText(sugarMeasure);
-                before_dnTimeTXT_show.setText(sugarTime);
-            }else if(meal.equals("저녁 후")) {
-                after_dnBSTXT_show.setText(sugarMeasure);
-                after_dnTimeTXT_show.setText(sugarTime);
-            }
+        // while (cursor.moveToNext())
+        //커서가 자꾸 Last로 가버려서 어쩔 수 없이 카운트 0이 아닐 때만 도는 do(무조건 실행) while문(이후 조건 맞추는) 실행
+        if(dataCount>0) {
+            do {
+                String meal = cursor.getString(cursor.getColumnIndex(DBInfo.MEAL_SPINNER));
+                String sugarMeasure = cursor.getString(cursor.getColumnIndex(DBInfo.SUGAR_MEASURE));
+                String sugarTime = cursor.getString(cursor.getColumnIndex(DBInfo.SUGAR_TIME));
+                if (meal.equals("아침 전")) {
+                    before_bfBSTXT_show.setText(sugarMeasure);
+                    before_bfTimeTXT_show.setText(sugarTime);
+                } else if (meal.equals("아침 후")) {
+                    after_bfBSTXT_show.setText(sugarMeasure);
+                    after_bfTimeTXT_show.setText(sugarTime);
+                } else if (meal.equals("점심 전")) {
+                    before_lunchBSTXT_show.setText(sugarMeasure);
+                    before_lunchTimeTXT_show.setText(sugarTime);
+                } else if (meal.equals("점심 후")) {
+                    after_lunchBSTXT_show.setText(sugarMeasure);
+                    after_lunchTimeTXT_show.setText(sugarTime);
+                } else if (meal.equals("저녁 전")) {
+                    before_dnBSTXT_show.setText(sugarMeasure);
+                    before_dnTimeTXT_show.setText(sugarTime);
+                } else if (meal.equals("저녁 후")) {
+                    after_dnBSTXT_show.setText(sugarMeasure);
+                    after_dnTimeTXT_show.setText(sugarTime);
+                }
 
+            } while (cursor.moveToNext());
         }
     }
 
     //Member Method - Custom----------------------------------
-    //3개 입력 필드 초기화
+    //입력 값 초기화
     private void initEXIT(){
         bSugarETXT.setText("");
     }

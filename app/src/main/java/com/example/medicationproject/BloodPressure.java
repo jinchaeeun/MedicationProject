@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
@@ -50,8 +51,7 @@ public class BloodPressure extends AppCompatActivity {
 
     //날짜, 시간
     private int mYear, mMonth, mDay, mHour, mMinute;
-    private String calenderDate;
-    Long longmTxtDate;
+
 
     //ui
     private TextView mTxtDate;      //오늘 날짜
@@ -67,7 +67,7 @@ public class BloodPressure extends AppCompatActivity {
     private TextView eveBPresTXT_show;  //저녁 측정 혈압
 
     private TextView select_date_TXT;   //선택한 날짜
-    private String spinner_text;        //spinner선택한
+    private String spinner_text = "아침";        //spinner선택한
 
     private Calendar pointDate;     //캘린더 뷰 선택된 날짜 값 변경을 위해서.
 
@@ -79,19 +79,32 @@ public class BloodPressure extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bloodpreslayout);
         init();
+        TableUpdate();
         if (D) Log.i(TAG, "onCreate()");
 
         //CalenderView 선택한 날짜
         BPresscalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                mTxtDate.setText(String.format(" %04d"+"년 "+ "%02d"+"월 "+"%02d"+"일 ", year, month +1, dayOfMonth));
                 select_date_TXT.setText(String.format(" %04d" + "년 " + "%02d" + "월 " + "%02d" + "일 ", year, month + 1, dayOfMonth));
-                calenderDate = year + "" + month + 1 + "" + dayOfMonth;
                 if (D)
                     Log.i(TAG, "혈압 측정 기록에서 캘린더뷰 선택 날짜- " + String.valueOf(year) + "년 " + String.valueOf(month + 1) + "월 " + String.valueOf(dayOfMonth) + "일 ");
                 Log.i(TAG, "캘린더뷰 BPresscalendarView 날짜- " + BPresscalendarView.getDate());
                 Log.i(TAG, "캘린더뷰 bSuCalendarView 날짜- " + year + "" + (month + 1) + "" + dayOfMonth);
 
+                // 캘린더뷰 선택 값 변경
+                pointDate = Calendar.getInstance();
+                pointDate.set(year, month, dayOfMonth);
+                String sugarDate = (String.format("%02d%02d%02d", year, month + 1, dayOfMonth));
+                sugDate = Integer.valueOf(sugarDate);
+                Log.i(TAG, "setOnDateChangeListener() sugarDate => " + sugDate);
+                //테이블 값 다시 출력
+                if (DBInfo.PRESS_DB_ADAPTER != null)
+                    DBInfo.PRESS_DB_ADAPTER.getSelectRow(sugDate);   //->PressDBAdapter
+                else
+                    Log.i(TAG, "DBInfo.PRESS_DB_ADAPTER  => NULL ");
+                TableUpdate();
             }
         });
 
@@ -119,14 +132,12 @@ public class BloodPressure extends AppCompatActivity {
         mTxtDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (D) Log.i(TAG, "오늘 날짜: " + mTxtDate.getText());
+                if (D) Log.i(TAG, "UpdateDateNow() onClick 오늘 날짜: " + mTxtDate.getText()); //2021년 03월 17일
                 new DatePickerDialog(BloodPressure.this, mDateSetListener, mYear, mMonth, mDay).show();
-                //int를 long 타입으로 변환함 캘린더뷰 값 set 해주기 위해서
-                if (D) Log.i(TAG, "UpdateDateNow - onClick - longmTxtDate" + longmTxtDate);
             }
         });
-
-
+        //TableUpdate(); --> DatePickerDialog 클릭 이벤트에서 처리해야함
+        Log.i(TAG, "UpdateDateNow()에서 TableUpdate() 완료");
         mTxtDate.setText(String.format(" %04d" + "년 " + "%02d" + "월 " + "%02d" + "일 ", mYear, mMonth + 1, mDay));
         // onCreate() 시 select_date_TXT에 출력해줄 값
         select_date_TXT.setText(String.format(" %d" + "년 " + "%d" + "월 " + "%d" + "일 ", mYear, mMonth + 1, mDay));
@@ -135,31 +146,74 @@ public class BloodPressure extends AppCompatActivity {
         pointDate.set(mYear, mMonth, mDay);
         String sugarDate = (String.format("%02d%02d%02d", mYear, mMonth + 1, mDay));
         sugDate = Integer.valueOf(sugarDate);
-        Log.i(TAG, "sugarDate => " + sugDate);
+        Log.i(TAG, "UpdateDateNow() sugarDate => " + sugDate);
         //테이블 값 다시 출력
         if (DBInfo.PRESS_DB_ADAPTER != null)
-            DBInfo.PRESS_DB_ADAPTER.getSelectRow(sugDate);
+            DBInfo.PRESS_DB_ADAPTER.getSelectRow(sugDate);   //->PressDBAdapter
         else
             Log.i(TAG, "DBInfo.PRESS_DB_ADAPTER  => NULL ");
-        TableUpdate();
 
         BPresscalendarView.setDate(pointDate.getTimeInMillis()); //초 변환
-        //bSuCalendarView.setFocusedMonthDateColor(Color.BLUE); //색상 변경
+        //BPresscalendarView.setFocusedMonthDateColor(Color.BLUE); //색상 변경
         Log.i(TAG, "캘린더 뷰 포인트 지정" + pointDate.getTimeInMillis());
+
+
 
     }
 
 
     public void UpdateMorTimeNow() {
-        //텍스트뷰 클릭 시 날짜 변경 가능하게 호출
+        //텍스트뷰 클릭 시 시간 변경 가능하게 호출
         bPrTimeTXT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new TimePickerDialog(BloodPressure.this, mTimeSetListener, mHour, mMinute, false).show();
+
             }
         });
         bPrTimeTXT.setText(String.format("%02d:%02d", mHour, mMinute));
+        //선택하고나서 아침인지 저녁인지 구분되게
+        switch (mHour){
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+                spinner_text = "아침";
+                mor_eve_spinner.setSelection(0);
+                Log.i(TAG, "UpdateMorTimeNow() 아침 =>" + spinner_text + ", " + mor_eve_spinner.getSelectedItem() );
+                break;
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+            case 20:
+            case 21:
+            case 22:
+            case 23:
+            case 24:
+                spinner_text = "저녁";
+                mor_eve_spinner.setSelection(1);
+                Log.i(TAG, "UpdateMorTimeNow() 저녁 =>" + spinner_text + ", " + mor_eve_spinner.getSelectedItem() );
+                break;
+            default:
+                spinner_text = "아침";
+                mor_eve_spinner.setSelection(0);
+                Log.i(TAG, "UpdateMorTimeNow() default 걸렸음 =>" + spinner_text + ", " + mor_eve_spinner.getSelectedItem() );
+                break;
+        }
         if (D) Log.i(TAG, "Time 값 변경됨 " + mHour + mMinute);
+
 
     }
 
@@ -174,6 +228,8 @@ public class BloodPressure extends AppCompatActivity {
 
             //텍스트뷰 값 업데이트
             UpdateDateNow();
+            //날짜에 따른 값 가져오기
+            TableUpdate();
         }
     };
 
@@ -184,6 +240,7 @@ public class BloodPressure extends AppCompatActivity {
             //사용자가 입력한 값을 가져온 뒤
             mHour = hourOfDay;
             mMinute = minute;
+            //오전, 오후 값
 
             //텍스트뷰 값 업데이트
             UpdateMorTimeNow();
@@ -255,9 +312,6 @@ public class BloodPressure extends AppCompatActivity {
 
     //저장 버튼 클릭
     public void click(View v) {
-        if (D) Log.i(TAG, "기존 캘린더뷰 시간: Long값:  " + BPresscalendarView.getDate());
-        //long 타입으로 변경
-
         if (!bPrETXT.getText().toString().equals("")) { //측정 혈압 입력 값이 비어있는지 확인.
             // 선택한 Spinner 값( 아침/저녁 )
             spinner_text = mor_eve_spinner.getSelectedItem().toString();
@@ -271,38 +325,67 @@ public class BloodPressure extends AppCompatActivity {
             //DB에 값 삽입하기
             DBInfo.PRESS_DB_ADAPTER.insertRow(DBInfo.TABLE_BLOOD_PRESSURE, newData);
 
-            TableUpdate();
+
             if (D)
                 Log.i(TAG, "아침/저녁: " + spinner_text + "측정시간: " + bPrTimeTXT.getText() + "\n 측정 혈압: " + bPrETXT.getText());
         } else {
             Toast.makeText(BloodPressure.this, "측정하신 혈압을 입력해주세요.", Toast.LENGTH_SHORT).show();
         }
+        TableUpdate();
+        initEXIT();
+    }
 
+    public void initTextView(){
+        //아래 텍스트 뷰 초기화
+        morTimeTXT_show.setText("");
+        morBPresTXT_show.setText("");
+        eveTimeTXT_show.setText("");
+        eveBPresTXT_show.setText("");
+        Log.i(TAG, "initTextView()");
     }
 
     private void TableUpdate() {
+        initTextView();
+
         //DB 조회하기
         //long time=  pointDate.getTimeInMillis();
         Cursor cursor = DBInfo.PRESS_DB_ADAPTER.getSelectRow(sugDate);
-        Log.i(TAG, "커서 값은 " + cursor.getCount());
-
+        int  dataCount = cursor.getCount();
+        if (D) Log.i(TAG, "TableUpdate() 커서 갯수: " + dataCount);
         //해당 날짜에서만!
-        while (cursor.moveToNext()) {
-            String meal = cursor.getString(cursor.getColumnIndex(DBInfo.MOR_EVE_SPINNER));
-            String sugarMeasure = cursor.getString(cursor.getColumnIndex(DBInfo.PRESS_MEASURE));
-            String sugarTime = cursor.getString(cursor.getColumnIndex(DBInfo.PRESS_TIME));
 
-            if (spinner_text.equals("아침")) {
-                // 측정시간 bPrTimeTXT 값 아래 textView에 넣기.
-                morTimeTXT_show.setText(bPrTimeTXT.getText().toString());
-                // 측정 혈압 bPrETXT 값 아래 TextView에 넣기
-                morBPresTXT_show.setText(bPrETXT.getText().toString());
-            } else if (spinner_text.equals("저녁")) {
-                eveTimeTXT_show.setText(bPrTimeTXT.getText().toString());
-                eveBPresTXT_show.setText(bPrETXT.getText().toString());
-            }
-            if (D) Log.i(TAG, "측정시간: " + bPrTimeTXT.getText() + "\n 측정 혈압: " + bPrETXT.getText());
+        // while문이 안찍힐 땐 cursor가 첫번째로 안돌아가는 경우
+//        if(cursor.isLast()){
+//            cursor.moveToFirst();
+//            if (D) Log.i(TAG, "cursor is LAST: " + cursor.isLast());
+//        }
 
+        // while (cursor.moveToNext())
+        //커서가 자꾸 Last로 가버려서 어쩔 수 없이 카운트 0이 아닐 때만 도는 do(무조건 실행) while문(이후 조건 맞추는) 실행
+        if(dataCount>0) {
+            do {
+                if (D) Log.i(TAG, "TableUpdate() while 시작");
+                String mor_eve = cursor.getString(cursor.getColumnIndex(DBInfo.MOR_EVE_SPINNER));
+                String pressMeasure = cursor.getString(cursor.getColumnIndex(DBInfo.PRESS_MEASURE));
+                String pressTime = cursor.getString(cursor.getColumnIndex(DBInfo.PRESS_TIME));
+
+                if (mor_eve.equals("아침")) {
+                    morTimeTXT_show.setText(pressTime); //측정 시간
+                    morBPresTXT_show.setText(pressMeasure);   //측정 혈압
+                    if (D)
+                        Log.i(TAG, "TableUpdate() 아침 측정시간: " + pressMeasure + ", 측정 혈압: " + pressTime);
+                } else if (mor_eve.equals("저녁")) {
+                    eveTimeTXT_show.setText(pressTime);
+                    eveBPresTXT_show.setText(pressMeasure);
+                    if (D)
+                        Log.i(TAG, "TableUpdate() 저녁 측정시간: " + pressMeasure + ", 측정 혈압: " + pressTime);
+                }
+            } while (cursor.moveToNext());
         }
+    }
+
+    //입력 값 초기화
+    private void initEXIT(){
+        bPrETXT.setText("");
     }
 }
