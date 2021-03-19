@@ -12,7 +12,7 @@ public class PressDBOpenHelper extends SQLiteOpenHelper {
     // Member variable --------------------------------------------
     private final String    TAG ="BloodPress";
     //테이블 생성. 공백 잘 지키기
-    private static final String CREATE_TABLE_MESSAGE = "create table if not exists " +
+    public static final String CREATE_TABLE_MESSAGE = "create table if not exists " +
             DBInfo.TABLE_BLOOD_PRESSURE +
             "(" + DBInfo.PRESSURE_ID + " integer primary key autoincrement, " +
             DBInfo.MOR_EVE_SPINNER + " text not null, " +

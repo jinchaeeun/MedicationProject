@@ -23,7 +23,7 @@ public class PressDBAdapter {
         Log.i(TAG, " => PressDBAdapter : PressDBAdapter()");
         //DBOpenHelper에서 테이블 생성이 안되서 여기에서 다시 생성해줌
         db=dbHelper.getWritableDatabase();
-        db.execSQL(DBOpenHelper.CREATE_TABLE_MESSAGE);
+        db.execSQL(PressDBOpenHelper.CREATE_TABLE_MESSAGE);
         db.close();
     }
 
