@@ -13,6 +13,7 @@
         android:layout_height="59dp"
         android:layout_marginBottom="10dp"
         android:background="#66CC66"
+        android:onClick="gomain"
         app:srcCompat="@drawable/logo" />
 
     <TextView

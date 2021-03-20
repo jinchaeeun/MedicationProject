@@ -3,6 +3,7 @@ package com.example.medicationproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -289,5 +290,10 @@ public class FamilyList extends AppCompatActivity {
         nameETXT.setText("");
         phoneETXT.setText("");
         emailETXT.setText("");
+    }
+    //이미지뷰를 눌렀을때 메인화면으로
+    public void gomain(View v) {
+        Intent intent = new Intent(FamilyList.this, MainActivity.class);
+        startActivity(intent);
     }
 }

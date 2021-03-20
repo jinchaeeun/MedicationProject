@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -447,5 +448,9 @@ public class BloodSugar extends AppCompatActivity {
         bSugarETXT.setText("");
     }
 
-
+    //이미지뷰를 눌렀을때 메인화면으로
+    public void gomain(View v) {
+        Intent intent = new Intent(BloodSugar.this, MainActivity.class);
+        startActivity(intent);
+    }
 }

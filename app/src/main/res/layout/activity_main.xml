@@ -46,7 +46,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
-            android:background="@drawable/quickbtn"
+            android:background="@drawable/add"
             android:fontFamily="@font/app_main_font"
             android:onClick="GotoT" />
 
@@ -57,7 +57,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
-            android:background="@drawable/quickbtn"
+            android:background="@drawable/list"
             android:fontFamily="@font/app_main_font"
             android:onClick="GotoA"
             android:text="alam" />
@@ -69,7 +69,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
-            android:background="@drawable/quickbtn"
+            android:background="@drawable/family"
             android:fontFamily="@font/app_main_font"
             android:onClick="GotoL"
             android:text="@string/familyList" />
@@ -130,7 +130,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
-            android:background="@drawable/quickbtn"
+            android:background="@drawable/pressure"
 
             android:fontFamily="@font/app_main_font"
             android:onClick="GotoB"
@@ -143,7 +143,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
-            android:background="@drawable/quickbtn"
+            android:background="@drawable/sugar"
             android:fontFamily="@font/app_main_font"
             android:onClick="GotoD"
             android:text="@string/bloodSugar" />
@@ -155,7 +155,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
-            android:background="@drawable/quickbtn"
+            android:background="@drawable/record"
             android:fontFamily="@font/app_main_font"
             android:onClick="GotoE"
             android:text="alam the end" />

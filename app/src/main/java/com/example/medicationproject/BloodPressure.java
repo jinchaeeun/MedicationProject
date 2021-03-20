@@ -3,6 +3,7 @@ package com.example.medicationproject;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Rect;
@@ -387,5 +388,11 @@ public class BloodPressure extends AppCompatActivity {
     //입력 값 초기화
     private void initEXIT(){
         bPrETXT.setText("");
+    }
+
+    //이미지뷰를 눌렀을때 메인화면으로
+    public void gomain(View v){
+        Intent intent = new Intent (BloodPressure.this,MainActivity.class);
+        startActivity(intent);
     }
 }

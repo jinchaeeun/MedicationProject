@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="79dp"
         android:background="#66CC66"
+        android:onClick="gomain"
         app:srcCompat="@drawable/logo" />
 
     <TextView

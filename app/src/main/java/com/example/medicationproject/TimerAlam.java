@@ -237,4 +237,9 @@ public class TimerAlam extends AppCompatActivity {
 
         startActivity(intent);
     }
+    //이미지뷰를 눌렀을때 메인화면으로
+    public void gomain(View v) {
+        Intent intent = new Intent(TimerAlam.this, MainActivity.class);
+        startActivity(intent);
+    }
 }
