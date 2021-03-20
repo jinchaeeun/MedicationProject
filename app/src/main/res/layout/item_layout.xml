@@ -15,7 +15,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="5dp"
         android:layout_weight="1.4"
-        android:fontFamily="@font/app_bold_font"
+        android:fontFamily="@font/app_main_font"
         android:gravity="center_vertical"
         android:textSize="30sp" />
     <!--전화번호-->

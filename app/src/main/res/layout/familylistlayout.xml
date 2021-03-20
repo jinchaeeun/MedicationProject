@@ -3,28 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
     android:orientation="vertical">
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="match_parent"
         android:layout_height="79dp"
-        android:background="#66CC66"
+        android:background="#7ebe72"
         android:onClick="gomain"
         app:srcCompat="@drawable/logo" />
-
-    <TextView
-        android:id="@+id/LOGO"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
-        android:gravity="center"
-        android:fontFamily="@font/app_bold_font"
-        android:text="@string/familyadd"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/LOGO"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/app_main_font"
+            android:gravity="center"
+            android:text="@string/familyadd"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView1"
@@ -154,5 +158,5 @@
         android:id="@+id/addressLST"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
+    </LinearLayout>
 </LinearLayout>

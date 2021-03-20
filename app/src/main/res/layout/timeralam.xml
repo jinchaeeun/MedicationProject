@@ -3,41 +3,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="25dp"
     android:gravity="center"
     android:orientation="vertical">
 
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="match_parent"
-        android:layout_height="49dp"
-        android:layout_weight="1"
-        android:background="#66CC66"
+        android:layout_height="79dp"
+        android:background="#7ebe72"
         android:onClick="gomain"
         app:srcCompat="@drawable/logo" />
-
-    <TextView
-        android:id="@+id/Logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:fontFamily="@font/app_bold_font"
-        android:gravity="center"
-        android:text="복약 알람" />
-
-    <TextView
-        android:id="@+id/Real_Time"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="1"
-        android:fontFamily="@font/app_main_font"
-        android:text="TextView" />
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
 
-    <TextView
+        <TextView
+            android:id="@+id/Logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/app_main_font"
+            android:gravity="center"
+            android:text="복약 알람"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/Real_Time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/app_main_font"
+            android:gravity="center_vertical"
+            android:hint="촬영 시간" />
+
+        <TextView
         android:id="@+id/Kind_of_medical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,7 +52,8 @@
         android:layout_marginBottom="10dp"
         android:layout_weight="1"
         android:fontFamily="@font/app_main_font"
-        android:text="TextView" />
+        android:gravity="center_vertical"
+        android:hint="약 이름" />
 
     <TextView
         android:id="@+id/ask"
@@ -87,40 +94,40 @@
         <!--            android:onClick="gallery"-->
         <!--            android:text="갤러리" />-->
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/Camera"
-            android:layout_width="match_parent"
-            android:layout_height="71dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1"
-            android:backgroundTint="#F18B67"
-            android:fontFamily="@font/app_main_font"
-            android:onClick="CameraStart"
-            android:text="촬영"
-            android:textSize="12dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
 
-        <Button
-            android:id="@+id/Theend"
-            android:layout_width="match_parent"
-            android:layout_height="71dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1"
-            android:backgroundTint="#F18B67"
-            android:fontFamily="@font/app_main_font"
-            android:onClick="theend"
-            android:text="종료"
-            android:textSize="12dp" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/Camera"
+                android:layout_width="140dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="#F18B67"
+                android:fontFamily="@font/app_main_font"
+                android:onClick="CameraStart"
+                android:text="촬영"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/Theend"
+                android:layout_width="140dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="#F18B67"
+                android:fontFamily="@font/app_main_font"
+                android:onClick="theend"
+                android:text="종료"
+                android:textSize="14sp" />
+        </LinearLayout>
 
     <Button
         android:id="@+id/ReAlam"
@@ -138,5 +145,5 @@
         android:text="@string/alam"
         android:textColor="@color/text_selector"
         android:textSize="12dp" />
-
+    </LinearLayout>
 </LinearLayout>

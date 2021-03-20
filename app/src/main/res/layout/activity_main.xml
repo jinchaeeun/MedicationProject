@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:backgroundTint="#66CC66"
+    android:backgroundTint="#7ebe72"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".MainActivity">
@@ -26,7 +26,7 @@
     <ImageView
         android:id="@+id/LOGO"
         android:layout_width="match_parent"
-        android:layout_height="79dp"
+        android:layout_height="70dp"
         android:layout_marginBottom="80dp"
         android:background="@drawable/logo"
         android:fontFamily="@font/app_bold_font"
@@ -36,8 +36,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp">
+        android:layout_height="wrap_content">
 
         <ImageButton
             android:id="@+id/TakeMe"
@@ -91,6 +90,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/app_main_font"
             android:gravity="center"
+            android:paddingTop="7dp"
             android:text="복약 기록"
             android:textColor="#FFFFFF" />
 
@@ -103,6 +103,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/app_main_font"
             android:gravity="center"
+            android:paddingTop="7dp"
             android:text="알람 현황"
             android:textColor="#FFFFFF" />
 
@@ -115,6 +116,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/app_main_font"
             android:gravity="center"
+            android:paddingTop="7dp"
             android:text="가족/의사 등록"
             android:textColor="#FFFFFF" />
     </LinearLayout>
@@ -180,6 +182,7 @@
             android:layout_marginRight="25dp"
             android:layout_weight="1"
             android:fontFamily="@font/app_main_font"
+            android:paddingTop="7dp"
             android:text="혈압 측정"
             android:textColor="#FFFFFF" />
 
@@ -191,6 +194,7 @@
             android:layout_marginRight="25dp"
             android:layout_weight="1"
             android:fontFamily="@font/app_main_font"
+            android:paddingTop="7dp"
             android:text="당뇨 측정"
             android:textColor="#FFFFFF" />
 
@@ -202,6 +206,7 @@
             android:layout_marginRight="25dp"
             android:layout_weight="1"
             android:fontFamily="@font/app_main_font"
+            android:paddingTop="7dp"
             android:text="복약 기록"
             android:textColor="#FFFFFF" />
     </LinearLayout>

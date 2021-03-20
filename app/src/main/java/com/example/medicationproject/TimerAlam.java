@@ -151,7 +151,7 @@ public class TimerAlam extends AppCompatActivity {
         SimpleDateFormat mFormat    = new SimpleDateFormat("HH시 mm분");
         String formatDate           = mFormat.format(mReDate);
 
-        RealTime.setText("사진 찍은 시간은" + formatDate);
+        RealTime.setText("사진 찍은 시간은 " + formatDate);
 
     }
 

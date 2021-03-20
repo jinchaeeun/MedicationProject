@@ -3,150 +3,157 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
     android:gravity="center"
     android:orientation="vertical">
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
-        android:layout_height="59dp"
+        android:layout_height="79dp"
         android:layout_marginBottom="10dp"
-        android:background="#66CC66"
+        android:background="#7ebe72"
         android:onClick="gomain"
         app:srcCompat="@drawable/logo" />
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
     <TextView
-        android:gravity="center"
         android:id="@+id/bSTXT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/app_main_font"
+        android:gravity="center"
         android:text="@string/bloodSugar"
-        android:textSize="23sp"
+        android:textSize="25sp"
         android:textStyle="bold" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/app_main_font"
-            android:text="@string/todayDate" />
-
-        <TextView
-            android:id="@+id/todayDateTXT"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/app_main_font" />
-    </LinearLayout>
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="31dp"
-        android:layout_marginBottom="20dp"
-        android:columnCount="1"
-        android:orientation="horizontal">
-
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_marginStart="21dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:fontFamily="@font/app_main_font"
-                android:text="@string/meal_befor_after" />
+                android:text="@string/todayDate" />
 
             <TextView
-                android:id="@+id/bMeasureTXT"
-                android:layout_width="wrap_content"
+                android:id="@+id/todayDateTXT"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="48dp"
-                android:layout_marginEnd="23dp"
-                android:fontFamily="@font/app_main_font"
-                android:text="@string/bPMeasure" />
-
-            <TextView
-                android:id="@+id/bSugarTXT"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:fontFamily="@font/app_main_font"
-                android:text="@string/bSugar" />
-
+                android:layout_weight="1"
+                android:fontFamily="@font/app_main_font" />
         </LinearLayout>
 
-
-        <LinearLayout
+        <GridLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_row="2"
-            android:layout_column="0"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="31dp"
+            android:layout_marginBottom="20dp"
+            android:columnCount="1"
             android:orientation="horizontal">
 
-            <Spinner
-                android:id="@+id/meal_spinner"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|end"
-                android:layout_weight="1"
-                android:gravity="center|end"
-                android:labelFor="@+id/bPrTimeTXT"/>
+                android:layout_height="match_parent"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_marginStart="25dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/bSuTimeTXT"
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/app_main_font"
+                    android:text="@string/meal_befor_after" />
+
+                <TextView
+                    android:id="@+id/bMeasureTXT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginEnd="23dp"
+                    android:fontFamily="@font/app_main_font"
+                    android:text="@string/bPMeasure" />
+
+                <TextView
+                    android:id="@+id/bSugarTXT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:fontFamily="@font/app_main_font"
+                    android:text="@string/bSugar" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="15dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/app_main_font"
-                android:gravity="center"
-                android:labelFor="@+id/bPrETXT" />
+                android:layout_height="match_parent"
+                android:layout_row="2"
+                android:layout_column="0"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/meal_spinner"
+                    android:layout_width="405dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|end"
+                    android:layout_weight="1"
+                    android:labelFor="@+id/bPrTimeTXT" />
+
+                <TextView
+                    android:id="@+id/bSuTimeTXT"
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/app_main_font"
+                    android:gravity="center"
+                    android:labelFor="@+id/bPrETXT"
+                    android:textSize="24sp" />
 
 
-            <EditText
-                android:id="@+id/bSugarETXT"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|end"
-                android:layout_marginStart="15dp"
-                android:layout_weight="1"
-                android:background="@drawable/edit_border"
-                android:fontFamily="@font/app_main_font"
-                android:gravity="center"
-                android:importantForAutofill="no"
-                android:inputType="number"
-                android:maxLength="3"
-                android:textSize="14sp" />
+                <EditText
+                    android:id="@+id/bSugarETXT"
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:layout_gravity="center|end"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_border"
+                    android:backgroundTint="#cbe3c7"
+                    android:fontFamily="@font/app_main_font"
+                    android:gravity="center"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/mmHgTXT1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/app_main_font"
-                android:text="@string/mgdL" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/mmHgTXT1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/app_main_font"
+                    android:text="@string/mgdL"
+                    android:textSize="18sp" />
+            </LinearLayout>
 
-    </GridLayout>
+        </GridLayout>
 
     <Button
         android:id="@+id/BSSaveBTN"
@@ -170,7 +177,7 @@
             <CalendarView
                 android:id="@+id/bSuCalendarView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -251,7 +258,8 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/app_main_font"
                         android:gravity="center"
-                        android:text="@string/bf_before" />
+                        android:text="@string/bf_before"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/before_bfTimeTXT_show"
@@ -262,7 +270,8 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/app_main_font"
                         android:gravity="center"
-                        android:importantForAutofill="no" />
+                        android:importantForAutofill="no"
+                        android:textSize="18sp" />
 
 
                     <TextView
@@ -272,10 +281,10 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="15dp"
                         android:layout_weight="1"
-                        android:background="@drawable/edit_border"
                         android:fontFamily="@font/app_main_font"
                         android:gravity="center"
-                        android:maxLength="3" />
+                        android:maxLength="3"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/before_mgDlTXT1_show"
@@ -285,7 +294,8 @@
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/app_main_font"
-                        android:text="@string/mgdL" />
+                        android:text="@string/mgdL"
+                        android:textSize="18sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -303,7 +313,8 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/app_main_font"
                         android:gravity="center"
-                        android:text="@string/bf_after" />
+                        android:text="@string/bf_after"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/after_bfTimeTXT_show"
@@ -314,7 +325,8 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/app_main_font"
                         android:gravity="center"
-                        android:importantForAutofill="no" />
+                        android:importantForAutofill="no"
+                        android:textSize="18sp" />
 
 
                     <TextView
@@ -324,10 +336,10 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="15dp"
                         android:layout_weight="1"
-                        android:background="@drawable/edit_border"
                         android:fontFamily="@font/app_main_font"
                         android:gravity="center"
-                        android:maxLength="3" />
+                        android:maxLength="3"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/after_mgDlTXT2_show"
@@ -337,7 +349,8 @@
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/app_main_font"
-                        android:text="@string/mgdL" />
+                        android:text="@string/mgdL"
+                        android:textSize="18sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -355,7 +368,8 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/app_main_font"
                         android:gravity="center"
-                        android:text="@string/lunch_before" />
+                        android:text="@string/lunch_before"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/before_lunchTimeTXT_show"
@@ -366,7 +380,8 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/app_main_font"
                         android:gravity="center"
-                        android:importantForAutofill="no" />
+                        android:importantForAutofill="no"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/before_lunchBSTXT_show"
@@ -375,10 +390,10 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="15dp"
                         android:layout_weight="1"
-                        android:background="@drawable/edit_border"
                         android:fontFamily="@font/app_main_font"
                         android:gravity="center"
-                        android:maxLength="3" />
+                        android:maxLength="3"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/before_mmHgTXT3_show"
@@ -388,7 +403,8 @@
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/app_main_font"
-                        android:text="@string/mgdL" />
+                        android:text="@string/mgdL"
+                        android:textSize="18sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -406,7 +422,8 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/app_main_font"
                         android:gravity="center"
-                        android:text="@string/lunch_after" />
+                        android:text="@string/lunch_after"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/after_lunchTimeTXT_show"
@@ -417,7 +434,8 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/app_main_font"
                         android:gravity="center"
-                        android:importantForAutofill="no" />
+                        android:importantForAutofill="no"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/after_lunchBSTXT_show"
@@ -426,10 +444,10 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="15dp"
                         android:layout_weight="1"
-                        android:background="@drawable/edit_border"
                         android:fontFamily="@font/app_main_font"
                         android:gravity="center"
-                        android:maxLength="3" />
+                        android:maxLength="3"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/after_mgDlTXT4_show"
@@ -439,7 +457,8 @@
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/app_main_font"
-                        android:text="@string/mgdL" />
+                        android:text="@string/mgdL"
+                        android:textSize="18sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -457,7 +476,8 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/app_main_font"
                         android:gravity="center"
-                        android:text="@string/dn_before" />
+                        android:text="@string/dn_before"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/before_dnTimeTXT_show"
@@ -468,7 +488,8 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/app_main_font"
                         android:gravity="center"
-                        android:importantForAutofill="no" />
+                        android:importantForAutofill="no"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/before_dnBSTXT_show"
@@ -477,10 +498,10 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="15dp"
                         android:layout_weight="1"
-                        android:background="@drawable/edit_border"
                         android:fontFamily="@font/app_main_font"
                         android:gravity="center"
-                        android:maxLength="3" />
+                        android:maxLength="3"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/before_mgDlTXT7_show"
@@ -490,7 +511,8 @@
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/app_main_font"
-                        android:text="@string/mgdL" />
+                        android:text="@string/mgdL"
+                        android:textSize="18sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -508,7 +530,8 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/app_main_font"
                         android:gravity="center"
-                        android:text="@string/dn_after" />
+                        android:text="@string/dn_after"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/after_dnTimeTXT_show"
@@ -519,7 +542,8 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/app_main_font"
                         android:gravity="center"
-                        android:importantForAutofill="no" />
+                        android:importantForAutofill="no"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/after_dnBSTXT_show"
@@ -528,10 +552,10 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="15dp"
                         android:layout_weight="1"
-                        android:background="@drawable/edit_border"
                         android:fontFamily="@font/app_main_font"
                         android:gravity="center"
-                        android:maxLength="3" />
+                        android:maxLength="3"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/after_mmHgTXT8_show"
@@ -541,12 +565,13 @@
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/app_main_font"
-                        android:text="@string/mgdL" />
+                        android:text="@string/mgdL"
+                        android:textSize="18sp" />
                 </LinearLayout>
 
             </GridLayout>
         </LinearLayout>
     </ScrollView>
 
-
+    </LinearLayout>
 </LinearLayout>

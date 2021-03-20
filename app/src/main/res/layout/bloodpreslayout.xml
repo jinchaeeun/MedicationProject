@@ -3,343 +3,350 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
     android:gravity="center"
     android:orientation="vertical">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:background="#66CC66"
+        android:layout_height="79dp"
+        android:background="#7ebe72"
         android:onClick="gomain"
         app:srcCompat="@drawable/logo" />
 
-    <TextView
-        android:gravity="center"
-        android:id="@+id/bPTXT"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:fontFamily="@font/app_main_font"
-        android:text="@string/bloodpressure"
-        android:textSize="23sp"
-        android:textStyle="bold" />
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:gravity="center"
-            android:id="@+id/textView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/todayDate"
-            android:fontFamily="@font/app_main_font" />
-
-        <TextView
-            android:id="@+id/todayDateTXT"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/app_main_font" />
-    </LinearLayout>
-
-    <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="31dp"
-        android:layout_marginBottom="20dp"
-        android:columnCount="1"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/bPTXT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#FFFFFF"
+            android:fontFamily="@font/app_main_font"
+            android:gravity="center"
+            android:text="@string/bloodpressure"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_marginStart="21dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/mor_or_eve"
-                android:fontFamily="@font/app_main_font" />
-
-            <TextView
-                android:id="@+id/bMeasureTXT"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="48dp"
-                android:layout_marginEnd="23dp"
-                android:text="@string/bPMeasure"
-                android:fontFamily="@font/app_main_font" />
-
-            <TextView
-                android:id="@+id/bPressureTXT"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="@string/bPressure"
-                android:fontFamily="@font/app_main_font"  />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_row="2"
-            android:layout_column="0"
-            android:orientation="horizontal">
-
-            <Spinner
-                android:id="@+id/mor_eve_spinner"
+                android:id="@+id/textView1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center|end"
-                android:layout_weight="1"
-                android:gravity="center|end"
-                android:labelFor="@+id/bPrTimeTXT"
-                android:fontFamily="@font/app_main_font" />
-
-            <TextView
-                android:id="@+id/bPrTimeTXT"
-                android:layout_width="match_parent"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="15dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:labelFor="@+id/bPrETXT"
-                android:fontFamily="@font/app_main_font" />
-
-
-            <EditText
-                android:id="@+id/bPrETXT"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|end"
-                android:layout_marginStart="15dp"
-                android:layout_weight="1"
-                android:background="@drawable/edit_border"
-                android:backgroundTint="#FFFFFF"
                 android:fontFamily="@font/app_main_font"
                 android:gravity="center"
-                android:importantForAutofill="no"
-                android:inputType="number"
-                android:maxLength="3"
-                android:textSize="14sp" />
+                android:text="@string/todayDate" />
 
             <TextView
-                android:id="@+id/mmHgTXT1"
-                android:layout_width="match_parent"
+                android:id="@+id/todayDateTXT"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="10dp"
                 android:layout_weight="1"
-                android:text="@string/mmHg"
                 android:fontFamily="@font/app_main_font" />
         </LinearLayout>
 
-    </GridLayout>
-
-    <Button
-        android:id="@+id/BSSaveBTN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:backgroundTint="#F18B67"
-        android:fontFamily="@font/app_main_font"
-        android:onClick="click"
-        android:text="@string/save" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
+        <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <CalendarView
-                android:id="@+id/BPresscalendarView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/app_main_font" />
+            android:layout_gravity="center"
+            android:layout_marginTop="31dp"
+            android:layout_marginBottom="20dp"
+            android:columnCount="1"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_marginStart="21dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/select_date_TXT"
+                    android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/app_main_font" />
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/app_main_font"
+                    android:text="@string/mor_or_eve" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/bMeasureTXT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/PressureResultTEXT"
-                    android:fontFamily="@font/app_main_font" />
+                    android:layout_marginStart="48dp"
+                    android:layout_marginEnd="23dp"
+                    android:fontFamily="@font/app_main_font"
+                    android:text="@string/bPMeasure" />
+
+                <TextView
+                    android:id="@+id/bPressureTXT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/app_main_font"
+                    android:text="@string/bPressure" />
+
             </LinearLayout>
 
-            <GridLayout
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="20dp"
-                android:columnCount="1"
+                android:layout_row="2"
+                android:layout_column="0"
                 android:orientation="horizontal">
 
+                <Spinner
+                    android:id="@+id/mor_eve_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|end"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/app_main_font"
+                    android:gravity="center|end"
+                    android:labelFor="@+id/bPrTimeTXT" />
+
+                <TextView
+                    android:id="@+id/bPrTimeTXT"
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/app_main_font"
+                    android:gravity="center"
+                    android:labelFor="@+id/bPrETXT" />
+
+
+                <EditText
+                    android:id="@+id/bPrETXT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|end"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_border"
+                    android:backgroundTint="#cbe3c7"
+                    android:fontFamily="@font/app_main_font"
+                    android:gravity="center"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/mmHgTXT1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/app_main_font"
+                    android:text="@string/mmHg" />
+            </LinearLayout>
+
+        </GridLayout>
+
+        <Button
+            android:id="@+id/BSSaveBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:backgroundTint="#F18B67"
+            android:fontFamily="@font/app_main_font"
+            android:onClick="click"
+            android:text="@string/save" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <CalendarView
+                    android:id="@+id/BPresscalendarView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/app_main_font" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_row="0"
-                    android:layout_column="0"
-                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/bMeasureTXT_show"
+                        android:id="@+id/select_date_TXT"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="23dp"
-                        android:text="@string/bPMeasure"
+                        android:layout_marginEnd="10dp"
                         android:fontFamily="@font/app_main_font" />
 
                     <TextView
-                        android:id="@+id/bPressureTXT_show"
+                        android:id="@+id/textView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:text="@string/bPressure"
-                        android:fontFamily="@font/app_main_font" />
+                        android:fontFamily="@font/app_main_font"
+                        android:text="@string/PressureResultTEXT" />
                 </LinearLayout>
 
-
-                <LinearLayout
+                <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_row="2"
-                    android:layout_column="0"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:columnCount="1"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/morTXT_show"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/morning"
-                        android:fontFamily="@font/app_main_font" />
-
-                    <TextView
-                        android:id="@+id/morTimeTXT_show"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="15dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/app_main_font"
+                        android:layout_row="0"
+                        android:layout_column="0"
                         android:gravity="center"
-                        android:importantForAutofill="no" />
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/morBPresTXT_show"
+                        <TextView
+                            android:id="@+id/bMeasureTXT_show"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="23dp"
+                            android:fontFamily="@font/app_main_font"
+                            android:text="@string/bPMeasure" />
+
+                        <TextView
+                            android:id="@+id/bPressureTXT_show"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:fontFamily="@font/app_main_font"
+                            android:text="@string/bPressure" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="15dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/edit_border"
-                        android:gravity="center"
-                        android:importantForAutofill="no"
-                        android:inputType="none"
-                        android:maxLength="3"
-                        android:fontFamily="@font/app_main_font" />
+                        android:layout_height="match_parent"
+                        android:layout_row="2"
+                        android:layout_column="0"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/mmHgTXT1_show"
+                        <TextView
+                            android:id="@+id/morTXT_show"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/app_main_font"
+                            android:gravity="center"
+                            android:text="@string/morning" />
+
+                        <TextView
+                            android:id="@+id/morTimeTXT_show"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="15dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/app_main_font"
+                            android:gravity="center"
+                            android:importantForAutofill="no" />
+
+                        <TextView
+                            android:id="@+id/morBPresTXT_show"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="15dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/app_main_font"
+                            android:gravity="center"
+                            android:importantForAutofill="no"
+                            android:inputType="none"
+                            android:maxLength="3" />
+
+                        <TextView
+                            android:id="@+id/mmHgTXT1_show"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/app_main_font"
+                            android:text="@string/mmHg" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:text="@string/mmHg"
-                        android:fontFamily="@font/app_main_font" />
-                </LinearLayout>
+                        android:layout_height="match_parent"
+                        android:layout_row="3"
+                        android:layout_column="0"
+                        android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_row="3"
-                    android:layout_column="0"
-                    android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/eveTXT_show"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/app_main_font"
+                            android:gravity="center"
+                            android:text="@string/evening" />
 
-                    <TextView
-                        android:id="@+id/eveTXT_show"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/evening"
-                        android:fontFamily="@font/app_main_font" />
+                        <TextView
+                            android:id="@+id/eveTimeTXT_show"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="15dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/app_main_font"
+                            android:gravity="center"
+                            android:importantForAutofill="no" />
 
-                    <TextView
-                        android:id="@+id/eveTimeTXT_show"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="15dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:importantForAutofill="no"
-                        android:fontFamily="@font/app_main_font" />
+                        <TextView
+                            android:id="@+id/eveBPresTXT_show"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="15dp"
+                            android:layout_weight="1"
+                            android:autofillHints=""
+                            android:fontFamily="@font/app_main_font"
+                            android:gravity="center"
+                            android:maxLength="3" />
 
-                    <TextView
-                        android:id="@+id/eveBPresTXT_show"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="15dp"
-                        android:layout_weight="1"
-                        android:autofillHints=""
-                        android:gravity="center"
-                        android:background="@drawable/edit_border"
-                        android:maxLength="3"
-                        android:fontFamily="@font/app_main_font" />
+                        <TextView
+                            android:id="@+id/mmHgTXT2_show"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/app_main_font"
+                            android:text="@string/mmHg" />
+                    </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/mmHgTXT2_show"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:text="@string/mmHg"
-                        android:fontFamily="@font/app_main_font" />
-                </LinearLayout>
-
-            </GridLayout>
-        </LinearLayout>
-    </ScrollView>
+                </GridLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 
 
 </LinearLayout>

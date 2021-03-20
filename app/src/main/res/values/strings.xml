@@ -17,7 +17,7 @@
     <string name="bSLun2">점심 후</string>
     <string name="bSEve1">저녁 전</string>
     <string name="bSEve2">저녁 후</string>
-    <string name="mgdL">mg/dL</string>
+    <string name="mgdL">mg/dl</string>
     <string name="todayDate">오늘 날짜: </string>
 
     <!--familyaddlayout-->
@@ -62,7 +62,7 @@
     <string name="success_signup">회원가입 성공</string>
     <string name="failed_signup">회원가입 실패</string>
 
-    <string name="ask">드실 약을 찍어주세요.</string>
+    <string name="ask">드실 약을 촬영해주세요.</string>
     <string name="alam">10분 뒤 다시 알림</string>
     <string name="Login">Login</string>
     <string name="OK">로그인</string>
