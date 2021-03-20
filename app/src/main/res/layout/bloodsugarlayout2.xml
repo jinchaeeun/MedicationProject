@@ -152,6 +152,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
+        android:backgroundTint="#F18B67"
         android:fontFamily="@font/app_main_font"
         android:onClick="click"
         android:text="@string/save" />

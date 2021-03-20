@@ -199,6 +199,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="70dp"
+            android:backgroundTint="#F18B67"
             android:fontFamily="@font/app_main_font"
             android:onClick="OK"
             android:text="저장" />
@@ -209,6 +210,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
             android:layout_marginRight="50dp"
+            android:backgroundTint="#F18B67"
             android:fontFamily="@font/app_main_font"
             android:onClick="finish"
             android:text="취소" />

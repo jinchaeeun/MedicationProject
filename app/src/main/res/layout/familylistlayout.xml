@@ -132,6 +132,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:backgroundTint="#F18B67"
             android:fontFamily="@font/app_main_font"
             android:onClick="click"
             android:text="@string/add" />
@@ -141,6 +142,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:backgroundTint="#F18B67"
             android:fontFamily="@font/app_main_font"
             android:onClick="click"
             android:text="@string/del" />

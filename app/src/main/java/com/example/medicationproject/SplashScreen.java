@@ -33,7 +33,7 @@ public class SplashScreen extends AppCompatActivity {
                         {
                             Intent intent = new Intent(getBaseContext(), MainActivity.class);  // Intent 선언
                             startActivity(intent);   // Intent 시작
-                            finish();
+                            break;
                         }
                     }
 
@@ -44,7 +44,7 @@ public class SplashScreen extends AppCompatActivity {
                         }
                     });
                     try {
-                        Thread.sleep(200); // 시간지연
+                        Thread.sleep(20); // 시간지연
                     } catch (InterruptedException e) {
 
                     }

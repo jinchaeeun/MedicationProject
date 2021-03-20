@@ -13,12 +13,12 @@
 
     <ImageButton
         android:id="@+id/button"
-        android:layout_width="46dp"
-        android:layout_height="45dp"
-        android:layout_marginLeft="250dp"
-        android:layout_marginRight="100dp"
-        android:layout_marginBottom="50dp"
-        android:background="@drawable/login_imgbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/ppiyak"
         android:fontFamily="@font/app_main_font"
         android:onClick="login"
         android:text="l" />
@@ -27,6 +27,7 @@
         android:id="@+id/LOGO"
         android:layout_width="match_parent"
         android:layout_height="79dp"
+        android:layout_marginBottom="80dp"
         android:background="@drawable/logo"
         android:fontFamily="@font/app_bold_font"
         android:gravity="center"
@@ -36,27 +37,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp">
+        >
 
         <ImageButton
             android:id="@+id/TakeMe"
             android:layout_width="0dp"
-            android:layout_height="106dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
-            android:background="@drawable/appicon"
+            android:background="@drawable/quickbtn"
             android:fontFamily="@font/app_main_font"
             android:onClick="GotoT" />
 
         <ImageButton
             android:id="@+id/Al_status"
             android:layout_width="0dp"
-            android:layout_height="106dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
-            android:background="@drawable/appicon"
+            android:background="@drawable/quickbtn"
             android:fontFamily="@font/app_main_font"
             android:onClick="GotoA"
             android:text="alam" />
@@ -64,11 +65,11 @@
         <ImageButton
             android:id="@+id/TakeList"
             android:layout_width="0dp"
-            android:layout_height="106dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
-            android:background="@drawable/appicon"
+            android:background="@drawable/quickbtn"
             android:fontFamily="@font/app_main_font"
             android:onClick="GotoL"
             android:text="@string/familyList" />
@@ -118,7 +119,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="wrap_content"
+
         android:layout_marginTop="50dp">
 
         <ImageButton
@@ -128,7 +130,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
-            android:background="@drawable/appicon"
+            android:background="@drawable/quickbtn"
 
             android:fontFamily="@font/app_main_font"
             android:onClick="GotoB"
@@ -137,11 +139,11 @@
         <ImageButton
             android:id="@+id/Diabet"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
-            android:background="@drawable/appicon"
+            android:background="@drawable/quickbtn"
             android:fontFamily="@font/app_main_font"
             android:onClick="GotoD"
             android:text="@string/bloodSugar" />
@@ -149,11 +151,11 @@
         <ImageButton
             android:id="@+id/Enrollment"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
-            android:background="@drawable/appicon"
+            android:background="@drawable/quickbtn"
             android:fontFamily="@font/app_main_font"
             android:onClick="GotoE"
             android:text="alam the end" />
@@ -163,6 +165,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
         android:orientation="horizontal">
 
         <TextView
