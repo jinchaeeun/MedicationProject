@@ -84,7 +84,7 @@ public class LayoutDrug4 extends AppCompatActivity {
 
 
 
-        intent_4 = new Intent(com.example.firstproject_2.LayoutDrug4.this, LayoutDrug5.class);
+        intent_4 = new Intent(com.example.medicationproject.LayoutDrug4.this, LayoutDrug5.class);
 
 
         //전 페이지로 부터 받기 위한 변수들==============================================================

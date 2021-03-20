@@ -50,13 +50,13 @@ public class RingtonePlayingService extends Service {
 
                         ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).createNotificationChannel(channel);
 
-                        Notification notification = new NotificationCompat.Builder(com.example.firstproject_2.RingtonePlayingService.this, CHANNEL_ID)
+                        Notification notification = new NotificationCompat.Builder(com.example.medicationproject.RingtonePlayingService.this, CHANNEL_ID)
                                 .setContentTitle("알람시작")
                                 .setContentText("알람음이 재생됩니다.")
                                 .setSmallIcon(R.mipmap.ic_launcher)
 
                                 .build();
-                        mediaPlayer = MediaPlayer.create(com.example.firstproject_2.RingtonePlayingService.this, R.raw.a);
+                        mediaPlayer = MediaPlayer.create(com.example.medicationproject.RingtonePlayingService.this, R.raw.hwaa);
                         mediaPlayer.start();
                         Toast.makeText(getApplicationContext(),"알람이 울렸습니다!!!!!", Toast.LENGTH_SHORT).show();
                         return;

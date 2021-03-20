@@ -67,4 +67,8 @@
     <string name="Login">Login</string>
     <string name="OK">로그인</string>
     <string name="Cancle">취소</string>
+
+
+    <string name="preBTN2">이전</string>
+    <string name="nextBTN2">다음</string>
 </resources>

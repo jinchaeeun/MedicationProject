@@ -75,7 +75,7 @@ public class LayoutDrug3 extends AppCompatActivity {
         timeETXT1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new TimePickerDialog(com.example.firstproject_2.LayoutDrug3.this, mTimeSetListener1, mHour1, mMinute1, false).show();
+                new TimePickerDialog(com.example.medicationproject.LayoutDrug3.this, mTimeSetListener1, mHour1, mMinute1, false).show();
                 if (D) Log.i(TAG, "Time 값 변경됨 " + mHour1 + mMinute1);
             }
         });
@@ -86,7 +86,7 @@ public class LayoutDrug3 extends AppCompatActivity {
         timeETXT2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new TimePickerDialog(com.example.firstproject_2.LayoutDrug3.this, mTimeSetListener2, mHour2, mMinute2, false).show();
+                new TimePickerDialog(com.example.medicationproject.LayoutDrug3.this, mTimeSetListener2, mHour2, mMinute2, false).show();
                 if (D) Log.i(TAG, "Time 값 변경됨 " + mHour2 + mMinute2);
             }
         });
@@ -96,7 +96,7 @@ public class LayoutDrug3 extends AppCompatActivity {
         timeETXT3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new TimePickerDialog(com.example.firstproject_2.LayoutDrug3.this, mTimeSetListener3, mHour3, mMinute3, false).show();
+                new TimePickerDialog(com.example.medicationproject.LayoutDrug3.this, mTimeSetListener3, mHour3, mMinute3, false).show();
                 if (D) Log.i(TAG, "Time 값 변경됨 " + mHour3 + mMinute3);
             }
         });
@@ -186,7 +186,7 @@ public class LayoutDrug3 extends AppCompatActivity {
 
 
         Intent intent_3;
-        intent_3 = new Intent(com.example.firstproject_2.LayoutDrug3.this, LayoutDrug4.class);
+        intent_3 = new Intent(com.example.medicationproject.LayoutDrug3.this, LayoutDrug4.class);
 
         //전 페이지로 부터 받기 위한 변수들==============================================================
         //현재 Acitivity 실행한 Intent 객체 가져오기
@@ -298,7 +298,7 @@ public class LayoutDrug3 extends AppCompatActivity {
                     startActivity(intent_3);
                 }
                 else{
-                    Toast.makeText(com.example.firstproject_2.LayoutDrug3.this, "내용을 입력하세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(com.example.medicationproject.LayoutDrug3.this, "내용을 입력하세요.", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -326,7 +326,7 @@ public class LayoutDrug3 extends AppCompatActivity {
 
             case R.id.regBTN1:
                 Intent i1;
-                i1 = new Intent(com.example.firstproject_2.LayoutDrug3.this, Alarm_Reciver.class);
+                i1 = new Intent(com.example.medicationproject.LayoutDrug3.this, Alarm_Reciver.class);
 
                 // calendar에 시간 셋팅
                 calendar.set(Calendar.HOUR_OF_DAY, mHour1);
@@ -335,11 +335,11 @@ public class LayoutDrug3 extends AppCompatActivity {
                 // 시간 가져옴
                 int hour1 = mHour1;
                 int minute1 = mMinute1;
-                Toast.makeText(com.example.firstproject_2.LayoutDrug3.this,"Alarm 예정 " + hour1 + "시 " + minute1 + "분",Toast.LENGTH_SHORT).show();
+                Toast.makeText(com.example.medicationproject.LayoutDrug3.this,"Alarm 예정 " + hour1 + "시 " + minute1 + "분",Toast.LENGTH_SHORT).show();
 
                 i1.putExtra("state","alarm on");
 
-                pendingIntent = PendingIntent.getBroadcast(com.example.firstproject_2.LayoutDrug3.this, 0, i1,
+                pendingIntent = PendingIntent.getBroadcast(com.example.medicationproject.LayoutDrug3.this, 0, i1,
                         PendingIntent.FLAG_UPDATE_CURRENT);
                 alarm_manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                         pendingIntent);
@@ -348,7 +348,7 @@ public class LayoutDrug3 extends AppCompatActivity {
 
             case R.id.regBTN2:
                 Intent i2;
-                i2 = new Intent(com.example.firstproject_2.LayoutDrug3.this, Alarm_Reciver.class);
+                i2 = new Intent(com.example.medicationproject.LayoutDrug3.this, Alarm_Reciver.class);
 
                 // calendar에 시간 셋팅
                 calendar.set(Calendar.HOUR_OF_DAY, mHour1);
@@ -357,11 +357,11 @@ public class LayoutDrug3 extends AppCompatActivity {
                 // 시간 가져옴
                 int hour2 = mHour2;
                 int minute2 = mMinute2;
-                Toast.makeText(com.example.firstproject_2.LayoutDrug3.this,"Alarm 예정 " + hour2 + "시 " + minute2 + "분",Toast.LENGTH_SHORT).show();
+                Toast.makeText(com.example.medicationproject.LayoutDrug3.this,"Alarm 예정 " + hour2 + "시 " + minute2 + "분",Toast.LENGTH_SHORT).show();
 
                 i2.putExtra("state","alarm on");
 
-                pendingIntent = PendingIntent.getBroadcast(com.example.firstproject_2.LayoutDrug3.this, 0, i2,
+                pendingIntent = PendingIntent.getBroadcast(com.example.medicationproject.LayoutDrug3.this, 0, i2,
                         PendingIntent.FLAG_UPDATE_CURRENT);
                 alarm_manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                         pendingIntent);
@@ -369,7 +369,7 @@ public class LayoutDrug3 extends AppCompatActivity {
 
             case R.id.regBTN3:
                 Intent i3;
-                i3 = new Intent(com.example.firstproject_2.LayoutDrug3.this, Alarm_Reciver.class);
+                i3 = new Intent(com.example.medicationproject.LayoutDrug3.this, Alarm_Reciver.class);
 
                 // calendar에 시간 셋팅
                 calendar.set(Calendar.HOUR_OF_DAY, mHour1);
@@ -378,11 +378,11 @@ public class LayoutDrug3 extends AppCompatActivity {
                 // 시간 가져옴
                 int hour3 = mHour3;
                 int minute3 = mMinute3;
-                Toast.makeText(com.example.firstproject_2.LayoutDrug3.this,"Alarm 예정 " + hour3 + "시 " + minute3 + "분",Toast.LENGTH_SHORT).show();
+                Toast.makeText(com.example.medicationproject.LayoutDrug3.this,"Alarm 예정 " + hour3 + "시 " + minute3 + "분",Toast.LENGTH_SHORT).show();
 
                 i3.putExtra("state","alarm on");
 
-                pendingIntent = PendingIntent.getBroadcast(com.example.firstproject_2.LayoutDrug3.this, 0, i3,
+                pendingIntent = PendingIntent.getBroadcast(com.example.medicationproject.LayoutDrug3.this, 0, i3,
                         PendingIntent.FLAG_UPDATE_CURRENT);
                 alarm_manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                         pendingIntent);

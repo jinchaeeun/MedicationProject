@@ -91,7 +91,7 @@ public class LayoutDrug2 extends AppCompatActivity {
         quantityETXT = findViewById(R.id.quantityETXT);
 
 
-        intent_2 = new Intent(com.example.firstproject_2.LayoutDrug2.this, LayoutDrug3.class);
+        intent_2 = new Intent(com.example.medicationproject.LayoutDrug2.this, LayoutDrug3.class);
 
 
         check1_1 = "Monday";
@@ -166,7 +166,7 @@ public class LayoutDrug2 extends AppCompatActivity {
         switch (v.getId()){
 
             case R.id.everyBTN:
-                Toast.makeText(com.example.firstproject_2.LayoutDrug2.this,"매일 클릭!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(com.example.medicationproject.LayoutDrug2.this,"매일 클릭!", Toast.LENGTH_SHORT).show();
                 check();
                 day1 = true;
                 day2 = true;
@@ -179,7 +179,7 @@ public class LayoutDrug2 extends AppCompatActivity {
 
             // 체크박스 활성화 set visible
             case R.id.specificBTN:
-                Toast.makeText(com.example.firstproject_2.LayoutDrug2.this,"특정 일 클릭!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(com.example.medicationproject.LayoutDrug2.this,"특정 일 클릭!", Toast.LENGTH_SHORT).show();
                 if(on_off == 1) {
                     ckLAY.setVisibility(View.VISIBLE);
                     on_off = 0;
@@ -229,7 +229,7 @@ public class LayoutDrug2 extends AppCompatActivity {
 
                 }
                 else{
-                    Toast.makeText(com.example.firstproject_2.LayoutDrug2.this, "내용을 입력하세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(com.example.medicationproject.LayoutDrug2.this, "내용을 입력하세요.", Toast.LENGTH_SHORT).show();
                 }
 
                 break;

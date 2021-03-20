@@ -105,7 +105,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="storage"
-            android:text="@string/preBTN4" />
+            android:text="@string/preBTN2" />
 
         <Button
             android:id="@+id/nextBTN4"
@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="storage"
-            android:text="@string/nextBTN4" />
+            android:text="@string/nextBTN2" />
     </LinearLayout>
 
 </LinearLayout>

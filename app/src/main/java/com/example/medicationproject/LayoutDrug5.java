@@ -45,10 +45,10 @@ public class LayoutDrug5 extends AppCompatActivity implements AdapterView.OnItem
    /////////////////////////////////
 
     //데이터 담을
-    private ArrayList<com.example.firstproject_2.itemData> dataArray;
+    private ArrayList<com.example.medicationproject.itemData> dataArray;
 
     //데이터와 리스트뷰 연결시켜줄 어댑터!!
-    private com.example.firstproject_2.itemDataAdapter ad;
+    private com.example.medicationproject.itemDataAdapter ad;
 
     private boolean on_off_ck = false;
 
@@ -146,7 +146,7 @@ public class LayoutDrug5 extends AppCompatActivity implements AdapterView.OnItem
         Date date1 = new Date();
         String strDate= dateFormat.format(date1);
 
-        com.example.firstproject_2.SwData ck1,ck2,ck3;
+        com.example.medicationproject.SwData ck1,ck2,ck3;
         int i_time1, i_time2, i_time3, dn;
 
         dn = Integer.parseInt(strDate);
@@ -154,9 +154,9 @@ public class LayoutDrug5 extends AppCompatActivity implements AdapterView.OnItem
         i_time2 = Integer.parseInt(time2);
         i_time3 = Integer.parseInt(time3);
 
-        ck1=new com.example.firstproject_2.SwData();
-        ck2=new com.example.firstproject_2.SwData();
-        ck3=new com.example.firstproject_2.SwData();
+        ck1=new com.example.medicationproject.SwData();
+        ck2=new com.example.medicationproject.SwData();
+        ck3=new com.example.medicationproject.SwData();
         ck1.Swich1();
         ck2.Swich2();
         ck3.Swich3();
@@ -334,22 +334,22 @@ public class LayoutDrug5 extends AppCompatActivity implements AdapterView.OnItem
 
 
         //데이터준비
-        dataArray = new ArrayList<com.example.firstproject_2.itemData>();
+        dataArray = new ArrayList<com.example.medicationproject.itemData>();
         if (time1.length() > 0) {
-            dataArray.add(new com.example.firstproject_2.itemData(msg, time1, false));
+            dataArray.add(new com.example.medicationproject.itemData(msg, time1, false));
         }
 
         if (time2.length() > 0) {
-            dataArray.add(new com.example.firstproject_2.itemData(msg, time2, false));
+            dataArray.add(new com.example.medicationproject.itemData(msg, time2, false));
         }
 
         if (time3.length() > 0) {
-            dataArray.add(new com.example.firstproject_2.itemData(msg, time3, false));
+            dataArray.add(new com.example.medicationproject.itemData(msg, time3, false));
         }
 
 
         //어댑터한테 뷰랑 데이터 준다 -> 그럼 리스트 생성
-        ad = new com.example.firstproject_2.itemDataAdapter(com.example.firstproject_2.LayoutDrug5.this, R.layout.layout_text, dataArray);
+        ad = new com.example.medicationproject.itemDataAdapter(com.example.medicationproject.LayoutDrug5.this, R.layout.layout_text, dataArray);
 
         resLST.setAdapter(ad);
 

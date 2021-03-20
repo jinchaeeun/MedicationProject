@@ -51,14 +51,14 @@ public class LayoutDrug1 extends AppCompatActivity {
 
                 /*화면 전환용 intent*/
                 Intent intent_1;
-                intent_1 = new Intent(com.example.firstproject_2.LayoutDrug1.this, com.example.firstproject_2.LayoutDrug2.class);
+                intent_1 = new Intent(com.example.medicationproject.LayoutDrug1.this, com.example.medicationproject.LayoutDrug2.class);
 
                 String msg = "";    //edittext에 들어간 약 종류 입력값 읽기 위한 msg
                 msg = msg + drugETXT.getText().toString(); //msg에 drugETXT에 들어간 "약 이름" 갱신
 
                 if(msg.length() <= 0){
 
-                    Toast.makeText(com.example.firstproject_2.LayoutDrug1.this, "약 이름을 입력해주세요. ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(com.example.medicationproject.LayoutDrug1.this, "약 이름을 입력해주세요. ", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     intent_1.putExtra("msg", msg);  //"msg"라는 이름의 msg데이터 보내기
