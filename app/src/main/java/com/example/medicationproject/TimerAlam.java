@@ -51,10 +51,10 @@ public class TimerAlam extends AppCompatActivity {
     //종료
     private         Button                  Theend;
 
-    //마지막 뒤로가기 버튼을 눌렀던 시간 저장
+    //------마지막 뒤로가기 버튼을 눌렀던 시간 저장-------//
     private long            backKeyPressedTime  =   0;
 
-    //Camera 연동
+    //-------------------Camera 연동---------------------//
     Button                  btn                 =        null;
     ImageView               iv                  =        null;
 
