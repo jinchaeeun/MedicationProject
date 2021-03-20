@@ -8,11 +8,21 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="match_parent"
+        android:layout_height="92dp"
+        android:background="#66CC66"
+        app:srcCompat="@drawable/logo" />
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/LOGO"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginBottom="70dp"
         android:fontFamily="@font/app_bold_font"
         android:gravity="center"
         android:text="@string/Login"
@@ -20,7 +30,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:orientation="vertical">
 
@@ -82,7 +92,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="25dp">
 
 
         <Button

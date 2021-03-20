@@ -5,19 +5,21 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    //View List
-    private Button TakeMe;
-    private Button Al_status;
-    private Button TakeList;
-    private Button BPlist;
-    private Button Enrollment;
-    private Button Diabet;
+    //----------View List----------//
+    private ImageButton TakeMe;
+    private ImageButton Al_status;
+    private ImageButton TakeList;
+    private ImageButton BPlist;
+    private ImageButton Enrollment;
+    private ImageButton Diabet;
     private String TAG;
+    /////////////////////////////////
 
     //back button 객체 선언
 

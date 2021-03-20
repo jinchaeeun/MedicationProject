@@ -44,7 +44,7 @@ public class SplashScreen extends AppCompatActivity {
                         }
                     });
                     try {
-                        Thread.sleep(300); // 시간지연
+                        Thread.sleep(200); // 시간지연
                     } catch (InterruptedException e) {
 
                     }

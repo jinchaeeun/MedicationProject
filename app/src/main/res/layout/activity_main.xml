@@ -5,24 +5,29 @@
     android:id="@+id/login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:backgroundTint="#66CC66"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <Button
+    <ImageButton
         android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="46dp"
+        android:layout_height="45dp"
         android:layout_marginLeft="250dp"
         android:layout_marginRight="100dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/login_imgbtn"
         android:fontFamily="@font/app_main_font"
         android:onClick="login"
         android:text="l" />
 
-    <TextView
-        android:id="@+id/textView"
+    <ImageView
+        android:id="@+id/LOGO"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="79dp"
+        android:background="@drawable/logo"
         android:fontFamily="@font/app_bold_font"
         android:gravity="center"
         android:text="TextView"
@@ -31,81 +36,164 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="100dp">
+        android:layout_marginTop="70dp">
 
-        <Button
+        <ImageButton
             android:id="@+id/TakeMe"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="106dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
+            android:background="@drawable/appicon"
             android:fontFamily="@font/app_main_font"
             android:onClick="GotoT" />
 
-        <Button
+        <ImageButton
             android:id="@+id/Al_status"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="106dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
+            android:background="@drawable/appicon"
             android:fontFamily="@font/app_main_font"
             android:onClick="GotoA"
             android:text="alam" />
 
-        <Button
+        <ImageButton
             android:id="@+id/TakeList"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="106dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
+            android:background="@drawable/appicon"
             android:fontFamily="@font/app_main_font"
             android:onClick="GotoL"
             android:text="@string/familyList" />
+
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="100dp">
+        android:orientation="horizontal">
 
-        <Button
+        <TextView
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="25dp"
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="복약 기록"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="알람 현황"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="25dp"
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="가족/의사 등록"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginTop="50dp">
+
+        <ImageButton
             android:id="@+id/OK"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
-            android:fontFamily="@font/app_main_font"
+            android:background="@drawable/appicon"
 
+            android:fontFamily="@font/app_main_font"
             android:onClick="GotoB"
             android:text="@string/bloodpressure" />
 
-        <Button
+        <ImageButton
             android:id="@+id/Diabet"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
+            android:background="@drawable/appicon"
             android:fontFamily="@font/app_main_font"
             android:onClick="GotoD"
             android:text="@string/bloodSugar" />
 
-        <Button
+        <ImageButton
             android:id="@+id/Enrollment"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
+            android:background="@drawable/appicon"
             android:fontFamily="@font/app_main_font"
             android:onClick="GotoE"
             android:text="alam the end" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:textColor="#FFFFFF"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="25dp"
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="혈압 측정" />
+
+        <TextView
+            android:textColor="#FFFFFF"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="25dp"
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="당뇨 측정" />
+
+        <TextView
+            android:textColor="#FFFFFF"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="25dp"
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="복약 기록" />
     </LinearLayout>
 
 </LinearLayout>
