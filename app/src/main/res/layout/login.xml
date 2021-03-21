@@ -107,6 +107,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="#F18B67"
                 android:fontFamily="@font/app_main_font"
+                android:onClick="Login"
                 android:text="@string/OK"
                 android:textSize="20dp" />
 
@@ -119,6 +120,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="#F18B67"
                 android:fontFamily="@font/app_main_font"
+                android:onClick="finish_app"
                 android:text="@string/Cancle"
                 android:textSize="20dp" />
         </LinearLayout>
@@ -132,6 +134,7 @@
             android:layout_marginBottom="100dp"
             android:background="#00ff0000"
             android:fontFamily="@font/app_main_font"
+            android:onClick="sign_up"
             android:text="회원가입"
             android:textColor="@color/text_selector" />
     </LinearLayout>

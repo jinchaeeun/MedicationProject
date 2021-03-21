@@ -22,7 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Login extends AppCompatActivity {
-    //---------View List---------------
+    //---------View List--------------//
     private Button ok;
     private Button cancle;
     private EditText ID;
@@ -83,7 +83,7 @@ public class Login extends AppCompatActivity {
 
 
     // --------------------------Login버튼 클릭시 화면 전환----------------------------//
-    public void OK(View v) {
+    public void Login(View v) {
         DBinit();
         Intent intent = new Intent(Login.this, MainActivity.class);
         String isId = ID.getText().toString().trim();
@@ -91,14 +91,14 @@ public class Login extends AppCompatActivity {
         if (isId.length() > 4 && isPass.length() > 4)
             searchData(isId, isPass);
         else
-            Toast.makeText(this, "입력이 잘못되었습니다.", Toast.LENGTH_SHORT);
+            Toast.makeText(Login.this, "입력이 잘못되었습니다.", Toast.LENGTH_SHORT);
 
         if (userExist) {
             intent.putExtra("userId", userId);
             setResult(Activity.RESULT_OK, intent);
             finish();
         } else {
-            Toast.makeText(this, "아이디 혹은 비밀번호가" +
+            Toast.makeText(Login.this, "아이디 혹은 비밀번호가" +
                     "없거나 잘못되었습니다.", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -128,7 +128,7 @@ public class Login extends AppCompatActivity {
 
     //---------------버튼 및 EditView초기화---------------//
     public void init() {
-        ok = findViewById(R.id.OK);
+        ok = findViewById(R.id.ok);
         cancle = findViewById(R.id.cancle);
         ID = findViewById(R.id.id);
         Passward = findViewById(R.id.password);
@@ -144,7 +144,7 @@ public class Login extends AppCompatActivity {
     /////////////////////////////////////////////////////////////////////////////////////////
 
     //-----------------------------------Cancle버튼 눌렀을때 메소드-------------------------//
-    public void finish(View view) {
+    public void finish_app(View view) {
         moveTaskToBack(true);                        // 태스크를 백그라운드로 이동
         finishAndRemoveTask();                        // 액티비티 종료 + 태스크 리스트에서 지우기
         android.os.Process.killProcess(android.os.Process.myPid());    // 앱 프로세스 종료
@@ -152,7 +152,7 @@ public class Login extends AppCompatActivity {
     ////////////////////////////////////////////////////////////////////////////////////////
 
     //-----------------------------------회원가입 버튼이 눌리면------------------------------//
-    public void Enter(View view) {
+    public void sign_up(View view) {
         Intent intent = new Intent(this, EnterGrup.class);
         Toast.makeText(getApplicationContext(), "go():", Toast.LENGTH_LONG).show();
         Log.i(TAG, "enter():");

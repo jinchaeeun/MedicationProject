@@ -275,7 +275,7 @@ public class FamilyList extends AppCompatActivity {
         });
     }
 
-    // firebase 데이터 삭제하기
+    // firebase 데이터 삭제하기-
     private void removeUser(final int position, String name, String phone, String email){
         Log.i("firebase", "delete "+ position);
         familyListCount--;

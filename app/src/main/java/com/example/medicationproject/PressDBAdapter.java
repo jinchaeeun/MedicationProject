@@ -28,7 +28,7 @@ public class PressDBAdapter {
     }
 
     // Member Method - Custom -----------------------------------
-    //DB Open & Close---------------------------------------
+    //DB Open & Close----------------------------------------
     public void openDB(boolean isWrite) {
         if (isWrite == true) {
             this.db = dbHelper.getWritableDatabase();

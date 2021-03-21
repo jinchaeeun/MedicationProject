@@ -410,7 +410,7 @@ public class BloodSugar extends AppCompatActivity {
         //cursor.moveToFirst();
         if (D) Log.i(TAG, "cursor is LAST: " + cursor.isLast());
 
-        //해당 날짜에서만!
+        //해당 날짜에서만!-
         // while (cursor.moveToNext())
         //커서가 자꾸 Last로 가버려서 어쩔 수 없이 카운트 0이 아닐 때만 도는 do(무조건 실행) while문(이후 조건 맞추는) 실행
         if(dataCount>0) {

@@ -26,7 +26,7 @@ public class PressDBOpenHelper extends SQLiteOpenHelper {
 
     private Context context;
 
-    // Member Method - Constructor -----------------------------------
+    // Member Method - Constructor ------------------------------------
     // Constructor에서 DB 생성됨
     // 지정된 이름의 Database 생성
     public PressDBOpenHelper(@Nullable Context context) {

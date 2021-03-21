@@ -232,6 +232,8 @@ public class TimerAlam extends AppCompatActivity {
     private void stopplay() {
         mp.stop();
     }
+
+
     public void  onBackPressed(){
         Intent intent = new Intent (this, MainActivity.class);
 

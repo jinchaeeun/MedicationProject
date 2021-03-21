@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
     /////////////////////////////////////////////////////////////////////////////////////////
 
-    //
+    //-----------------------------------------------------------------------------------
     public void GotoA(View v){
         Intent intent = new Intent (MainActivity.this,TimerAlam.class);
         Toast.makeText(getApplicationContext(),"alam",Toast.LENGTH_LONG).show();

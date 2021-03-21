@@ -51,7 +51,7 @@ public class SplashScreen extends AppCompatActivity {
                 } // end of while
             }
         });
-        t.start(); // 쓰레드 시작
+        t.start(); // 쓰레드 시작-
     } // end of onCreate
 } // end of class
 

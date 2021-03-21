@@ -355,7 +355,7 @@ public class BloodPressure extends AppCompatActivity {
         if (D) Log.i(TAG, "TableUpdate() 커서 갯수: " + dataCount);
         //해당 날짜에서만!
 
-        // while문이 안찍힐 땐 cursor가 첫번째로 안돌아가는 경우
+        // while문이 안찍힐 땐 cursor가 첫번째로 안돌아가는 경우-
 //        if(cursor.isLast()){
 //            cursor.moveToFirst();
 //            if (D) Log.i(TAG, "cursor is LAST: " + cursor.isLast());
