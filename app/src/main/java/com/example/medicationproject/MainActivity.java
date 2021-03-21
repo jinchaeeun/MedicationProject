@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"family:",Toast.LENGTH_LONG).show();
         startActivity(intent);
     }
+    //복약기록
     public void GotoE(View v){
         Intent intent = new Intent (MainActivity.this,TestAlarm.class);
         Toast.makeText(getApplicationContext(),"onCreat()",Toast.LENGTH_LONG).show();
