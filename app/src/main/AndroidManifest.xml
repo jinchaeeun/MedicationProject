@@ -35,6 +35,7 @@
         <activity android:name=".BloodSugar" />
         <activity android:name=".BloodPressure" />
         <activity android:name=".TimerAlam" />
+        <activity android:name=".TestAlarm"/>
         <activity android:name=".Login" />
         <activity android:name=".EnterGrup" />
         <activity android:name=".SplashScreen">

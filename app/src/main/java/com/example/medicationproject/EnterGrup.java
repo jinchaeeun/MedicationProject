@@ -45,7 +45,6 @@ public class EnterGrup extends AppCompatActivity {
     DBOpenHelper helper;
     //////////////////////////////////////////////////////////
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,19 +73,31 @@ public class EnterGrup extends AppCompatActivity {
         init();
         String id = nick.getText().toString().trim();
         String password = Passward.getText().toString().trim();
-
+        String passwordcheck = passwardcheck.getText().toString().trim();
+        //5글자 이상 길이 체크
         if (id.length() < 5 || password.length() < 5) {
             Toast.makeText(this, "아이디 다섯 글자 이상 \n" +
                     "비밀번호 다섯 글자 이상" +
                     "\n 입력해주세요.", Toast.LENGTH_LONG).show();
-        } else {
-            insertData(id, password);
-            setResult(Activity.RESULT_OK);
-            finish();
         }
-
+        else {
+            //비밀번호 체크
+            if(!password.equals(passwordcheck)) {
+                Log.i("PASS 다를 때", "패스워드: " + password + "패스워드 체크: " + passwordcheck);
+                Toast.makeText(this, "비밀번호가 다릅니다.\n",Toast.LENGTH_LONG).show();
+            }
+            else{
+                //같을 때
+                Log.i("PASS 같을 때", "패스워드: " + password + "패스워드 체크: " + passwordcheck);
+                Toast.makeText(this, "회원가입 성공",Toast.LENGTH_LONG).show();
+                insertData(id, password);
+                setResult(Activity.RESULT_OK);
+                Intent intent =new Intent(EnterGrup.this, Login.class);
+                startActivity(intent);
+            }
+        }
     }
-    ///////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////
 
     //-------취소버튼을 눌렀을때 메소드-------//
     public void finish(View v) {

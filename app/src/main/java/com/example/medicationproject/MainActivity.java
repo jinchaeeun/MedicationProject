@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void GotoE(View v){
-        Intent intent = new Intent (MainActivity.this,TimerAlam.class);
+        Intent intent = new Intent (MainActivity.this,TestAlarm.class);
         Toast.makeText(getApplicationContext(),"onCreat()",Toast.LENGTH_LONG).show();
         startActivity(intent);
     }

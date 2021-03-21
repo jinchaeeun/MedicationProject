@@ -91,7 +91,7 @@
             android:fontFamily="@font/app_main_font"
             android:gravity="center"
             android:paddingTop="7dp"
-            android:text="복약 기록"
+            android:text="알람 추가"
             android:textColor="#FFFFFF" />
 
         <TextView
