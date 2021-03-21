@@ -124,7 +124,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="#F18B67"
                 android:fontFamily="@font/app_main_font"
-                android:onClick="theend"
+                android:onClick="stop_media_play"
                 android:text="종료"
                 android:textSize="14sp" />
         </LinearLayout>

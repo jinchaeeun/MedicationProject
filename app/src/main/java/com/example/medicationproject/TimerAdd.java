@@ -73,8 +73,8 @@ public class TimerAdd extends AppCompatActivity {
         setContentView(R.layout.alarm_add);
         play=this;
         init();
-        medimemo();
-        ((TimerAlam) TimerAlam.finish_alam).finish_alam();
+
+
 
 //        final TimePicker picker = (TimePicker) findViewById(R.id.timePicker);
 //        //타임피커 값 설정
@@ -200,7 +200,7 @@ public class TimerAdd extends AppCompatActivity {
     }
 
     public void click(View v) {
-
+        medimemo();
         if (!bSugarETXT.getText().toString().equals("")) { //측정 혈압 입력 값이 비어있는지 확인.
             // 선택한 Spinner 값( 아침/저녁 )
             // 저장 버튼 누른 후 오늘 날짜 mTxtDate를 캘린더뷰 년도, 월, 일 선택되게하고 그 값 select date에 넣기
@@ -277,6 +277,7 @@ public class TimerAdd extends AppCompatActivity {
         SharedPreferences.Editor editor = getSharedPreferences("daily alarm", MODE_PRIVATE).edit();
         editor.putLong("nextNotifyTime", (long) calendar.getTimeInMillis());
         editor.apply();
+        ((TimerAlam) TimerAlam.stop_media_play).stop_media_play(v);
 
 
         diaryNotification(calendar);
@@ -334,7 +335,7 @@ public class TimerAdd extends AppCompatActivity {
 
     public  void medimemo(){
 
-        Intent intent = new Intent(this,EnterGrup.class);
+        Intent intent = new Intent(this,TimerAlam.class);
         MediEatETXT=(EditText)findViewById(R.id.MediEatETXT);
         intent.putExtra("Medical_name",MediEatETXT.getText().toString());
         startActivity(intent);

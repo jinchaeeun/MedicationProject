@@ -52,6 +52,9 @@ public class EnterGrup extends AppCompatActivity {
         init();
         //nextEdit();
         hideKeyboard(Email);
+        Intent intent  = getIntent();
+
+
     }
 
     //-----------------------초기화-------------------------//
