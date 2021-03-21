@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -53,6 +54,19 @@ public class LayoutDrug4 extends AppCompatActivity {
         if(D)
             Log.i(TAG, "LayoutDrug4 OK");
 
+        alarmSW.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    //스위치 켜졌을 때
+
+                }
+                else{
+                    //스위치 안켜졌을 때
+
+                }
+            }
+        });
 
     }
 
@@ -255,6 +269,7 @@ public class LayoutDrug4 extends AppCompatActivity {
                 add_time = add_time + time3 ;
             }
             restimeTXT.setText("먹는 시간 : \n" + add_time);
+            //스위치확인 필요
 
             String add_count="";
             if(count1.length() > 0){
@@ -338,8 +353,6 @@ public class LayoutDrug4 extends AppCompatActivity {
         }
 
     }
-
-
     public void storage(View v){
 
 

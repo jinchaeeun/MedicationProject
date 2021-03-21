@@ -19,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import static android.provider.AlarmClock.ACTION_SET_ALARM;
+
 public class LayoutDrug3 extends AppCompatActivity {
 
     //Member Variable ==========================================================================
@@ -79,7 +81,7 @@ public class LayoutDrug3 extends AppCompatActivity {
                 if (D) Log.i(TAG, "Time 값 변경됨 " + mHour1 + mMinute1);
             }
         });
-        timeETXT1.setText(String.format("%02d%02d", mHour1, mMinute1));
+        timeETXT1.setText(String.format("%02d:%02d", mHour1, mMinute1));
     }
 
     public void UpdateTimeNow2() {
@@ -90,7 +92,7 @@ public class LayoutDrug3 extends AppCompatActivity {
                 if (D) Log.i(TAG, "Time 값 변경됨 " + mHour2 + mMinute2);
             }
         });
-        timeETXT2.setText(String.format("%02d%02d", mHour2, mMinute2));
+        timeETXT2.setText(String.format("%02d:%02d", mHour2, mMinute2));
     }
     public void UpdateTimeNow3() {
         timeETXT3.setOnClickListener(new View.OnClickListener() {
@@ -100,7 +102,7 @@ public class LayoutDrug3 extends AppCompatActivity {
                 if (D) Log.i(TAG, "Time 값 변경됨 " + mHour3 + mMinute3);
             }
         });
-        timeETXT3.setText(String.format("%02d%02d", mHour3, mMinute3));
+        timeETXT3.setText(String.format("%02d:%02d", mHour3, mMinute3));
     }
 
     //측정 시간 대화상자 리스너 부분
@@ -110,7 +112,6 @@ public class LayoutDrug3 extends AppCompatActivity {
             //사용자가 입력한 값을 가져온 뒤
             mHour1 = hourOfDay;
             mMinute1 = minute;
-
             UpdateTimeNow1();
 
         }
@@ -122,7 +123,6 @@ public class LayoutDrug3 extends AppCompatActivity {
             //사용자가 입력한 값을 가져온 뒤
             mHour2 = hourOfDay;
             mMinute2 = minute;
-
             UpdateTimeNow2();
 
         }
@@ -134,9 +134,7 @@ public class LayoutDrug3 extends AppCompatActivity {
             //사용자가 입력한 값을 가져온 뒤
             mHour3 = hourOfDay;
             mMinute3 = minute;
-
             UpdateTimeNow3();
-
         }
     };
 
