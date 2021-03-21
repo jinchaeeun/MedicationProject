@@ -91,15 +91,14 @@ public class Login extends AppCompatActivity {
         if (isId.length() > 4 && isPass.length() > 4)
             searchData(isId, isPass);
         else
-            Toast.makeText(Login.this, "입력이 잘못되었습니다.", Toast.LENGTH_SHORT);
+            Toast.makeText(Login.this, "입력이 잘못되었습니다.", Toast.LENGTH_SHORT).show();
 
         if (userExist) {
             intent.putExtra("userId", userId);
             setResult(Activity.RESULT_OK, intent);
             finish();
         } else {
-            Toast.makeText(Login.this, "아이디 혹은 비밀번호가" +
-                    "없거나 잘못되었습니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Login.this, "아이디 혹은 비밀번호가 " + "없거나 잘못되었습니다.", Toast.LENGTH_SHORT).show();
             return;
         }
         startActivity(intent);

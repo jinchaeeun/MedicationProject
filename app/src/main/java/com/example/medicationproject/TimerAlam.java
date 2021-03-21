@@ -72,7 +72,8 @@ public class TimerAlam extends AppCompatActivity {
     private final int       CAMERA_CODE      =    1111;
     private final int       GALLERY_CODE     =    1112;
 
-
+    MediaPlayer mp = new MediaPlayer();
+    public static Context finish_alam;
     //이미지 이름-
     String mImageCaptureName;
 
@@ -80,7 +81,7 @@ public class TimerAlam extends AppCompatActivity {
     File file;
 
     //Music관련
-    MediaPlayer mp = new MediaPlayer();
+
 
     // DG. Activity Result
 
@@ -92,6 +93,9 @@ public class TimerAlam extends AppCompatActivity {
         init();
         // Camera 권한
         requestPermissionCamera();
+        Intent intent = getIntent();
+        kind_of_Medical.setText("Medical_name");
+        finish_alam=this;
     }
 
     //setup
@@ -243,5 +247,9 @@ public class TimerAlam extends AppCompatActivity {
     public void gomain(View v) {
         Intent intent = new Intent(TimerAlam.this, MainActivity.class);
         startActivity(intent);
+    }
+    public MediaPlayer finish_alam() {
+        mp.stop();
+        return mp;
     }
 }

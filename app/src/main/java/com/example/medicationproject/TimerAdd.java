@@ -65,6 +65,7 @@ public class TimerAdd extends AppCompatActivity {
 
     private int sugDate;
 
+    private EditText MediEatETXT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +73,8 @@ public class TimerAdd extends AppCompatActivity {
         setContentView(R.layout.alarm_add);
         play=this;
         init();
-
+        medimemo();
+        ((TimerAlam) TimerAlam.finish_alam).finish_alam();
 
 //        final TimePicker picker = (TimePicker) findViewById(R.id.timePicker);
 //        //타임피커 값 설정
@@ -329,7 +331,12 @@ public class TimerAdd extends AppCompatActivity {
         return mp;
     }
 
-    public void finish_alam(View v) {
-        mp.stop();
+
+    public  void medimemo(){
+
+        Intent intent = new Intent(this,EnterGrup.class);
+        MediEatETXT=(EditText)findViewById(R.id.MediEatETXT);
+        intent.putExtra("Medical_name",MediEatETXT.getText().toString());
+        startActivity(intent);
     }
 }
