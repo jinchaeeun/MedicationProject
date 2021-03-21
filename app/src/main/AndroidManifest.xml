@@ -10,7 +10,6 @@
 
     <uses-feature android:name="android.hardware.camera" />
     <!-- 알람 권한 -->
-    <uses-permission android:name="android.permission.SET_ALARM"/>
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
@@ -25,6 +24,7 @@
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/progressbar_progressbar1" />
+        <activity android:name=".TimerAdd"/>
         <activity android:name=".LayoutDrug1"/>
         <activity android:name=".LayoutDrug2"/>
         <activity android:name=".LayoutDrug3"/>
@@ -44,17 +44,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!--리시버 등록-->
         <receiver android:name=".DeviceBootReceiver"
             android:enabled="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
         <receiver android:name=".AlarmReceiver" />
-
     </application>
 
 </manifest>

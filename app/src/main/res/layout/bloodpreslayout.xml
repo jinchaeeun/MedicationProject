@@ -108,6 +108,7 @@
                 android:layout_row="2"
                 android:layout_column="0"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <Spinner
@@ -130,7 +131,7 @@
                     android:fontFamily="@font/app_main_font"
                     android:gravity="center"
                     android:labelFor="@+id/bPrETXT"
-                    android:textSize="24sp" />
+                    android:textSize="20sp" />
 
 
                 <EditText
@@ -147,7 +148,7 @@
                     android:importantForAutofill="no"
                     android:inputType="number"
                     android:maxLength="3"
-                    android:textSize="24sp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/mmHgTXT1"
@@ -222,6 +223,7 @@
                         android:layout_height="match_parent"
                         android:layout_row="0"
                         android:layout_column="0"
+                        android:layout_marginBottom="5dp"
                         android:gravity="center"
                         android:orientation="horizontal">
 

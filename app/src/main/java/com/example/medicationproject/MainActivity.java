@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     //각 Button 클릭시 화면 전환
     //---------------------------------------------------------------------------------------//
     public void GotoT(View v){
-        Intent intent = new Intent (MainActivity.this,LayoutDrug1.class);
+        Intent intent = new Intent (MainActivity.this,TimerAdd.class);
         Toast.makeText(getApplicationContext(),"onCreate():",Toast.LENGTH_LONG).show();
         startActivity(intent);
     }
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }
     //복약기록
     public void GotoE(View v){
-        Intent intent = new Intent (MainActivity.this,TestAlarm.class);
+        Intent intent = new Intent (MainActivity.this,TimerAlam.class);
         Toast.makeText(getApplicationContext(),"onCreat()",Toast.LENGTH_LONG).show();
         startActivity(intent);
     }

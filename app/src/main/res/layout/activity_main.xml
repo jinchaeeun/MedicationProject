@@ -104,7 +104,7 @@
             android:fontFamily="@font/app_main_font"
             android:gravity="center"
             android:paddingTop="7dp"
-            android:text="알람 현황"
+            android:text="알람 끄기"
             android:textColor="#FFFFFF" />
 
         <TextView

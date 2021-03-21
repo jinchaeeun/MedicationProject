@@ -4,4 +4,4 @@
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:fontFamily="@font/app_main_font"
-    android:textSize="24sp"></TextView>
+    android:textSize="20sp"></TextView>
