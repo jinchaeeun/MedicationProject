@@ -91,11 +91,15 @@ public class TimerAlam extends AppCompatActivity {
 
         setContentView(R.layout.timeralam);
         init();
+        Log.i("TimerAlarm", "onCreate()");
         // Camera 권한
         requestPermissionCamera();
         Intent intent = getIntent();
-        String  kind_of_Medical = intent.getStringExtra("Medical_name");
+        String  strKind_of_Medical = intent.getStringExtra("Medical_name");
+        Log.i("TimerAlarm", "넘어왔는가? " + strKind_of_Medical);
+        kind_of_Medical.setText(strKind_of_Medical);
         stop_media_play=this;
+
     }
 
     //setup

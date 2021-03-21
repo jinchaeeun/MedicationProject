@@ -277,7 +277,7 @@ public class TimerAdd extends AppCompatActivity {
         SharedPreferences.Editor editor = getSharedPreferences("daily alarm", MODE_PRIVATE).edit();
         editor.putLong("nextNotifyTime", (long) calendar.getTimeInMillis());
         editor.apply();
-        ((TimerAlam) TimerAlam.stop_media_play).stop_media_play(v);
+//        ((TimerAlam) TimerAlam.stop_media_play).stop_media_play(v);
 
 
         diaryNotification(calendar);

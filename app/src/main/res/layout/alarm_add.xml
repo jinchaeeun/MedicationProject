@@ -149,8 +149,6 @@
                     android:importantForAutofill="no"
                     android:inputType="number"
                     android:maxLength="3"
-                    android:paddingTop="10dp"
-                    android:paddingEnd="10dp"
                     android:textSize="20sp" />
 
                 <TextView
@@ -419,16 +417,6 @@
             </GridLayout>
         </LinearLayout>
     </ScrollView>
-
-        <Button
-            android:id="@+id/BSSaveBTN3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:backgroundTint="#F18B67"
-            android:fontFamily="@font/app_main_font"
-            android:onClick="finish_alam"
-            android:text="음악 종료" />
 
     </LinearLayout>
 </LinearLayout>
