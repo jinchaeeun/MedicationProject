@@ -26,7 +26,7 @@ import java.util.HashMap;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-
+//회원가입
 public class EnterGrup extends AppCompatActivity {
     //----------------------View List-------------------------//
     private EditText nick;
@@ -58,7 +58,7 @@ public class EnterGrup extends AppCompatActivity {
     //-----------------------초기화-------------------------//
     public void init() {
         helper = new DBOpenHelper(this, "new", null, 1);
-        ok = findViewById(R.id.OK);
+        ok = findViewById(R.id.ok);
         cancle = findViewById(R.id.cancle);
         name = findViewById(R.id.Name);
         nick = findViewById(R.id.NickNa);

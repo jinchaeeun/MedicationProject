@@ -20,7 +20,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
+//로그인
 public class Login extends AppCompatActivity {
     //---------View List--------------//
     private Button ok;
