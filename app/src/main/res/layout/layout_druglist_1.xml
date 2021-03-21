@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".LayoutDrug1">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="어떤 약을 복용하시나요?"
+        android:textSize="18sp"
+        android:textStyle="normal|bold" />
+
+    <EditText
+        android:id="@+id/drugETXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="약 종류를 입력하세요."
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/nextBTN1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="100dp"
+        android:gravity="center"
+        android:text="다음" />
+
+</LinearLayout>
