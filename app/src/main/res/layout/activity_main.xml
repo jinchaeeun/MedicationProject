@@ -195,7 +195,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/app_main_font"
             android:paddingTop="7dp"
-            android:text="당뇨 측정"
+            android:text="혈당 측정"
             android:textColor="#FFFFFF" />
 
         <TextView

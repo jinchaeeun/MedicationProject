@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"alam",Toast.LENGTH_LONG).show();
         startActivity(intent);
     }
+    //가족 등록
     public void GotoL(View v){
         Intent intent = new Intent (MainActivity.this,FamilyList.class);
         Toast.makeText(getApplicationContext(),"family:",Toast.LENGTH_LONG).show();
@@ -60,11 +61,13 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"onCreat()",Toast.LENGTH_LONG).show();
         startActivity(intent);
     }
+    //혈당 측정
     public void GotoD(View v){
         Intent intent = new Intent (MainActivity.this,BloodSugar.class);
         Toast.makeText(getApplicationContext(),"bloodsugar",Toast.LENGTH_LONG).show();
         startActivity(intent);
     }
+    //혈압 측정
     public void GotoB(View v){
         Intent intent = new Intent (MainActivity.this,BloodPressure.class);
         Toast.makeText(getApplicationContext(),"bloodpres",Toast.LENGTH_LONG).show();
