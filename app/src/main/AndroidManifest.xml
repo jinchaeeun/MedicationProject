@@ -24,6 +24,7 @@
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/progressbar_progressbar1" />
+        <activity android:name=".Medi_Record"/>
         <activity android:name=".TimerAdd"/>
         <activity android:name=".LayoutDrug1"/>
         <activity android:name=".LayoutDrug2"/>

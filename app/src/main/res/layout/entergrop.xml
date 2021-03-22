@@ -195,7 +195,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#F18B67"
                 android:fontFamily="@font/app_main_font"
-                android:onClick="SAVE"
+                android:onClick="OK"
                 android:text="저장" />
 
             <Button

@@ -116,9 +116,10 @@ public class TimerAdd extends AppCompatActivity {
 
     private void init() {
         //xml 요소 연결
-        bSuTimeTXT = findViewById(R.id.bSuTimeTXT);
-        bSugarETXT = findViewById(R.id.bSugarETXT);
+        bSuTimeTXT = findViewById(R.id.bSuTimeTXT);         //알람 시간
+        bSugarETXT = findViewById(R.id.bSugarETXT);         //약 갯수
         meal_spinner = findViewById(R.id.meal_spinner);       //spinner (셀렉트박스) strings.xml과  연결
+        MediEatETXT=(EditText)findViewById(R.id.MediEatETXT);   // 복용 약 이름
         //화면 아래쪽 xml 요소 연결
         //아침 전
         before_bfTimeTXT_show = findViewById(R.id.before_bfTimeTXT_show);
@@ -129,7 +130,7 @@ public class TimerAdd extends AppCompatActivity {
         //점심 전
         before_lunchTimeTXT_show = findViewById(R.id.before_lunchTimeTXT_show);
         before_lunchBSTXT_show = findViewById(R.id.before_lunchBSTXT_show);
-
+        
 
         //현재 날짜와 시간을 가져오기 위한 Calender 인스턴스 선언
         Calendar cal = new GregorianCalendar();
@@ -146,7 +147,7 @@ public class TimerAdd extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(getBaseContext(),R.layout.spinner_item, kinds1);
         adapter.setDropDownViewResource(R.layout.spinner_item);
         meal_spinner.setAdapter(adapter);
-        MediEatETXT=(EditText)findViewById(R.id.MediEatETXT);
+        
 
     }
 
@@ -334,20 +335,21 @@ public class TimerAdd extends AppCompatActivity {
         return mp;
     }
 
-
+    //약 이름
     public  void medimemo(){
 
         Intent intent = new Intent(this,TimerAlam.class);
-        MediEatETXT=(EditText)findViewById(R.id.MediEatETXT);
+        MediEatETXT=(EditText)findViewById(R.id.MediEatETXT);  //의미 있나? init()에서 선언
         intent.putExtra("Medical_name",MediEatETXT.getText().toString());
-        intent.putExtra("Medic_name",MediEatETXT.getText().toString());
-        startActivity(intent);
+        startActivity(intent);  //스타트하지 말기
     }
+
     public  void mediNum(){
-        sugarETXT=(EditText)findViewById(R.id.bSugarETXT);
-        Intent intent = new Intent(this,TimerAlam.class);
-        sugarETXT=(EditText)findViewById(R.id.bSugarETXT);
+
+        //알람리시버로 넘겨주기
+        Intent intent = new Intent(this,AlarmReceiver.class);
         intent.putExtra("Medical_Number",bSugarETXT.getText().toString());
-        startActivity(intent);
+        intent.putExtra("Medic_name",MediEatETXT.getText().toString());
+        sendBroadcast(intent);
     }
 }

@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -19,22 +20,19 @@ import androidx.core.app.NotificationCompat;
 
 
 public class AlarmReceiver extends BroadcastReceiver {
-
     @Override
     public void onReceive(Context context, Intent intent) {
+
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Intent notificationIntent = new Intent(context, TimerAdd.class);
 
-        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
         PendingIntent pendingI = PendingIntent.getActivity(context, 0,
                 notificationIntent, 0);
 
-
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "default");
-
 
         //OREO API 26 이상에서는 채널 필요
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -54,11 +52,10 @@ public class AlarmReceiver extends BroadcastReceiver {
         } else
             builder.setSmallIcon(R.mipmap.ic_launcher); // Oreo 이하에서 mipmap 사용하지 않으면 Couldn't create icon: StatusBarIcon 에러남-
 
+        String strKind_of_Medical = intent.getStringExtra("Medic_name");        //복용약 이름
+        String strMedical_number = intent.getStringExtra("Medical_Number");       //복약 갯수
 
-        TimerAdd name = intent.getParcelableExtra("Medic_name");
-        TimerAdd No = intent.getParcelableExtra("Medical_Number");
-        String strKind_of_Medical = intent.getStringExtra("Medic_name");
-        String strMedical_number=intent.getStringExtra("Medical_Number");
+        Log.i("chaeeun test", "약 이름=> " + strKind_of_Medical+", 약 갯수=> " + strMedical_number);
 
         builder.setAutoCancel(true)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
@@ -66,10 +63,11 @@ public class AlarmReceiver extends BroadcastReceiver {
 
                 .setTicker("{Time to watch some cool stuff!}")
                 .setContentTitle("아침 복약 시간입니다!")
-                //.setContentText(strKind_of_Medical + "\t" + strMedical_number + "개")
-                .setContentText(name + "\t" + No + "개")
+                .setContentText("약 이름: " + intent.getStringExtra("Medic_name") + ", 복약 갯수: " + strMedical_number + "개")
                 .setContentInfo("INFO")
                 .setContentIntent(pendingI);
+
+        //setContentText 두 줄 넣으면 덮어써버림.
 
         if (notificationManager != null) {
 

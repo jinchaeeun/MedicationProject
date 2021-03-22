@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }
     //복약기록
     public void GotoE(View v){
-        Intent intent = new Intent (MainActivity.this,TimerAlam.class);
+        Intent intent = new Intent (MainActivity.this,Medi_Record.class);
         Toast.makeText(getApplicationContext(),"onCreat()",Toast.LENGTH_LONG).show();
         startActivity(intent);
     }
