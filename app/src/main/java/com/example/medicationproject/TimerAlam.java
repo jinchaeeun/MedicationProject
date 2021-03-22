@@ -77,6 +77,7 @@ public class TimerAlam extends AppCompatActivity {
     //이미지 이름-
     String mImageCaptureName ;
     String  strKind_of_Medical ="";
+    String  strMedicalCnt ="";
     //imagefile 저장을 위한 setup
     File file;
 
@@ -96,8 +97,9 @@ public class TimerAlam extends AppCompatActivity {
         requestPermissionCamera();
         Intent intent = getIntent();
         strKind_of_Medical = intent.getStringExtra("Medical_name");
+        strMedicalCnt = intent.getStringExtra("Medical_count");
         Log.i("TimerAlarm", "넘어왔는가? " + strKind_of_Medical);
-        kind_of_Medical.setText(strKind_of_Medical);
+        kind_of_Medical.setText(strKind_of_Medical + strMedicalCnt +"개");
         stop_media_play=this;
 
     }

@@ -62,16 +62,17 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setWhen(System.currentTimeMillis())
 
                 .setTicker("{Time to watch some cool stuff!}")
-                .setContentTitle("아침 복약 시간입니다!")
-                .setContentText("약 이름: " + intent.getStringExtra("Medic_name") + ", 복약 갯수: " + strMedical_number + "개")
+                .setContentTitle("복약 시간입니다!")
                 .setContentInfo("INFO")
                 .setContentIntent(pendingI);
 
+        //.setContentText("약 이름: " + intent.getStringExtra("Medic_name") + ", 복약 갯수: " + strMedical_number + "개")
         //setContentText 두 줄 넣으면 덮어써버림.
 
         if (notificationManager != null) {
 
             // 노티피케이션 동작시킴
+            //notificationManager.notify(1234, builder.build());
             notificationManager.notify(1234, builder.build());
 
             Calendar nextNotifyTime = Calendar.getInstance();
@@ -79,7 +80,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             // 내일 같은 시간으로 알람시간 결정
             nextNotifyTime.add(Calendar.DATE, 1);
 
-            //  Preference에 설정한 값 저장
+            //  Preference에 설정한 값 저장. 앱 꺼도 남게하는 부분
             SharedPreferences.Editor editor = context.getSharedPreferences("daily alarm", Context.MODE_PRIVATE).edit();
             editor.putLong("nextNotifyTime", nextNotifyTime.getTimeInMillis());
             editor.apply();

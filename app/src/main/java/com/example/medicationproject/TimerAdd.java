@@ -262,6 +262,7 @@ public class TimerAdd extends AppCompatActivity {
         calendar.set(Calendar.HOUR_OF_DAY, hour_24);
         calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, 0);
+
         // 이미 지난 시간을 지정했다면 다음날 같은 시간으로 설정
         if (calendar.before(Calendar.getInstance())) {
             calendar.add(Calendar.DATE, 1);
@@ -339,17 +340,18 @@ public class TimerAdd extends AppCompatActivity {
     public  void medimemo(){
 
         Intent intent = new Intent(this,TimerAlam.class);
-        MediEatETXT=(EditText)findViewById(R.id.MediEatETXT);  //의미 있나? init()에서 선언
         intent.putExtra("Medical_name",MediEatETXT.getText().toString());
-        startActivity(intent);  //스타트하지 말기
+        intent.putExtra("Medical_count",bSugarETXT.getText().toString());
+        startActivity(intent);
     }
 
+    //현재 의미 없음.
     public  void mediNum(){
 
         //알람리시버로 넘겨주기
         Intent intent = new Intent(this,AlarmReceiver.class);
         intent.putExtra("Medical_Number",bSugarETXT.getText().toString());
         intent.putExtra("Medic_name",MediEatETXT.getText().toString());
-        sendBroadcast(intent);
+        //sendBroadcast(intent);
     }
 }
