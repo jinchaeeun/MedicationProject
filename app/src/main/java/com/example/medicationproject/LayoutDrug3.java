@@ -23,7 +23,7 @@ import static android.provider.AlarmClock.ACTION_SET_ALARM;
 
 public class LayoutDrug3 extends AppCompatActivity {
 
-    //Member Variable ==========================================================================
+    //Member Variable ===========================================================================
     private final String TAG = "LayoutDrug3";
     private final boolean D = true;
 

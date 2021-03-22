@@ -18,7 +18,7 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splashscreen);
-        // 앱시작시, Thread 를 시작해서 ProgressBar 를 증가시키기
+        // 앱시작시, Thread 를 시작해서 ProgressBar 를 증가시키기=
         // Thread 내부에서 화면에 작업을 하려면 Handler 를 사용해야한다
         final ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
 

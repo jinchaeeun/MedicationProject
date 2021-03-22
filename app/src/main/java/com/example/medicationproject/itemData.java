@@ -2,7 +2,7 @@ package com.example.medicationproject;
 
 public class itemData {
 
-    //Member Variable===========================================================================
+    //Member Variable=========================-==================================================
     private String drug;
     private String date;
     private Boolean on_off;

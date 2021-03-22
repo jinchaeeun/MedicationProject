@@ -83,7 +83,7 @@ public class TimerAlam extends AppCompatActivity {
     //Music관련
 
 
-    // DG. Activity Result
+    // DG. Activity Result//
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

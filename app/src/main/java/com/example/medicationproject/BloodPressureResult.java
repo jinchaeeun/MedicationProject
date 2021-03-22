@@ -2,7 +2,7 @@ package com.example.medicationproject;
 
 //데이터 넘길 BloodPre
 public class BloodPressureResult {
-    //Member variable ----------------------------
+    //Member variable -----------------------------
     private String date;
     private String spin;
     private String bPTime;

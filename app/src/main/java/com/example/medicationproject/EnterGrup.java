@@ -28,7 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 //회원가입
 public class EnterGrup extends AppCompatActivity {
-    //----------------------View List-------------------------//
+    //----------------------View List--------------------------//
     private EditText nick;
     private EditText passwardcheck;
     private EditText phone;

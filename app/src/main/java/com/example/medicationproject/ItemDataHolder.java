@@ -5,7 +5,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 public class ItemDataHolder {
-
+//
     public TextView drugTXT;
     public TextView timeTXT;
     public Switch SW;

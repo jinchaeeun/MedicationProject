@@ -9,7 +9,7 @@ import android.util.Log;
 // SQLite Database에 관련된 모든 메서드 ----------------------------
 //따로따로 만들지말고 여기 한번에 넣자
 public class PressDBAdapter {
-    // Member variable --------------------------------------------
+    // Member variable ----------------------=----------------------
     private final String TAG = "BloodPress";
     private PressDBOpenHelper dbHelper;
     private SQLiteDatabase db;

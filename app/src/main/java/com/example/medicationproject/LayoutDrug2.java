@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class LayoutDrug2 extends AppCompatActivity {
 
-    //Member Variable ==========================================================================
+    //Member Variable ===========================================================================
     private final String TAG = "LayoutDrug2";
     private final boolean D = true;
 

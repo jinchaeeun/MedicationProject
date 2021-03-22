@@ -146,7 +146,7 @@ public class TimerAdd extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(getBaseContext(),R.layout.spinner_item, kinds1);
         adapter.setDropDownViewResource(R.layout.spinner_item);
         meal_spinner.setAdapter(adapter);
-
+        MediEatETXT=(EditText)findViewById(R.id.MediEatETXT);
 
     }
 

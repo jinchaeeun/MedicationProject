@@ -2,7 +2,7 @@ package com.example.medicationproject;
 
 //DESC : Database 관련 상수 저장 ------------------------------------------
 public class DBInfo {
-    // DB 관련 상수 ------------------------------------------------------
+    // DB 관련 상수 -------------------------------------------------------
     public static DBAdapter         DB_ADAPTER; //클래스를 변수로 만들기
     public static PressDBAdapter         PRESS_DB_ADAPTER; //클래스를 변수로 만들기
 

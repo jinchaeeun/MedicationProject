@@ -30,7 +30,7 @@ import java.util.List;
 
 public class FamilyList extends AppCompatActivity {
 
-    //Member Variable -----------------------------------------
+    //Member Variable ------------------------------------------
     // 디버깅을 위한 변수
     private final boolean D = true;
     private final String TAG = "FamilyList";

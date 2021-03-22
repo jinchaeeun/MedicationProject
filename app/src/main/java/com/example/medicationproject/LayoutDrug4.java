@@ -16,7 +16,7 @@ import java.util.Date;
 
 public class LayoutDrug4 extends AppCompatActivity {
 
-    //Member Variable ==========================================================================
+    //Member Variable ===========================================================================
     private final String TAG = "LayoutDrug4";
     private final  boolean D = true;
 

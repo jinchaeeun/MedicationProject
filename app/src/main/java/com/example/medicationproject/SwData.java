@@ -1,7 +1,7 @@
 package com.example.medicationproject;
 
 public class SwData {
-
+//
     public boolean on1;
     public boolean on2;
     public boolean on3;

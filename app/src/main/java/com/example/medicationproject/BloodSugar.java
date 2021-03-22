@@ -95,7 +95,7 @@ public class BloodSugar extends AppCompatActivity {
         setContentView(R.layout.bloodsugarlayout2);
         init();
         if (D) Log.i(TAG, "onCreate()");
-        TableUpdate();      //넣어줘야 실행 할 때 값을 가져옴..
+        TableUpdate();      //넣어줘야 실행 할 때 값을 가져옴..-
         //CalenderView 선택한 날짜
         bSuCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override

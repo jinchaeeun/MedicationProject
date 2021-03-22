@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class itemDataAdapter extends ArrayAdapter<itemData> {
 
 
-    //Member Variable ===============================================================================
+    //Member Variable ================================================================================
     private Context context;
     private int layoutResId;
     private ArrayList<itemData> dataList;

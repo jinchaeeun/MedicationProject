@@ -1,7 +1,7 @@
 package com.example.medicationproject;
 
 public class FamilyAddress {
-    //Member variable ---------------------------
+    //Member variable ----------------------------
     private String name;
     private String phone;
     private String email;

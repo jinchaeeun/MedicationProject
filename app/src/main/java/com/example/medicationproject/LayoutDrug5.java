@@ -24,7 +24,7 @@ import java.util.Locale;
 
 public class LayoutDrug5 extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    //Member Variable ==========================================================================
+    //Member Variable ===========================================================================
     private final String TAG = "LayoutDrug5";
     private final boolean D = true;
 

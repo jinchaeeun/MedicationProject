@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    //----------View List----------//
+    //----------View List-----------//
     private ImageButton TakeMe;
     private ImageButton Al_status;
     private ImageButton TakeList;
