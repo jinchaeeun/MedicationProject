@@ -55,16 +55,19 @@ public class AlarmReceiver extends BroadcastReceiver {
             builder.setSmallIcon(R.mipmap.ic_launcher); // Oreo 이하에서 mipmap 사용하지 않으면 Couldn't create icon: StatusBarIcon 에러남
 
 
-
-        String  strKind_of_Medical = intent.getStringExtra("Medical_name");
+        TimerAdd name = intent.getParcelableExtra("Medic_name");
+        TimerAdd No = intent.getParcelableExtra("Medical_Number");
+        String strKind_of_Medical = intent.getStringExtra("Medic_name");
         String strMedical_number=intent.getStringExtra("Medical_Number");
+
         builder.setAutoCancel(true)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setWhen(System.currentTimeMillis())
 
                 .setTicker("{Time to watch some cool stuff!}")
                 .setContentTitle("아침 복약 시간입니다!")
-                .setContentText(strKind_of_Medical + "\t" + strMedical_number+"개")
+                //.setContentText(strKind_of_Medical + "\t" + strMedical_number + "개")
+                .setContentText(name + "\t" + No + "개")
                 .setContentInfo("INFO")
                 .setContentIntent(pendingI);
 

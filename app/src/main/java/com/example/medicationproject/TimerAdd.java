@@ -66,6 +66,7 @@ public class TimerAdd extends AppCompatActivity {
     private int sugDate;
 
     private EditText MediEatETXT;
+    private EditText sugarETXT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -201,6 +202,7 @@ public class TimerAdd extends AppCompatActivity {
 
     public void click(View v) {
         medimemo();
+        mediNum();
         if (!bSugarETXT.getText().toString().equals("")) { //측정 혈압 입력 값이 비어있는지 확인.
             // 선택한 Spinner 값( 아침/저녁 )
             // 저장 버튼 누른 후 오늘 날짜 mTxtDate를 캘린더뷰 년도, 월, 일 선택되게하고 그 값 select date에 넣기
@@ -338,12 +340,13 @@ public class TimerAdd extends AppCompatActivity {
         Intent intent = new Intent(this,TimerAlam.class);
         MediEatETXT=(EditText)findViewById(R.id.MediEatETXT);
         intent.putExtra("Medical_name",MediEatETXT.getText().toString());
+        intent.putExtra("Medic_name",MediEatETXT.getText().toString());
         startActivity(intent);
     }
     public  void mediNum(){
-
+        sugarETXT=(EditText)findViewById(R.id.bSugarETXT);
         Intent intent = new Intent(this,TimerAlam.class);
-        bSugarETXT=(EditText)findViewById(R.id.bSugarETXT);
+        sugarETXT=(EditText)findViewById(R.id.bSugarETXT);
         intent.putExtra("Medical_Number",bSugarETXT.getText().toString());
         startActivity(intent);
     }
