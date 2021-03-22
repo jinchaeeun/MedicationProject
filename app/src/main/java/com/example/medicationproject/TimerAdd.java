@@ -340,4 +340,11 @@ public class TimerAdd extends AppCompatActivity {
         intent.putExtra("Medical_name",MediEatETXT.getText().toString());
         startActivity(intent);
     }
+    public  void mediNum(){
+
+        Intent intent = new Intent(this,TimerAlam.class);
+        bSugarETXT=(EditText)findViewById(R.id.bSugarETXT);
+        intent.putExtra("Medical_Number",bSugarETXT.getText().toString());
+        startActivity(intent);
+    }
 }
